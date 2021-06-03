@@ -1,0 +1,360 @@
+
+#loads the value weighted crsp index
+#also does some light preprocessing
+function loadidxcrsp(idxcrspname::String, retainedidxcrspcols::Vector{Symbol};
+  idxcrsppath::String = IDXCRSP_PATH,
+  idxcrspdateformat::DateFormat = IDXCRSP_DATE_FORMAT,
+  idxdatecol = IDX_DATE_COL)
+
+  idxcrsp::DataFrame = CSV.read("$idxcrsppath\\$idxcrspname.csv") |> DataFrame
+  idxcrsp.date = (i::Int->Date("$i", idxcrspdateformat)).(idxcrsp[!,idxdatecol])
+
+  #TEST_OUTPUT && (idxcrsp |> CSV.write("$OUT_PATH\\$idxcrspname.csv"))
+
+  select!(idxcrsp, retainedidxcrspcols)
+  rename(idxcrsp, Dict(s => Symbol(:P_,s) for s ∈ retainedidxcrspcols))
+
+
+  return idxcrsp
+end
+
+#load the ff data
+function loadff(ffname::String;
+  ffpath::String = FF_PATH,
+  ffdateformat::DateFormat = FF_DATE_FORMAT,
+  fieldprefix::String = lowercase("$ffname"))
+
+  ff::DataFrame = CSV.read("$ffpath\\$ffname.csv") |> DataFrame
+
+  #rename the columns
+  ffnames::Vector{Symbol} = names(ff)
+  ffnames[1] = :date
+  for (i,s) ∈ enumerate(ffnames)
+    local str::String = string(s)
+    if i==1 #date column is a special case
+      ffnames[1] = :date
+      continue
+    end
+
+    str = replace(str, "-"=>"")
+    str = replace(str, " "=>"")
+    str = replace(str, "_"=>"")
+    str = lowercase(str)
+    ffnames[i] = Symbol("P_$(fieldprefix)_", str)
+  end
+  names!(ff, ffnames)
+  ff.date = (i::Int->Date("$i", ffdateformat)).(ff.date)
+
+  #now make the colulmns for the index
+  idxnames::Vector{Symbol} = setdiff(ffnames, [:date])
+  idxnames .= (s->Symbol(s,"_idx")).(idxnames)
+  for n ∈ idxnames
+    ff[!,n] = Vector{MFloat64}(undef, size(ff,1))
+  end
+
+  @mpar for i ∈ 1:length(idxnames) #iterate the focal columns
+    idx::Symbol = idxnames[i]
+    ret::Symbol = Symbol(replace(string(idx), "_idx"=>""))
+
+    base::Float64 = 1.0
+    for r ∈ eachrow(ff) #now iterate down the rows
+      if (!ismissing(r[ret]))
+        if (r[ret] == -99.99) || (r[ret] < -100.) #missing codes for ff
+          r[ret] = missing
+        else
+          r[ret] /= 100
+          base *= 1.0 + r[ret]
+          r[idx] = base
+        end
+      end
+    end
+  end
+
+  TEST_OUTPUT && (ff |> CSV.write("$OUT_PATH\\$ffname.csv"))
+  select!(ff, [:date; idxnames;])
+
+  rename!(ff, Dict(n=>Symbol(replace(string(n), "_idx"=>"")) for n ∈ idxnames))
+
+  return ff
+end
+
+#interpolates the index to every day in an interval using the appropriate compounding
+function interpolateindex(idxcol::AbstractVector{T},
+  datecol::AbstractVector{Date}; tol::Float64 = maximum(idxcol) *10^-13)::Dict{MDate,T} where T<:Any
+
+  local idf::DataFrame
+
+  #check a couple basic types of errors
+  (sum((ismissing).(idxcol))>0) && (error("interpolateindex does not support missing values.
+    Consider supplying a view w/out missing vals."))
+  @assert length(idxcol) == length(datecol)
+
+  #accumulate dates
+  begindate::Date = minimum(datecol)
+  enddate::Date = maximum(datecol)
+  alldates::Vector{Date} = collect(begindate:Day(1):enddate)
+  actuals::Dict{Date,T} = Dict(datecol[i]=>idxcol[i] for i ∈ 1:length(datecol))
+
+  #set the values to be interpolated between
+  #first allocate space to work
+  allN = length(alldates)
+  allvals::Vector{T} = Vector{T}(undef, allN)
+  nextvalids = Vector{T}(undef, allN)
+  prevvalids = Vector{T}(undef, allN)
+  nextvaliddates = Vector{MDate}(undef, allN)
+  prevvaliddates = Vector{MDate}(undef, allN)
+
+  #identify the most recent previous values
+  for i ∈ 1:allN
+    (i==1) && continue
+
+    dprev::Date = alldates[i-1]
+    if haskey(actuals, dprev)
+      prevvalids[i] = actuals[dprev]
+      prevvaliddates[i] = dprev
+    else
+      prevvalids[i] = prevvalids[i-1]
+      prevvaliddates[i] = prevvaliddates[i-1]
+    end
+  end
+
+
+  #identify the nextvalues by counting backwards
+  for i ∈ allN:-1:1
+    dnext::Date = alldates[i]
+    if haskey(actuals, dnext)
+      nextvalids[i] = actuals[dnext]
+      nextvaliddates[i] = dnext
+    else
+      nextvalids[i] = nextvalids[i+1]
+      nextvaliddates[i] = nextvaliddates[i+1]
+    end
+  end
+
+  intervalperiods::Vector{MInt} = ((prev,next)->
+    (!ismissing(prev)) && (!ismissing(next)) ?
+    (next - prev).value : missing).(prevvaliddates, nextvaliddates)
+  ccret::Vector{MFloat64} = (log).(nextvalids ./ prevvalids) ./ intervalperiods
+
+  #finally do the interpolation
+  for i ∈ 1:allN
+    d::Date = alldates[i]
+    if (!haskey(actuals, d)) #interpolation case
+      allvals[i] = exp(ccret[i])*allvals[i-1]
+    else #no need to interpolate if we have an actual value....
+      allvals[i] = actuals[d]
+      if i > 1 #but still check the answer if possible
+        Δ::Float64 = abs(exp(ccret[i])*allvals[i-1] - allvals[i])
+        (Δ > tol) && @warn("Tolerance $tol exceeded with $Δ on row $i.
+          Value(t): $(allvals[i]), date: $d, return: $(ccret[i])")
+      end
+    end
+  end
+
+  interpolated::Dict{Date,T} = Dict(alldates[i] => allvals[i] for i ∈ 1:allN)
+  return interpolated
+end
+
+#interpolates the index to every day in an interval using the appropriate compounding
+function interpolateindexOLD(df::DataFrame, idxcol::Symbol,
+  datecol::Symbol = :date, tol::Float64 = 10^-10)
+
+  local idf::DataFrame
+
+  df = df[completecases(df[:, [idxcol, datecol]]), :]
+
+  begindate::Date = minimum(df[!,datecol])
+  enddate::Date = maximum(df[!,datecol])
+  alldates::Vector{Date} = collect(begindate:Day(1):enddate)
+
+  #now create the interpolated dataframe
+  Nidf::Int = length(alldates)
+  idf = DataFrame(rid = collect(1:Nidf))
+  idf[!,datecol] = alldates
+  idf = join(idf, df, on=datecol, kind=:left)
+  sort!(idf, datecol)
+
+  #set the values to be interpolated between
+  T::Type = eltype(idf[!,idxcol])
+  idf.nextvalid = Vector{T}(undef, Nidf)
+  idf.prevvalid = Vector{T}(undef, Nidf)
+  idf.nextvaliddate = Vector{MDate}(undef, Nidf)
+  idf.prevvaliddate = Vector{MDate}(undef, Nidf)
+
+  #previous values
+  for (i,r) ∈ enumerate(eachrow(idf))
+    (i==1) && continue
+
+    if  ismissing(idf[i-1, idxcol])
+      r.prevvalid = idf[i-1, :prevvalid]
+      r.prevvaliddate = idf[i-1, :prevvaliddate]
+    else
+      r.prevvalid = idf[i-1, idxcol]
+      r.prevvaliddate = idf[i-1, datecol]
+    end
+  end
+
+
+  #nextvalues
+  for i ∈ Nidf:-1:1
+    if ismissing(idf[i,idxcol])
+      idf[i, :nextvalid] = idf[i+1, :nextvalid]
+      idf[i, :nextvaliddate] = idf[i+1, :nextvaliddate]
+    else
+      idf[i, :nextvalid] = idf[i, idxcol]
+      idf[i, :nextvaliddate] = idf[i, datecol]
+    end
+  end
+
+  idf.period = ((prev,next)->(!ismissing(prev)) && (!ismissing(next)) ?
+    (next - prev).value : missing).(idf.prevvaliddate, idf.nextvaliddate)
+  idf.ccret = (log).(idf.nextvalid ./ idf.prevvalid) ./ idf.period
+
+  #finally do the interpolation
+  for (i,r) ∈ enumerate(eachrow(idf))
+    if ismissing(r[idxcol])
+      r[idxcol] = exp(r.ccret)*idf[i-1, idxcol]
+    elseif i > 1 #do an error check
+      Δ::Float64 = abs(exp(r.ccret)*idf[i-1, idxcol] - r[idxcol])
+      (Δ > tol) && @warn("Tolerance $tol exceeded with $Δ on row $i. Row: $r")
+    end
+  end
+
+  idf |> CSV.write("$OUT_PATH\\idf-$idxcol.csv")
+
+  #drop extraneous values
+  select!(idf, Not([:nextvalid, :nextvaliddate, :prevvalid,
+    :prevvaliddate, :ccret, :period]))
+
+  return idf
+end
+
+function returnsfromindex!(df::DataFrame, Fidxcol::Symbol; Fretcol::Symbol=Fidxcol,
+  sortdf::Bool = true,
+  Fdatecol::Symbol = :date, uselogs::Bool = false)::Nothing
+
+  #pre-allocate and sort if needed
+  N = size(df,1)
+  sortdf && (sort!(df, Fdatecol))
+  Fretcol_temp_ = Symbol(Fretcol,:_temp_)
+  df[!,Fretcol_temp_] = Vector{MFloat64}(undef, N)
+
+  local base::MFloat64 = missing
+  for (i,r) ∈ enumerate(eachrow(df))
+    if ismissing(base)
+      base = df[i, Fidxcol]
+      continue #otherwise we are just adding a 0 return row
+    end
+
+    base = ismissing(df[i-1, Fidxcol]) ? base : df[i-1, Fidxcol]
+
+    #compute the return
+    if !ismissing(r[Fidxcol])
+      r[Fretcol_temp_] = r[Fidxcol]/base - 1.
+      (uselogs) && (r[Fretcol_temp_] = log(1. + r[Fretcol_temp_]))
+    end
+  end
+
+  #most likely scenario for the below is the idx and ret col have the same name
+  if Fretcol ∈ names(df)
+    select!(df, Not(Fretcol))
+  end
+
+  rename!(df, Fretcol_temp_ => Fretcol)
+
+  return nothing
+end
+
+#helper function for multiple values
+function returnsfromindex!(df::DataFrame, Fidxcols::Vector{Symbol};
+  Fretcols::Vector{Symbol} = deepcopy(Fidxcols),
+  sortdf::Bool = true, Fdatecol::Symbol = :date, uselogs::Bool = false)::Nothing
+
+  sortdf && (sort!(df, Fdatecol)) #no need to sort multiple times
+
+  for i ∈ 1:length(Fidxcols)
+    returnsfromindex!(df, Fidxcols[i], Fretcol=Fretcols[i],
+      sortdf = false,  Fdatecol = Fdatecol, uselogs=uselogs)
+  end
+
+  return nothing
+
+end
+
+function mergeoutsidedf!(::Type{T}, port::DataFrame, source::AbstractDataFrame,
+  Fidxcol::Symbol; Fdatecol::Symbol = :date, interpolate::Bool = true)::Nothing where T<:Any
+
+  local indexvals::Dict{Date,T}
+
+  #make the index column in the output dataframe
+  port[!,Fidxcol] = Vector{Union{Missing, T}}(undef, size(port,1))
+
+  #avoid missing data in the input
+  ssource::SubDataFrame = view(source, (!ismissing).(source[!, Fidxcol]),:)
+
+  if interpolate
+    indexvals = interpolateindex(ssource[!,Fidxcol], ssource[!,Fdatecol])
+    maxdate = maximum(ssource[!,Fdatecol])
+    mindate = minimum(ssource[!,Fdatecol])
+    for r ∈ eachrow(port) #now update port
+      if (r[Fdatecol] ≥ mindate) && (r[Fdatecol] ≤ maxdate)
+        r[Fidxcol] = indexvals[r[Fdatecol]]
+      end
+    end
+  else
+    indexvals = Dict(r[Fdatecol]=>r[Fidxcol] for r ∈ eachrow(ssource))
+    for r ∈ eachrow(port) #now update port but check that each entry exists
+      if haskey(indexvals, r[Fdatecol])
+        r[Fidxcol] = indexvals[r[Fdatecol]]
+      end
+    end
+  end
+
+  return nothing
+end
+
+#helper function that works with an aaray of columns
+function mergeoutsidedf!(port::DataFrame, source::AbstractDataFrame,
+  indexsyms = setdiff!(names(source), [:date]); interpolate::Bool = true)
+
+  for s ∈ indexsyms
+    T::Type = eltype(source[!,s])
+    mergeoutsidedf!(T, port, source, s, interpolate=interpolate)
+  end
+
+  return nothing
+end
+
+function mergeoutside!(port::DataFrame)::Nothing
+  local vwcrsp::DataFrame
+  local rfcrsp::DataFrame
+  local ff5::DataFrame
+  local ff3m::DataFrame
+
+  #first, load the index portfolios
+  vwcrsp = loadidxcrsp(VWCRSP_NAME, RETAINED_VWCRSP_COLS)
+  rfcrsp = loadidxcrsp(RFCRSP_NAME, RETAINED_RFCRSP_COLS)
+  ff3m = loadff(FF3M_NAME)
+  ff5 = loadff(FF5_NAME)
+
+  indicesadded::Vector{Symbol} = setdiff([names(vwcrsp); names(rfcrsp);
+    names(ff3m); names(ff5)], [:date])
+
+  for df::DataFrame ∈ [vwcrsp, rfcrsp, ff3m, ff5]
+    mergeoutsidedf!(port, df)
+  end
+
+  #if TEST_OUTPUT
+  #  CSV.write("output\\mergeoutsidetest.csv", port[:,
+  #    filter(s::Symbol->string(s)[1:2] ≠ "S_", names(port))])
+  #end
+
+  #compute the index returns
+  returnsfromindex!(port, indicesadded, uselogs=false)
+
+  #some housekeeping with the market index
+  rename!(port, Dict(:vwindd=>:mktgross, :t30ind=>:rfr))
+  port.mkt = port.mktgross .- port.rfr
+
+  return nothing
+end

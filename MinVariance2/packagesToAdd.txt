@@ -1,0 +1,14 @@
+#list of added packages
+
+#routines for adding the packages
+add Atom Juno Revise Pkg Random Dates
+add CodecZlib CodecZstd
+add CSV DataFrames XLSX
+add Statistics LinearAlgebra Distributions StatsBase Random
+
+
+add https://github.com/clintonTE/Finometrics
+
+(Temporary)
+
+

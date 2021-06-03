@@ -1,0 +1,9 @@
+Note:  This is not an official Federal Reserve statistical release.										
+										
+Series			Compounding Convention				Mnemonic(s)			
+Zero-coupon yield			Continuously Compounded				SVENYXX			
+Par yield			Coupon-Equivalent				SVENPYXX			
+Instantaneous forward rate			Continuously Compounded				SVENFXX			
+One-year forward rate			Coupon-Equivalent				SVEN1FXX			
+Parameters			N/A				BETA0 to TAU2			
+										

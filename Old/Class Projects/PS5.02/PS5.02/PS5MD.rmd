@@ -1,0 +1,280 @@
+---
+title: "Problem Set 5"
+author: "Clinton Tepper"
+output: html_document
+---
+
+```{r echo = FALSE, message = FALSE}
+
+rm(list = ls());
+require(dplyr);
+require(ggplot2);
+require(reshape2);
+
+```
+
+## Problem 1
+The following helper functions are used in both problems 1 and 2, and serve to create 
+bootstrap and sample helper distributions
+
+```{r}
+#Creates a bootstrap distribution from a population distribution given an
+#arbitrary sample statistic (1 arg)
+#In: population data, a stat function (1 arg), number of samples per draw, number of draws
+#Out: a vector of bootstraps
+boot.bootStrapper = function(popSet, statFunc, samplesPerDraw, numDraws) {
+
+    return(matrix(sapply(1:numDraws,
+    function(x) statFunc(sample(popSet, samplesPerDraw, replace = TRUE))),
+    numDraws));
+}
+
+#Creates a sample distribution from a population function given an
+#arbitrary sample statistic (1 arg)
+#In: population fucntion (1 arg which takes in number of samples per draw), a stat function (1 arg), 
+# number of samples per draw, number of draws
+#Out: a vector of sample calculations
+boot.sampleDist = function(popFunc, statFunc, samplesPerDraw, numDraws) {
+    return(matrix(sapply(rep(samplesPerDraw, numDraws), function(x) statFunc(popFunc(x))), numDraws));
+}
+```
+
+Having defined our helper functions, we now simulate population and bootstrap histograms for
+$e^{avg(X)}$ where X is a vector of 100 RVs~N(5,1).
+```{r}
+population = 100;
+draws = 10000;
+popGen = function(x) rnorm(x, 5, 1);
+#define the statistic and population generator function
+statGen = function(x) exp(mean(x));
+
+dataSet = popGen(population);
+#acquire the data set
+popStat = statGen(dataSet);
+problemDist = boot.bootStrapper(dataSet, statGen, population, draws);
+hist(problemDist, 50, main = "Problem 1 Bootstrap Distribution");
+
+cat("\nThe problem 1 standard error is:\n");
+cat(var(problemDist) ^ .5);
+cat("\n\nThe pivotal confidence interval is:\n")
+CIPivotal = c(2 * popStat - quantile(problemDist, .025), 2 * popStat - quantile(problemDist, .975));
+cat(CIPivotal);
+
+problemDist = boot.sampleDist(popGen, statGen, population, draws)
+hist(problemDist, 50, main = "Problem 1 Sample Distribution");
+```
+
+We conclude by noting that the bootstrap historgram seems 
+reasonably close to the population histogram.
+
+## Problem 2
+### Part a
+The following block of code uses the same helper functions as problem 1 to generate
+both a population and a sample distribution for the max of 50 uniform distribution samples
+
+```{r}
+population = 50;
+popGen = function(x) runif(x);
+#define the statistic and population generator function
+statGen = function(x) max(x);
+
+dataSet = popGen(population);
+#acquire the data set
+popStat = statGen(dataSet);
+problemDist = boot.bootStrapper(dataSet, statGen, population, draws);
+CIPivotal = c(2 * popStat - quantile(problemDist, .025), 2 * popStat - quantile(problemDist, .975));
+
+cat("\n\nThe problem 2 standard error is:\n");
+cat(var(problemDist) ^ .5);
+cat("\n\nThe pivotal confidence interval is:\n")
+cat(CIPivotal);
+
+hist(problemDist, 50, main = "Problem 2 Bootstrap Distribution");
+problemDist = boot.sampleDist(popGen, statGen, population, draws)
+hist(problemDist, 50, main = "Problem 2 Sample Distribution");
+```
+
+We note that the bootstrap approximation is lacking in this case.
+
+### Part b
+
+
+The probability that $\hat{\theta}_{a}=\hat{\theta}_{b}$ is equal
+to zero because $\hat{\theta}$ is a continuous random variable with
+a range of $[0,1]$. On the other hand, the probability that $\hat{\theta}^{*}$
+is equal to $\hat{\theta}$ is equal to the probability that $\hat{\theta}\in\hat{F}$
+where $\hat{F}$ is the bootstrap sample. This directly results the
+calculation for $\hat{\theta}=max\left(\hat{F}\right)$. The probability
+that $\hat{\theta}\in\hat{F}$ is equal to $1-\left(1-1/n\right)^{n}$.
+Then:
+
+$$
+\begin{align*}
+\lim_{n\to\infty}1-\left(1-1/n\right)^{n}= & 1-\lim_{n\to\infty}\left(1-1/n\right)^{n}\\
+ln\left(\lim_{n\to\infty}\left(1-1/n\right)^{n}\right)= & \lim_{n\to\infty}nln\left(1-1/n\right)\\
+ln\left(\lim_{n\to\infty}\left(1-1/n\right)^{n}\right)= & \lim_{n\to\infty}\frac{\frac{1/n^{2}}{1-1/n}}{-1/n^{2}}\text{ (by L'Hopital's Rule)}\\
+ln\left(\lim_{n\to\infty}\left(1-1/n\right)^{n}\right)= & \lim_{n\to\infty}\frac{-1}{1-1/n}=-1\\
+\lim_{n\to\infty}\left(1-1/n\right)^{n}= & \frac{1}{e}\\
+\lim_{n\to\infty}1-\left(1-1/n\right)^{n}= & 1-\frac{1}{e}=.632
+\end{align*}
+$$
+
+
+## Problem 3
+### Part a
+Walking down the moments and solving the system of equations
+
+$$
+\begin{align*}
+a_{1}=\frac{1}{b-a}\int_{a}^{b}xdx=\frac{b^{2}-a^{2}}{b-a}=\frac{a+b}{2}= & \frac{1}{n}\sum_{j=1}^{n}X_{i}=\overline{X}\\
+a_{2}=\frac{1}{b-a}\int_{a}^{b}x^{2}dx=\frac{b^{3}-a^{3}}{3\left(b-a\right)}=\frac{a^{2}+ab+b^{2}}{3}= & \frac{1}{n}\sum_{j=1}^{n}X_{i}^{2}\\
+\frac{1}{n}\sum_{j=1}^{n}X_{i}^{2} & =\frac{\left(2\overline{X}-b\right)^{2}+\left(2\overline{X}-b\right)b+b^{2}}{3}\\
+\frac{1}{n}\sum_{j=1}^{n}X_{i}^{2} & =\frac{4\overline{X}^{2}-4\overline{X}b+b^{2}+2\overline{X}b-b^{2}+b^{2}}{3}\\
+\frac{1}{n}\sum_{j=1}^{n}X_{i}^{2} & =\frac{4\overline{X}^{2}-2\overline{X}b+b^{2}}{3}\\
+0= & 4\overline{X}^{2}-\frac{3}{n}\sum_{j=1}^{n}X_{i}^{2}-2\overline{X}b+b^{2}\\
+\text{then: }b= & \frac{-\beta+\sqrt{\beta^{2}-4\delta}}{2}\\
+s.t.\\
+\beta= & -2\overline{X}\\
+\delta= & 4\overline{X}^{2}-\frac{3}{n}\sum_{j=1}^{n}X_{i}^{2}\\
+\frac{a+b}{2}= & \overline{X}\\
+a= & 2\overline{X}-b\\
+a= & \frac{-\beta-\sqrt{\beta^{2}-4\delta}}{2}
+\end{align*}
+$$
+
+### Part b
+
+* Let $X_{-}$ denote $min\left\{ X_{1...n}\right\} $ and $X_{+}=max\left\{ X_{1...n}\right\} $.
+Then we know that the probability that $L_{n}(a)$ and $L_{n}(b)$
+is between $X_{-}$ and $X_{+}$ is equal to zero. In other words,
+we know that $L_{n}(a)\le X_{-}$ and $X_{+}\le L_{n}(b)$. 
+* From the definition of the uniform distribution, we know the likelihood
+of any single point outside of these boundaries is $\frac{1}{b-a}\text{ such that }\left\{ a,b\right\} \notin(X_{-},X_{+})$
+and zero otherwise. Therefore the likelihood estimator is $L=\frac{1}{\left(b-a\right)^{n}}$
+* Because the function $\frac{1}{\left(b-a\right)^{n}}$ is strictly
+decreasing in b and strictly increasing in a, it follows $b=X_{+}$
+and $a=X_{-}$.
+
+
+
+### Part c
+
+Note that:
+
+$$
+\begin{align*}
+\tau= & \frac{1}{b-a}\int_{a}^{b}xdF\\
+\tau= & \frac{b^{2}-a^{2}}{2\left(b-a\right)}=\frac{a+b}{2}
+\end{align*}
+$$
+
+Therefore by equivariance, we know that the MLE for $\tau$ is:
+
+$$
+\begin{align*}
+\tau= & \frac{X_{-}+X_{+}}{2}
+\end{align*}
+$$
+
+## Problem 4
+
+
+
+* We must prove that $\hat{\theta}\stackrel{p}{\to}\theta$. Therefore
+we must prove that $p\left(\epsilon<\left|\theta-\hat{\theta}\right|\right)\to0$
+for all $\epsilon>0$. Note that because $p(\theta-\hat{\theta}<-\epsilon)=0$,
+we can write the objective as $p\left(\epsilon<\theta-\hat{\theta}\right)\to0$
+.
+* For $\epsilon\ge\theta$, we know $p(\epsilon<\theta-\hat{\theta})$
+equals zero. 
+* The estimator is $\hat{\theta}=max\left(\left\{ X_{n}\right\} \right)$.
+As discussed in the problem hint, $P\left(\hat{\theta}\le c\right)=P\left(\prod_{j=1}^{n}\left(X_{j}<c\right)\right)$.
+For $\epsilon<\theta$, the probability for n=1 that $p(\epsilon<\theta-\hat{\theta_{1}})=\frac{\theta-\epsilon}{\theta}$.
+Similarly, $p(\epsilon<\theta-\hat{\theta_{n}})=\left(\frac{\theta-\epsilon}{\theta}\right)^{n}$.
+Moreover, $\lim_{n\to\infty}\left(\frac{\theta-\epsilon}{\theta}\right)^{n}=0$.
+* Therefore $p\left(\epsilon<\left|\theta-\hat{\theta}\right|\right)\to0$.
+
+
+
+## Problem 5
+###Part a
+
+
+Because the values are censored (as opposed to truncated) the likelihood
+for any $y>c$ will be the same as the standard regression model,
+or $\frac{1}{\sqrt{2\phi\sigma^{2}}}exp\left(\frac{-\left(y-X\beta\right)^{t}\left(y-X\beta\right)}{2\sigma^{2}}\right)$.
+Our model is making the further assumption that any value $y_{i}^{*}\le c$
+corresponds to $y_{i}=c$. Therefore for values of y that are less
+than zero, the likelihood function takes a discrete form, which by
+the normalization requirement must consist of the residual probability
+mass. Therefore:
+
+$$
+\begin{align*}
+L(\beta,\sigma^{2})= & \prod_{j=1}^{n}Q_{i}\\
+Q_{i}= & \begin{cases}
+\frac{1}{\sqrt{2\pi\sigma^{2}}}exp\left(\frac{-\left(y_{i}-\beta x_{i}\right)^{2}}{2\sigma^{2}}\right) & y_{i}>c\\
+\Phi\left(\frac{c-\beta x_{i}}{\sigma}\right) & y_{i}\le c
+\end{cases}
+\end{align*}
+$$
+
+In this case where $c=0$ we get:
+
+$$
+\begin{align*}
+Q_{i}= & \begin{cases}
+\frac{1}{\sqrt{2\pi\sigma^{2}}}exp\left(\frac{-\left(y_{i}-\beta x_{i}\right)^{2}}{2\sigma^{2}}\right) & y_{i}>0\\
+1-\Phi\left(\frac{\beta x_{i}}{\sigma}\right) & y_{i}\le0
+\end{cases}
+\end{align*}
+$$
+
+### Part b
+The following code uses a helper function to calculate the maximum (log) likelihood of the
+truncated regression function. The results are displayed via a contour plot for different
+levels of sigma and beta. 
+
+```{r}
+tobitLike = function(beta, sigma, cutoff, xVec, yVec) {
+    minLike = -10 ^ 8;
+    #minimum likelihood to prevent -inf results
+    singleLike = function(x, y)
+        log(if (y > cutoff) dnorm(y - beta * x, 0, sigma) else pnorm(cutoff - beta * x, 0, sigma));
+        #print(mapply(singleLike, xVec, yVec));
+    return(max(sum(mapply(singleLike, xVec, yVec)), minLike));
+}
+
+########################Problem 5 Script entry point############################
+numVals = 4000;
+#Define the parameters
+edgeSize = 50;
+sigmaMin = 0.1;
+sigmaMax = 1;
+betaMin = -3;
+betaMax = 3;
+
+#true population parameters
+betaPop = 1;
+sigmaPop = 0.6;
+
+xSeq = seq(betaMin, betaMax, (betaMax - betaMin) / edgeSize);
+#establish the parameter grid
+ySeq = seq(sigmaMin, sigmaMax, (sigmaMax - sigmaMin) / edgeSize);
+sigBetaGrid = data.matrix(expand.grid(xSeq, ySeq));
+#establish the parameter grid
+
+xVector = runif(numVals, -1, 1);
+yVector = mapply(function(x, e) max(betaPop * x + sigmaPop * e, 0), xVector, rnorm(numVals));
+
+likelihoods = mapply(function(b, s) tobitLike(b, s, 0, xVector, yVector), #pass the appropriate parameters to tobitlike
+    sigBetaGrid[, 1], sigBetaGrid[, 2]);
+likeLevels = quantile(likelihoods, seq(0, 1, .04));
+#print(likelihoods);
+contour(xSeq, ySeq, matrix(likelihoods, length(xSeq), length(ySeq)), levels = likeLevels,
+main = "Problem 5 Contour Map", xlab = "beta", ylab = "sigma");
+```
+
+Note that the contour map indicates the highest likelihood estimates for beta and sigma are 
+at beta=1 and sigma=0.6 (indicated by the inner-most circle), a result consistent with the
+true population parameters.

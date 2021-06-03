@@ -1,0 +1,289 @@
+---
+title: "Problem Set 1"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+```{r echo = FALSE, message = FALSE}
+
+rm(list = ls());
+require(devtools);
+require(DataAnalytics);
+
+```
+
+## Problem 1
+
+* We first partition the matrix for X into two components: 
+
+$$
+\begin{align*}
+y= & \begin{bmatrix}X_{1} & X_{2}\end{bmatrix}\begin{bmatrix}\beta_{1}\\
+\beta_{2}
+\end{bmatrix}+\varepsilon
+\end{align*}
+$$
+
+* Next we plug the partitions into the estimation equation and multiply through
+$$
+\begin{align*}
+\begin{bmatrix}X_{1}^{t}\\
+X_{2}^{t}
+\end{bmatrix}\begin{bmatrix}X_{1} & X_{2}\end{bmatrix}\begin{bmatrix}b_{1}\\
+b_{2}
+\end{bmatrix}= & \begin{bmatrix}X_{1}^{t}\\
+X_{2}^{t}
+\end{bmatrix}y\\
+\begin{bmatrix}X_{1}^{t}X_{1} & X_{1}^{t}X_{2}\\
+X_{2}^{t}X_{1} & X_{2}^{t}X_{2}
+\end{bmatrix}\begin{bmatrix}b_{1}\\
+b_{2}
+\end{bmatrix}= & \begin{bmatrix}X_{1}^{t}y\\
+X_{2}^{t}y
+\end{bmatrix}\\
+\begin{bmatrix}X_{1}^{t}X_{1}b_{1}+X_{1}^{t}X_{2}b_{2}\\
+X_{2}^{t}X_{1}b_{1}+X_{2}^{t}X_{2}b_{2}
+\end{bmatrix}= & \begin{bmatrix}X_{1}^{t}y\\
+X_{2}^{t}y
+\end{bmatrix}
+\end{align*}
+$$
+
+* Finally, we solve for $b_{1}$:
+
+$$
+\begin{align*}
+b_{2}= & \left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}y-\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}X_{1}b_{1}\\
+X_{1}^{t}X_{1}b_{1}= & X_{1}^{t}y-X_{1}^{t}X_{2}b_{2}\\
+X_{1}^{t}X_{1}b_{1}= & X_{1}^{t}y-X_{1}^{t}X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}y+X_{1}^{t}X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}X_{1}b_{1}\\
+X_{1}^{t}X_{1}b_{1}-X_{1}^{t}X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}X_{1}b_{1}= & X_{1}^{t}y-X_{1}^{t}X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}y
+\end{align*}
+$$
+
+* If $P_{2}=X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}$:
+
+$$
+\begin{align*}
+X_{1}^{t}X_{1}b_{1}-X_{1}^{t}P_{2}X_{1}b_{1}= & X_{1}^{t}y-X_{1}^{t}P_{2}y\\
+X_{1}^{t}\left[X_{1}-P_{2}X_{1}\right]b_{1}= & X_{1}^{t}\left[I-P_{2}\right]y\\
+X_{1}^{t}\left[I-P_{2}\right]X_{1}b_{1}= & X_{1}^{t}\left[I-P_{2}\right]y\\
+b_{1}= & \left[X_{1}^{t}\left[I-P_{2}\right]X_{1}\right]^{-1}X_{1}^{t}\left[I-P_{2}\right]y\checkmark
+\end{align*}
+$$
+
+##Problem 2
+* We again start by partitioning the matrix for X into two components:
+
+$$
+\begin{align*}
+y= & \begin{bmatrix}X_{1} & X_{2}\end{bmatrix}\begin{bmatrix}\beta_{1}\\
+\beta_{2}
+\end{bmatrix}+\varepsilon
+\end{align*}
+$$
+
+
+* We next plug in the variance equation $V\left(b\right)=\sigma^{2}\left[X'X\right]^{-1}$
+
+$$
+\begin{align*}
+\begin{bmatrix}V\left(b_{1}\right)\\
+V\left(b_{2}\right)
+\end{bmatrix}= & \sigma^{2}\left[\begin{bmatrix}X_{1}^{t}\\
+X_{2}^{t}
+\end{bmatrix}\begin{bmatrix}X_{1} & X_{2}\end{bmatrix}\right]^{-1}\\
+\begin{bmatrix}V\left(b_{1}\right) & cov\left(b_{1},b_{2}\right)\\
+cov\left(b_{2},b_{1}\right) & V\left(b_{2}\right)
+\end{bmatrix}= & \sigma^{2}\begin{bmatrix}X_{1}^{t}X_{1} & X_{1}^{t}X_{2}\\
+X_{2}^{t}X_{1} & X_{2}^{t}X_{2}
+\end{bmatrix}^{-1}
+\end{align*}
+$$
+
+* We need to invert the matrix
+
+$$
+\begin{align*}
+ & \begin{bmatrix}A & B\\
+C & D
+\end{bmatrix}^{-1}=\begin{bmatrix}A & B\\
+B' & D
+\end{bmatrix}^{-1}=\begin{bmatrix}\left[A-BD^{-1}B'\right]^{-1} & -A^{-1}B\left[D-B'A^{-1}B\right]^{-1}\\
+-D^{-1}B'\left[A-BD^{-1}B'\right]^{-1} & \left[D-B'A^{-1}B\right]^{-1}
+\end{bmatrix}\\
+ & \begin{bmatrix}X_{1}^{t}X_{1} & X_{1}^{t}X_{2}\\
+X_{2}^{t}X_{1} & X_{2}^{t}X_{2}
+\end{bmatrix}^{-1}=\\
+ & \begin{bmatrix}\left[\left[X_{1}^{t}X_{1}\right]-\left[X_{1}^{t}X_{2}\right]\left[X_{2}^{t}X_{2}\right]^{-1}\left[X_{2}^{t}X_{1}\right]\right]^{-1} & -\left[X_{1}^{t}X_{1}\right]^{-1}\left[X_{1}^{t}X_{2}\right]\left[\left[X_{2}^{t}X_{2}\right]-\left[X_{2}^{t}X_{1}\right]\left[X_{1}^{t}X_{1}\right]^{-1}\left[X_{1}^{t}X_{2}\right]\right]^{-1}\\
+-\left[X_{2}^{t}X_{2}\right]^{-1}\left[X_{2}^{t}X_{1}\right]\left[\left[X_{1}^{t}X_{1}\right]-\left[X_{1}^{t}X_{2}\right]\left[X_{2}^{t}X_{2}\right]^{-1}\left[X_{2}^{t}X_{1}\right]\right]^{-1} & \left[\left[X_{2}^{t}X_{2}\right]-\left[X_{2}^{t}X_{1}\right]\left[X_{1}^{t}X_{1}\right]^{-1}\left[X_{1}^{t}X_{2}\right]\right]^{-1}
+\end{bmatrix}
+\end{align*}
+$$
+
+* Therefore:
+
+$$
+\begin{align*}
+V\left(b_{1}\right) & =\sigma^{2}\left[\left[X_{1}^{t}X_{1}\right]-\left[X_{1}^{t}X_{2}\right]\left[X_{2}^{t}X_{2}\right]^{-1}\left[X_{2}^{t}X_{1}\right]\right]^{-1}
+\end{align*}
+$$
+
+* Let $P_{2}=X_{2}\left[X_{2}^{t}X_{2}\right]^{-1}X_{2}^{t}$. Note
+that $P_{2}$ is both idempotent and symmetric.
+
+$$
+\begin{align*}
+V\left(b_{1}\right) & =\sigma^{2}\left[\left[X_{1}^{t}X_{1}\right]-\left[X_{1}^{t}P_{2}X_{2}\right]\right]^{-1}\\
+V\left(b_{1}\right) & =\sigma^{2}\left[X_{1}^{t}\left(I-P_{2}\right)X_{1}\right]^{-1}\\
+V\left(b_{1}\right) & =\sigma^{2}\left[X_{1}^{t}\left(I-P_{2}-P_{2}+P_{2}\right)X_{1}\right]^{-1}\\
+V\left(b_{1}\right) & =\sigma^{2}\left[X_{1}^{t}\left(I-P_{2}-P_{2}+P_{2}P_{2}\right)X_{1}\right]^{-1}\\
+V\left(b_{1}\right) & =\sigma^{2}\left[X_{1}^{t}\left(I-P_{2}\right)\left(I-P_{2}\right)X_{1}\right]^{-1}\\
+V\left(b_{1}\right) & =\sigma^{2}\left[X_{1}^{t}\left(I-P_{2}^{t}\right)\left(I-P_{2}\right)X_{1}\right]^{-1}
+\end{align*}
+$$
+
+* Letting $E_{1.2}=\left(I-P_{2}\right)X_{1}$:
+
+$$
+\begin{align*}
+V\left(b_{1}\right) & =\sigma^{2}\left[E_{1.2}^{t}E_{1.2}\right]^{-1}
+\end{align*}
+$$
+
+##Problem 3
+* For part B, let $b_{1}$ correspond to the coefficient for $lnIncome$,
+$b_{2}$ correspond to $lnAge$, and $b_{3}$ correspond to $numChildren$.
+Also let an asterisk denote the short regression on $plShare$. Finally,
+let $g_{ij}$ denote the regression of variable j on variable i. We
+must solve for $b_{1}$ given $b_{1}^{*},b_{2}^{*},b_{3}^{*}$. We
+can write the problem as follows:
+
+$$
+\begin{align*}
+\begin{bmatrix}b_{1}+g_{12}b_{2}+g_{13}b_{3}\\
+g_{21}b_{1}+b_{2}+g_{23}b_{3}\\
+g_{31}b_{1}+g_{32}b_{2}+b_{3}
+\end{bmatrix} & =\begin{bmatrix}b_{1}^{*}\\
+b_{2}^{*}\\
+b_{3}^{*}
+\end{bmatrix}\\
+\begin{bmatrix}1 & g_{12} & g_{13}\\
+g_{21} & 1 & g_{23}\\
+g_{31} & g_{23} & 1
+\end{bmatrix}\begin{bmatrix}b_{1}\\
+b_{2}\\
+b_{3}
+\end{bmatrix} & =\begin{bmatrix}b_{1}^{*}\\
+b_{2}^{*}\\
+b_{3}^{*}
+\end{bmatrix}\\
+\begin{bmatrix}b_{1}\\
+b_{2}\\
+b_{3}
+\end{bmatrix} & =\begin{bmatrix}1 & g_{12} & g_{13}\\
+g_{21} & 1 & g_{23}\\
+g_{31} & g_{23} & 1
+\end{bmatrix}^{-1}\begin{bmatrix}b_{1}^{*}\\
+b_{2}^{*}\\
+b_{3}^{*}
+\end{bmatrix}
+\end{align*}
+$$
+
+* Therefore, our approach will be to generate the g matrix and $b^{*}$
+coefficients, after which we plug into the above formula. 
+
+
+```{r}
+set.seed(11);
+################################helper functions###################
+#in: a regression object
+#out: a matrix object for the coefficients
+getCoefAsMatrix = function(reg) matrix(coef(reg),
+    nrow = length(coef(reg)),
+    dimnames = list(names(coef(reg))));
+
+#this function takes in a data frame and outputs the beta coeficients for all pairwise combinations
+#in: a data frame
+#out: a matrix of beta coefficients for each pair of columns
+getBetaMatrix = function(dat) {
+    numCombo = ncol(dat);
+    indices = expand.grid(1:numCombo, 1:numCombo);
+
+    #the helper function below runs the pairwise regression
+    return(matrix(mapply(function(x, y)
+        getCoefAsMatrix(lm(dat[, y] ~ dat[, x], data = dat))[2, 1],
+        indices[, 1], indices[, 2]), nrow = numCombo));
+}
+
+####################################Script Entry Point##########################
+load("pl_share_demo_2005.rda");
+
+PLData = pl_share_demo_2005[, c("pl_share", "lnIncome", "lnAge", "num_children")];
+#get just the data we are analyzing
+
+#first run the long regression
+longPL = lm(pl_share ~ lnIncome + lnAge + num_children, data = PLData);
+
+#extract the coefficients into a matrix
+longCoef = getCoefAsMatrix(longPL);
+print("Coeficients for part A")
+print(longCoef);
+
+betaMat = getBetaMatrix(PLData);
+gMat = betaMat[2:4, 2:4];
+# we get the matrix of beta coeficients where we regress column on row
+bVecShort = betaMat[2:4, 1];
+#this is a vector of our short regression coeficients
+
+longCoefMethod2 = solve(gMat) %*% bVecShort;
+print("Coeficients for part B");
+print(longCoefMethod2);
+print("Max Difference Between Methods:");
+print(abs(max(longCoef[2:4] - longCoefMethod2)));
+
+```
+
+* We conclude by noting that both methods provide the same answer.
+
+##Problem 4
+* Our model in the simple regression case can be denoted as $Y_{h}=X_{w}b_{w}^{*}+\varepsilon_{w}$
+where $Y_{h}$ represents height and $X_{w}$ represents weight. We
+calculate the bivariate regression coefficient for $Y_{h}$ on $X_{w}$
+as $b_{w}^{^{*}}=\left[X_{w}^{t}X_{w}\right]^{-1}\left[X_{w}^{t}Y_{h}\right]$. 
+* For the multivariate case, we follow the procedure from the slides,
+assuming a model $Y_{h}=X_{w}b_{w}+X_{s}b_{s}$. Starting with $b_{w}$:
+
+    + First we regress weight on sex, or $X_{w}$ on $X_{s}$. This gives
+us $\left[X_{s}^{t}X_{s}\right]^{-1}\left[X_{s}^{t}X_{w}\right]$. 
+
+    + If $P_{s}=X_{s}^{t}\left[X_{s}^{t}X\right]^{-1}X_{s}$, then $E_{ws}=\left(I-P_{s}\right)X_{w}$.
+
+    + We now regress $Y_{h}$ on the residual matrix, giving us $b_{w}=\left[X_{w}'\left(I-P_{s}\right)'\left(I-P_{s}\right)X_{w}\right]^{-1}\left[X_{w}'\left(I-P_{s}\right)'Y_{h}\right]$.
+This simplifies to $b_{w}=\left[X_{w}'\left(I-P_{s}\right)X_{w}\right]^{-1}\left[X_{w}'\left(I-P_{s}\right)Y_{h}\right]$
+
+
+* We now repeat these steps to obtain $b_{s}$:
+
+
+    + Regressing sex on weight, or $X_{s}$ on $X_{w}$, we obtain $\left[X_{w}^{t}X_{w}\right]^{-1}\left[X_{w}^{t}X_{s}\right]$.
+
+    + Defining $P_{w}=X_{w}^{t}\left[X_{w}^{t}X\right]^{-1}X_{w}$, we form
+the residual matrix as $E_{sw}=\left(I-P_{w}\right)X_{s}$.
+
+    + Therefore we denote our final regression of $Y_{h}$ on $E_{sw}$
+as $b_{s}=\left[X_{s}^{t}\left(I-P_{w}\right)^{t}\left(I-P_{w}\right)X_{s}\right]^{-1}\left[X_{s}\left(I-P_{w}\right)Y_{h}\right]$$=\left[X_{s}^{t}\left(I-P_{w}\right)X_{s}\right]^{-1}\left[X_{s}\left(I-P_{w}\right)Y_{h}\right]$.
+
+* We now compare the two results. In the first case, given the exogeneity
+assumption, we have $E\left(H|W\right)=W\left[X_{w}^{t}X_{w}\right]^{-1}\left[X_{w}^{t}Y_{h}\right]$.
+In the second multi-variate regression case, we have $E\left(H|W,S\right)=W\left[X_{w}'\left(I-P_{s}\right)X_{w}\right]^{-1}\left[X_{w}'\left(I-P_{s}\right)Y_{h}\right]+S\left[X_{s}^{t}\left(I-P_{w}\right)X_{s}\right]^{-1}\left[X_{s}\left(I-P_{w}\right)Y_{h}\right]$
+
+* We conclude by noting that while we would expect $E\left(W|S=m\right)>E\left(W|S=f\right)$
+and $E\left(H|S=m\right)>E\left(H|S=f\right)$, the relative magnitudes
+of $E\left(H|W=w,S=m\right)$ to $E\left(H|W=w,S=f\right)$ seems
+less clear. In other words, controlling for weight will greatly change
+the magnitude, and potentially the sign, of the relationship of sex
+on height. 
+
+
+

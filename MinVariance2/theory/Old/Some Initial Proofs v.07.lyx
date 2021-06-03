@@ -1,0 +1,1272 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\usepackage{dcolumn}
+\thispagestyle{empty}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Solve for global min var portfolio
+\end_layout
+
+\begin_layout Standard
+Begin with portfolio covariance 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ and returns z.
+ The global minimum variance portfolio is given by
+\begin_inset Formula 
+\begin{align*}
+\min & w'\Sigma w\\
+s.t.1'w= & 1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the last term imposes a unique solution w/o loss of generality.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+0= & \Sigma w_{g}-\lambda1\\
+w_{g}= & \lambda\Sigma^{-1}1\\
+1= & \lambda1'\Sigma^{-1}1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $A=1'\Sigma^{-1}1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $w_{g}=\frac{\Sigma^{-1}1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Proof that 
+\begin_inset Formula $w_{p}\Sigma w_{g}=\frac{1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pick any portfolio s.t.
+ wlog 
+\begin_inset Formula $w_{p}'1=1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\begin{align*}
+w_{g}= & \frac{\Sigma^{-1}1}{A}\\
+w_{p}\Sigma w_{g}= & \frac{w_{p}'1}{A}=\frac{1}{A}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Delta Method: Derivation of Asymtotic Sample Covariance
+\end_layout
+
+\begin_layout Itemize
+Start by noting
+\begin_inset Formula 
+\begin{align*}
+\overline{XY}= & \frac{1}{n}\sum_{i}X_{i}Y_{i}\\
+\sqrt{n}\left(\overline{XY}-\mu_{XY}\right)= & \sqrt{n}\sum_{i}\frac{1}{n}\left[X_{i}Y_{i}-\mu_{XY}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+By the Central Limit Theorem, 
+\begin_inset Formula $\sqrt{n}\left(\overline{XY}-\mu_{XY}\right)\stackrel{d}{\to}N\left(\cdot\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Denote 
+\begin_inset Formula $\mu_{XY}\equiv E\left[X_{i}Y_{i}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The variance is given by
+\begin_inset Formula 
+\begin{align*}
+V\left[X_{i}Y_{i}\right]= & E\left[X_{i}^{2}Y_{i}^{2}\right]-\mu_{XY}^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Denote 
+\begin_inset Formula $E\left[X_{i}^{2}Y_{i}^{2}\right]\equiv\mu_{XXYY}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Then
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(\overline{XY}-\mu_{XY}\right)\stackrel{d}{\to} & N\left(0,\;\mu_{XXYY}-\mu_{XY}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+By the delta method,
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(\overline{X}\overline{Y}-\mu_{X}\mu_{Y}\right)\stackrel{d}{\to} & N\left(0,\begin{bmatrix}\mu_{Y} & \mu_{X}\end{bmatrix}\begin{bmatrix}\sigma_{X}^{2} & \sigma_{XY}\\
+\sigma_{XY} & \sigma_{Y}^{2}
+\end{bmatrix}\begin{bmatrix}\mu_{Y}\\
+\mu_{X}
+\end{bmatrix}\right)\\
+= & N\left(0,\begin{bmatrix}\mu_{Y}\sigma_{X}^{2}+\mu_{X}\sigma_{XY} & \mu_{Y}\sigma_{XY}+\mu_{X}\sigma_{Y}^{2}\end{bmatrix}\begin{bmatrix}\mu_{Y}\\
+\mu_{X}
+\end{bmatrix}\right)\\
+= & N\left(0,\,\mu_{X}\left(\mu_{Y}\sigma_{X}^{2}+\mu_{X}\sigma_{XY}\right)+\mu_{Y}\left(\mu_{Y}\sigma_{XY}+\mu_{X}\sigma_{Y}^{2}\right)\right)\\
+= & N\left(0,\,\sigma_{XY}\left(\mu_{X}^{2}+\mu_{Y}^{2}\right)+\mu_{X}\mu_{Y}\left(\sigma_{X}^{2}+\sigma_{Y}^{2}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Define the sample covariance 
+\begin_inset Formula $S_{XY}\equiv\overline{XY}-\overline{X}\overline{Y}$
+\end_inset
+
+.
+ Then from the above, 
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)= & N\left(0,\,\mu_{XXYY}-\mu_{XY}^{2}+\sigma_{XY}\left(\mu_{X}^{2}+\mu_{Y}^{2}\right)+\mu_{X}\mu_{Y}\left(\sigma_{X}^{2}+\sigma_{Y}^{2}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In the case of the sample variance of X, this simplifies to:
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{X}-\sigma_{X}^{2}\right)= & N\left(0,\,\mu_{X^{4}}-\mu_{XX}^{2}+4\sigma_{X}^{2}\mu_{X}^{2}\right)\\
+= & N\left(0,\,\mu_{X^{4}}-\mu_{XX}^{2}+4\sigma_{X}^{2}\mu_{X}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Where 
+\begin_inset Formula $\mu_{X}^{4}\equiv E\left[X_{i}^{4}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{XX}\equiv E\left[X_{i}^{2}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Note: Heavily adapted from (https://stats.stackexchange.com/questions/105337/asymp
+totic-distribution-of-sample-variance-of-non-normal-sample)
+\begin_inset Formula 
+\begin{align*}
+nS_{XY}= & \sum_{I}\left[\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}-\left(\overline{X}-\mu_{X}\right)\right)\left(Y_{i}-\mu_{Y}-\left(\overline{Y}-\mu_{Y}\right)\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sum_{I}\left(Y_{i}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+ & -\sum_{I}\left(X_{i}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)+n\left(\overline{X}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)= & \frac{\sqrt{n}}{n}\sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)-\sqrt{n}\sigma_{XY}\\
+= & \sqrt{n}\sum_{I}\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Next note that since by the CLT 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\stackrel{d}{\rightarrow}N\left(\cdot\right)$
+\end_inset
+
+ and by WLLN 
+\begin_inset Formula $\overline{X}-\mu_{X}\stackrel{p}{\to}0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Thus by Slutsky's Theorem 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\stackrel{p}{\to}0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Hence
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\approx & \sqrt{n}\sum_{I}\left[\frac{1}{n}\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Since 
+\begin_inset Formula $E\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]=\sigma_{XY}$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{align*}
+V\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]= & E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]-\sigma_{XY}^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\;\sigma_{XXYY}-\sigma_{XY}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Where 
+\begin_inset Formula $\sigma_{XXYY}$
+\end_inset
+
+ is defined as 
+\begin_inset Formula $E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]$
+\end_inset
+
+.
+ Use the plug-in estimators to get the estimated distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Moreover, the sample covariance matrix is distributed as 
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(\boldsymbol{S}_{XY}-\Sigma_{XY}\right)\stackrel{d}{\to} & N\left(\boldsymbol{0},\,\begin{bmatrix}\mu_{4X}-\sigma_{X}^{4} & \sigma_{XXYY}-\sigma_{XY}^{2}\\
+\sigma_{XXYY}-\sigma_{XY}^{2} & \mu_{4Y}-\sigma_{Y}^{4}
+\end{bmatrix}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+MCMC
+\end_layout
+
+\begin_layout Subsubsection*
+Overview
+\end_layout
+
+\begin_layout Itemize
+Use a Bayesian MCMC approach, with Gibbs sampling
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This approach relies heavily on the central limit theorem and other asymptotics
+\end_layout
+
+\begin_layout Itemize
+Suppose we pick a test portfolio P of mx1 weights 
+\begin_inset Formula $w_{P}$
+\end_inset
+
+ from which to test our candidate weights for the minimum variance portfolio
+ 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Define 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+ as the sample variance of 
+\begin_inset Formula $R_{G}$
+\end_inset
+
+, the returns of all assets weighted by 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Define 
+\begin_inset Formula $S_{GP}$
+\end_inset
+
+ as the sample covariance of the minimum variance portfolio and the test
+ portfolio.
+ For shorthand, designate 
+\begin_inset Formula $S\equiv\left\{ S_{G},\,S_{GP}\right\} $
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Note given 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, the test portfolio weights 
+\begin_inset Formula $w_{P}$
+\end_inset
+
+, and the data 
+\begin_inset Formula $D$
+\end_inset
+
+, 
+\begin_inset Formula $S$
+\end_inset
+
+ is fully specified.
+ 
+\end_layout
+
+\begin_layout Itemize
+Since 
+\begin_inset Formula $w_{P},\,D,\,w_{G}$
+\end_inset
+
+ only enter the model via 
+\begin_inset Formula $S$
+\end_inset
+
+, conditioning on 
+\begin_inset Formula $S$
+\end_inset
+
+ is equivalent to conditioning on 
+\begin_inset Formula $w_{P}$
+\end_inset
+
+, 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, and 
+\begin_inset Formula $D$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Define 
+\begin_inset Formula $\zeta_{G}^{2}\equiv\frac{\mu_{4G}-\sigma_{G}^{4}}{n}$
+\end_inset
+
+, 
+\begin_inset Formula $\zeta_{P}^{2}\equiv\frac{\mu_{4P}-\sigma_{P}^{4}}{n}$
+\end_inset
+
+, and 
+\begin_inset Formula $\zeta_{GP}\equiv\frac{\sigma_{GGPP}-\sigma_{GP}^{2}}{n}$
+\end_inset
+
+ (all unobserved).
+ For shorthand, designate 
+\begin_inset Formula 
+\begin{align*}
+Z & \equiv\begin{bmatrix}\frac{\mu_{4G}-\sigma_{G}^{4}}{n} & \frac{\sigma_{GGPP}-\sigma_{GP}^{2}}{n}\\
+\frac{\sigma_{GGPP}-\sigma_{GP}^{2}}{n} & \frac{\mu_{4P}-\sigma_{P}^{4}}{n}
+\end{bmatrix}\\
+ & =\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Without imposing additional structure, we must estimate 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+ In addition, we will find it useful to draw 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+ given the available data.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Unfortunately, directly evaluating the weights leads to intractable posteriors.
+ This leads to the following general 
+\begin_inset Quotes eld
+\end_inset
+
+almost MCMC
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Draw a random test portfolio P with overall returns 
+\begin_inset Formula $R_{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Draw from 
+\begin_inset Formula $p\left(\sigma_{G}^{2}|\cdot\right)$
+\end_inset
+
+, 
+\begin_inset Formula $p\left(\zeta_{G}|\cdot\right)$
+\end_inset
+
+, 
+\begin_inset Formula $p\left(\zeta_{P}|\cdot\right)$
+\end_inset
+
+, 
+\begin_inset Formula $p\left(S_{G}|\cdot\right)$
+\end_inset
+
+, 
+\begin_inset Formula $p\left(S_{P}|\cdot\right)$
+\end_inset
+
+ that is, draw from the parameter posteriors for these parameters given
+ all other parameters.
+ Note this fully specifies a new vector of weights for 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, as shown in the following steps.
+\end_layout
+
+\begin_layout Enumerate
+Now we partition the portfolio into three components.
+ Assign each index 
+\begin_inset Formula $i\in1:m$
+\end_inset
+
+ to one of sets 
+\begin_inset Formula $G1$
+\end_inset
+
+, 
+\begin_inset Formula $G2$
+\end_inset
+
+, or 
+\begin_inset Formula $G3$
+\end_inset
+
+.
+ Then define the following mx1 vectors:
+\begin_inset Formula 
+\begin{align*}
+\Omega_{G1}\equiv & \omega_{G1}\left\{ \iota\left(i\in G1\right)\right\} _{i\in1:m}\\
+\Omega_{G2}\equiv & \omega_{G2}\left\{ \iota\left(i\in G2\right)\right\} _{i\in1:m}\\
+\Omega_{G3}\equiv & \omega_{G3}\left\{ \iota\left(i\in G3\right)\right\} _{i\in1:m}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\iota$
+\end_inset
+
+is an indicator function, and 
+\begin_inset Formula $\omega_{G1},\,\omega_{G2},\,\omega_{G3}$
+\end_inset
+
+ are scalars.
+ That is, each vector contains a constant value for all assigned indices
+ and zero for all other indices.
+\end_layout
+
+\begin_layout Enumerate
+Define 
+\begin_inset Formula $w_{G}'\equiv\left\{ \left(\Omega_{iG1}+\Omega_{iG2}+\Omega_{iG3}\right)w_{iG}\right\} _{i\in1:m}$
+\end_inset
+
+.
+ Then solve for 
+\begin_inset Formula $\omega\equiv\left\{ \omega_{G1},\,\omega_{G2},\,\omega_{G3}\right\} $
+\end_inset
+
+.
+ Note that these parameters are fully specified by the following three condition
+s:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The sample variance of the new vector of weights is 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+.
+ That is, 
+\begin_inset Formula $V\left(R_{G}'\right)=S_{G}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The sample covariance of the new vector of weights with the test portfolio
+ is 
+\begin_inset Formula $S_{GP}$
+\end_inset
+
+, or 
+\begin_inset Formula $cov\left(R_{G}',\,R_{P}\right)=S_{GP}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The weights of the new portfolio add to 1.
+ This can be expressed as 
+\begin_inset Formula $\left(\Omega_{G1}+\Omega_{G2}+\Omega_{G3}\right)\cdot w_{G}=1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Rotate the partition assignments by one unit and epeat steps 1-5
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection*
+Likelihood
+\end_layout
+
+\begin_layout Itemize
+The likelihood is derived from a multivariate normal:
+\begin_inset Formula 
+\begin{align*}
+p\left(S|w_{G},\,Z,\,\sigma_{G}^{2},\,w_{P}\right)\propto & det\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}^{-\frac{1}{2}}\exp\left[-\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)^{'}\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}^{-1}\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)\right]\\
+\propto & det\left[Z\right]^{-\frac{1}{2}}\exp\left[-\left(S-\sigma_{G}^{2}1\right)^{'}Z^{-1}\left(S-\sigma_{G}^{2}1\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Priors
+\end_layout
+
+\begin_layout Itemize
+Consider the following priors (
+\begin_inset Formula $W^{-1}$
+\end_inset
+
+ is the inverse Wishart distribution):
+\begin_inset Formula 
+\begin{align*}
+\sigma_{G}^{2}\sim & N\left(\theta_{G},\,\delta_{G}^{2}\right)\\
+S_{G}\sim & N\left(\theta_{SG},\,\delta_{SG}^{2}\right)\\
+Z\sim & W^{-1}\left(\Psi,\;\nu\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+For our main specification, we seek diffuse yet informative priors
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For Z, since we rely on the existence of a mean for the CLT, we rely on
+ the existence of a mean.
+ Thus by the properties of the inverse Wishart
+\begin_inset Formula $\nu>3$
+\end_inset
+
+.
+ Beyond that, we are highly uncertain, so set 
+\begin_inset Formula $\nu=3.01$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+By the properties of the inverse Wishart, we have 
+\begin_inset Formula $\Psi=\begin{bmatrix}\psi_{G} & \psi_{GP}\\
+\psi_{GP} & \psi_{P}
+\end{bmatrix}$
+\end_inset
+
+.
+ The expectation is given by 
+\begin_inset Formula $\frac{\Psi}{\nu-3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $\psi_{G}$
+\end_inset
+
+, as an extremely rough approximation, the volatility of the VIX ,using
+ the CBOE's VVIX contract, on March 10, 2019 is around .87, corresponding
+ to a 30-day variance of about .76.
+ Divide by 20 to get the daily variance, and divide by 510 since we are
+ averaging over 510 samples.
+ Again, this is extremely rough, so multiply by 2 to account for our uncertainty.
+ This leaves a prior for
+\begin_inset Formula $\psi_{G}$
+\end_inset
+
+ of about 1.5e-6.
+ 
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $\psi_{P}$
+\end_inset
+
+, use the same prior as 
+\begin_inset Formula $\psi_{G}$
+\end_inset
+
+ but multiply by 2 to account for the additional uncertainty related to
+ the portfolio sampling process.
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $\psi_{SG}$
+\end_inset
+
+, note an error in the sample variance will mechanically affect the covariance
+ by the square root of the variance error.
+ As previously discussed, the point estimate for the variance error is about
+ 7.5e-5, with a square root of 0.0087.
+ Multiplying by the point estimate of the variance of P yields an estimate
+ for the covariance of 6.5e-7, with a correlation of .0087 (since both point
+ estimates are the same).
+ Divide by 2 to account for general uncertainty regarding the calculation,
+ so 
+\begin_inset Formula $\psi_{GP}$
+\end_inset
+
+=3e-7.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+For the normal distributions, start by using the current value of the VIX
+ for 
+\begin_inset Formula $\theta_{G}$
+\end_inset
+
+.
+ As of March 10, 2019 it was ~16%, which implies a variance of about 
+\begin_inset Formula $\theta_{G}=.026$
+\end_inset
+
+.
+ Divide by 20 to account for our use of daily data.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+By the consistency of the sample estimator, set 
+\begin_inset Formula $\theta_{G}=\theta_{SG}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+We base each of the 
+\begin_inset Formula $\delta^{2}$
+\end_inset
+
+ estimates on the 30 calendar day variance implied by VVIX.
+ 
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $\delta_{G}^{2}$
+\end_inset
+
+, start with the variance implied by VVIX of 0.76.
+ Again, divide by 20 to make the estimate daily, then multiply by 2 to account
+ for the uncertainty of our estimate.
+ This yields variance of about 
+\begin_inset Formula $0.15$
+\end_inset
+
+ to serve as our estimate for 
+\begin_inset Formula $\delta_{G}^{2}$
+\end_inset
+
+.
+ As we are picking 
+\begin_inset Formula $\delta^{2}$
+\end_inset
+
+ based on the uncertainty of our prior, we do not divide by 510.
+\end_layout
+
+\begin_layout Itemize
+For the sample estimates, assume that they have the same properties of 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+ except that they are measured with noise.
+ We therefore impose the same value for 
+\begin_inset Formula $\theta_{SG}$
+\end_inset
+
+ and multiply the variance of 
+\begin_inset Formula $\delta_{SG}^{2}$
+\end_inset
+
+ by 2 to account for the additional noise.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+We also want to check sensitivity with a set of uninformative priors:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We still rely on the existence of a mean, so for Z we set 
+\begin_inset Formula $\nu=3.01$
+\end_inset
+
+.
+ For the other hyperparameters, set 
+\begin_inset Formula $\psi_{G}=\psi_{P}=1.0$
+\end_inset
+
+ and 
+\begin_inset Formula $\psi_{GP}=0.0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Set all other hyperparameters to 
+\begin_inset Formula $1.0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Posteriors
+\end_layout
+
+\begin_layout Itemize
+Start with 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use the property that the convolution of normals is a normal 
+\begin_inset Formula $N\left(a,b\right)$
+\end_inset
+
+ where a is the precision weighted average of the source means and b is
+ the inverse sum of the source precisions.
+\end_layout
+
+\begin_layout Itemize
+As an intermediate step, we must complete the square in order to express
+ the function in the correct form
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This requires lots of tedious algebra and hence is completed in mathematica:
+\begin_inset Formula 
+\begin{align*}
+p\left(S_{GP}|Z,\,\sigma_{G}^{2},\,S_{G}\right)\propto & det\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}^{-\frac{1}{2}}\exp\left[-\frac{1}{2}\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)^{'}\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}^{-1}\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)\right]\\
+\propto & \exp\left[-\frac{1}{2}\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)^{'}\begin{bmatrix}\zeta_{G}^{2} & \zeta_{GP}\\
+\zeta_{GP} & \zeta_{P}^{2}
+\end{bmatrix}^{-1}\left(\begin{bmatrix}S_{G}\\
+S_{GP}
+\end{bmatrix}-\begin{bmatrix}\sigma_{G}^{2}\\
+\sigma_{G}^{2}
+\end{bmatrix}\right)\right]\\
+\propto & \frac{-\left(\frac{(S_{G}(\zeta_{G}-2\zeta_{GP}+\zeta_{P}^{2})+S_{G}(\zeta_{GP}-\zeta_{P}^{2})}{(\zeta_{GP}-\zeta_{G}^{2})}+\sigma_{G}^{2}\right)^{2}}{2\frac{(\zeta_{G}^{2}-2\zeta_{GP}+\zeta_{P}^{2})\left(\zeta_{G}^{2}\zeta_{P}^{2}-\zeta_{GP}^{2}\right)}{\left(\zeta_{GP}-\zeta_{G}^{2}\right)^{2}}}\\
+\propto & N\left(\mu_{G},\,\gamma_{G}^{2}\right)\\
+\mu_{G}\equiv & -\frac{(S_{G}(\zeta_{G}-2\zeta_{GP}+\zeta_{P}^{2})+S_{G}(\zeta_{GP}-\zeta_{P}^{2})}{(\zeta_{GP}-\zeta_{G}^{2})}\\
+\gamma_{G}^{2}= & \frac{(\zeta_{G}^{2}-2\zeta_{GP}+\zeta_{P}^{2})\left(\zeta_{G}^{2}\zeta_{P}^{2}-\zeta_{GP}^{2}\right)}{\left(\zeta_{GP}-\zeta_{G}^{2}\right)^{2}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In addition, we impose a degenerate prior that the variance is positive.
+ To do this, we scale our prior by the truncated normal distribution.
+ Finally, convoluting the truncated normal prior by the above normal distributio
+n:
+\begin_inset Formula 
+\begin{align*}
+p\left(\sigma_{G}^{2}|S,\,\zeta^{2}\right)\propto & p\left(S_{GP}|Z,\,\sigma_{G}^{2},\,S_{G}\right)p\left(\sigma_{G}^{2};\,N_{T}\left(\theta_{G},\,\delta_{G}^{2}\right)\right)\\
+\propto & \frac{1}{\gamma}\exp\left[-\frac{\left(\sigma_{G}^{2}-\mu_{G}\right)}{\gamma_{G}^{2}}\right]\times\left(\frac{1}{\delta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(\theta_{G}-\sigma_{G}^{2}\right)^{2}}{2\delta_{G}^{2}}\right]\times\frac{\iota\left(\sigma_{G}^{2}>0\right)}{1-\Phi\left(\frac{-\theta_{G}}{\delta_{G}^{2}}\right)}\\
+\propto & \exp\left[-\frac{\left(\sigma_{G}^{2}-\mu_{G}\right)}{\gamma_{G}^{2}}\right]\exp\left[-\frac{\left(\theta_{G}-\sigma_{G}^{2}\right)^{2}}{2\delta_{G}^{2}}\right]\times\iota\left(\sigma_{G}^{2}>0\right)\\
+\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{\mu_{G}}{\gamma_{G}^{2}}+\frac{\theta_{G}}{\delta_{G}^{2}}\right]\zeta_{G}^{2*},\;\zeta_{G}^{2*}\right)\iota\left(\sigma_{G}^{2}>0\right)\right)\\
+s.t.\\
+\zeta_{G}^{2*}= & \left[\frac{1}{\gamma_{G}^{2}}+\frac{1}{\delta_{G}^{2}}\right]^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note the truncated part of the distribution is a constant, and does not
+ affect the marginal distribution beyond the indicator function, at least
+ up to the constant of proportionality
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Now for 
+\begin_inset Formula $Z$
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First define:
+\begin_inset Formula 
+\begin{align*}
+\Sigma\equiv & \begin{bmatrix}\left(S_{G}-\sigma_{G}^{2}\right)^{2} & \left(S_{G}-\sigma_{G}^{2}\right)\left(S_{GP}-\sigma_{G}^{2}\right)\\
+\left(S_{G}-\sigma_{G}^{2}\right)\left(S_{GP}-\sigma_{G}^{2}\right) & \left(S_{GP}-\sigma_{G}^{2}\right)^{2}
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Then just plug into the formula from the Wikipedia table of conjugate priors:
+ 
+\begin_inset Formula 
+\begin{align*}
+p\left(\zeta_{G}^{2}|S,\,\zeta_{P}^{2}\,\sigma_{G}^{2}\right)\propto & p\left(S_{GP}|Z,\,\sigma_{G}^{2},\,S_{G}\right)p\left(Z;\;W^{-1}\left(\nu,\,\Psi\right)\right)\\
+\propto & p\left(\nu+1,\,\Psi+\Sigma\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+For 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+, we start by noting that the distribution of a conditional normal
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use the the bivariate normal's property of having a conditional distribution
+ which is also normal (like a regression).
+ Plugging in:
+\begin_inset Formula 
+\begin{align*}
+\mu_{SG}\equiv & \sigma_{G}^{2}+\frac{\zeta_{GP}}{\zeta_{P}^{2}}\left(SGP-\sigma_{G}^{2}\right)\\
+\gamma_{SG}^{2}\equiv & \zeta_{G}^{2}-\frac{\zeta_{GP}^{2}}{\zeta_{P}^{2}}\\
+p\left(S_{GP}|Z,\,\sigma_{G}^{2},\,S_{G}\right)\propto & N\left(\mu_{SG},\,\gamma_{SG}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Now convolute the conditional distribution with the prior to get the posterior
+ (truncating the normal as before):
+\begin_inset Formula 
+\begin{align*}
+p\left(S_{G}|Z,\,\sigma_{G}^{2},\,S_{GP}\right)\propto & p\left(S_{GP}|Z,\,\sigma_{G}^{2},\,S\right)p\left(S_{G};\,N\left(\theta_{SG},\,\delta_{SG}^{2}\right)\right)\\
+\propto & \left(\frac{1}{\gamma_{SG}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\mu_{SG}\right)^{2}}{2\gamma_{SG}^{2}}\right]\times\left(\frac{1}{\delta_{SG}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(\theta_{SG}-S_{G}\right)^{2}}{2\delta_{SG}^{2}}\right]\times\frac{\iota\left(S_{SG}>0\right)}{1-\Phi\left(\frac{-\theta_{SG}}{\delta_{SG}^{2}}\right)}\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{\sigma_{G}^{2}}{\gamma_{SG}^{2}}+\frac{\theta_{SG}}{\delta_{SG}^{2}}\right]\zeta_{SG}^{2*},\;\zeta_{SG}^{2*}\right)\iota\left(S_{SG}>0\right)\right)\\
+s.t.\\
+\zeta_{SG}^{2*}= & \left[\frac{1}{\gamma_{SG}^{2}}+\frac{1}{\delta_{SG}^{2}}\right]^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Mapping draws to weights
+\end_layout
+
+\begin_layout Itemize
+Solving the system for the three weight
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Define the following.
+ The key here is each of these quantities is known given our previous guess
+ of 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{align*}
+w_{s}= & \left\{ \sum_{i\in1:m}w_{iG}\iota\left(i\in Gk\right)\right\} _{k\in1:3}\text{ (3x1)}\\
+\Psi_{G}= & \begin{bmatrix}S_{G1} & S_{G12} & S_{G13}\\
+S_{G12} & S_{G2} & S_{G23}\\
+S_{G13} & S_{G23} & S_{G3}
+\end{bmatrix}\text{ (3x3)}\\
+\Psi_{PG}= & \begin{bmatrix}S_{PG1}\\
+S_{PG2}\\
+S_{PG3}
+\end{bmatrix}\text{ (3x1)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Here, 
+\begin_inset Formula $S_{G1}$
+\end_inset
+
+ is the sample variance of the G1 partion, 
+\begin_inset Formula $S_{G13}$
+\end_inset
+
+ is the sample covariance between the G1 and G3 portfolios, while 
+\begin_inset Formula $S_{PG1}$
+\end_inset
+
+is the covariance between portfolio P and the G1 portfolio.
+ 
+\begin_inset Formula $w_{s}$
+\end_inset
+
+ is the sum of the weights of the G1, G2, and G3 portfolios (3x1 vector)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Then we solve:
+\begin_inset Formula 
+\begin{align*}
+\omega'\Psi_{G}\omega= & S_{G}\\
+\tilde{\omega}'\Psi_{PG}= & S_{GP}\\
+\omega'1= & 1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+(See the mathematica file algebra)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Important References
+\end_layout
+
+\begin_layout Itemize
+Wikipedia
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Gamma distribution
+\end_layout
+
+\begin_layout Itemize
+Inverse gamma distribution
+\end_layout
+
+\begin_layout Itemize
+Wishart Distribution
+\end_layout
+
+\begin_layout Itemize
+Inverse Wishart Distribution
+\end_layout
+
+\begin_layout Itemize
+Estimation of Covariance Matrices
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Other web sites
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Stack: https://math.stackexchange.com/questions/573694/bayesian-posterior-with-tru
+ncated-normal-prior
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

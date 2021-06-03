@@ -1,0 +1,45 @@
+0
+
+
+I am trying to get a tractable answer to:
+
+Solve[
+  w1^2*S1^2 + w2^2*S2^2 + w3^2*S3^2 + 2*w1*w2*S12 + 2*w1*w3*S13 + 2*w2*w3*S23 == SG^2 && 
+  w1*S1P + w2*S2P + w3*S3P == SGP && 
+  w1*ws1 + w2*ws2 + w3*ws3 == 1, 
+  {w1, w2, w3}]
+Mathematica produces a generic output which is like a thousand lines long.
+
+Yet when I give it something like
+
+Solve[
+  w1^2*S1^2 + w2^2*S2^2 + w3^2*S3^2 + 2*w1*w2*S12 + 2*w1*w3*S13 + 2*w2*w3*S23 == SG^2 &&  
+  w1*S1P + w2*S2P + w3*S3P == SGP && 
+  w1*ws1 + w2*ws2 + w3*ws3 == 1 && 
+  ws1 + ws2 + ws3 == 1 && 
+  {S1, S2, S3, SG} > 0, 
+  {w1, w2, w3}, Reals]`
+the solver just hangs. The same goes for trying to simplify the generic output. Any ideas for getting a reasonable answer?
+
+equation-solving
+shareeditdeleteflag
+edited Feb 7 at 4:08
+
+m_goldberg
+87.4k872198
+asked Feb 7 at 2:00
+
+C Tepp
+31
+closed as off-topic by m_goldberg, MarcoB, Henrik Schumacher, Bob Hanlon, bbgodfrey Feb 8 at 14:58
+This question appears to be off-topic for this site. While what’s on- and off-topic is not always intuitive, you can learn more about it by reading the help center. The users who voted to close gave this specific reason:
+
+"This question arises due to a simple mistake such as a trivial syntax error, incorrect capitalization, spelling mistake, or other typographical error and is unlikely to help any future visitors, or else it is easily found in the documentation." – m_goldberg, MarcoB, Henrik Schumacher, Bob Hanlon, bbgodfrey
+If this question can be reworded to fit the rules in the help center, please edit your question.
+1
+The answers given by Mathematica to your first code are correct. The answers really are that long. MMA does find 2 possibilities in the form {{w1 --> stuff, w2 --> stuff, w3 --> stuff}, {w1 --> otherstuff, w2 --> otherstuff, w3 --> otherstuff}}. You may be able to narrow it down to one of those. You might be able to make them look shorter with FullSimplify if that's all you're after. – MassDefect Feb 7 at 2:40
+1
+Ug, that is disappointing. Well, it is what it is, thank you for checking. Since I plan on putting in actual numbers, it probably makes sense just to just solve it numerically whenever I need a solution. – C Tepp Feb 7 at 3:19     
+2
+expr && {S1, S2, S3, SG} > 0 is not the proper syntax. Use expr && And @@ Thread[{S1, S2, S3, SG} > 0] – Bob Hanlon Feb 7 at 6:50 
+Geez, I don't think this was a trivial question with a trivial answer that was easily found in the documentation. – C Tepp 25 secs ago     Edit   

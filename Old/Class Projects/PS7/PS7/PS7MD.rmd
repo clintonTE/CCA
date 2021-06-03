@@ -1,0 +1,462 @@
+---
+title: "Problem Set 7"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+```{r echo = FALSE, message = FALSE}
+
+rm(list = ls());
+require(dplyr);
+require(ggplot2);
+require(reshape2);
+
+```
+
+## Problem 1
+Consistent with the previous problem set, we will define $V_{i}\equiv\beta_{p}ln\left(P\right)$.
+We write the likelihood function as:
+
+$$
+\begin{align*}
+L\left(\beta_{p}\right)= & \prod_{i=1}^{N}\left(Pr\left(X_{i}=k\right)\right)\\
+L\left(\beta_{p}\right)= & \prod_{i=1}^{N}\begin{cases}
+\frac{1}{1+exp\left(\beta_{p}ln\left(P\right)\right)} & X_{i}=0\\
+\left(\frac{exp\left(\beta_{p}ln\left(P\right)\right)}{1+exp\left(\beta_{p}ln\left(P\right)\right)}\right) & X_{i}=1
+\end{cases}
+\end{align*}
+$$
+
+Taking the log:
+
+$$
+\begin{align*}
+l\left(\beta_{p}\right)= & \sum_{i=1}^{N}\begin{cases}
+-ln\left(1+exp\left(\beta_{p}ln\left(P\right)\right)\right) & X_{i}=0\\
+\beta_{p}ln\left(P\right)-ln\left(1+exp\left(\beta_{p}ln\left(P\right)\right)\right) & X_{i}=1
+\end{cases}
+\end{align*}
+$$
+
+Or equivelently (defining $\eta$to be the number of times $X_{i}=1$):
+
+$$
+\begin{align*}
+l\left(\beta_{p}\right)= & \eta\beta_{p}ln\left(P\right)-Nln\left(1+exp\left(\beta_{p}ln\left(P\right)\right)\right)
+\end{align*}
+$$
+
+If we are sampling K prices:
+
+$$
+\begin{align*}
+l\left(\beta_{p}\right)= & \sum_{j=1}^{K}\left[\eta_{k}\beta_{p}ln\left(P_{k}\right)-Nln\left(1+exp\left(\beta_{p}ln\left(P_{k}\right)\right)\right)\right]
+\end{align*}
+$$
+
+We can increase the sensitivity of this equation to price by increasing
+beta. With a positive log-price, the log-likelihood contribution for
+$X_{i}=0$ will be strongly negative to reflect the low probability
+of this event, while the reverse is true for a negative log-price.
+Empirically, we will choose a beta of 500 to exemplify this discrepancy.
+Defining $\eta$ and writing out the FOC:
+
+$$
+\begin{align*}
+\frac{\partial l}{\partial\beta_{p}}=0= & \sum_{j=1}^{K}\left[\eta_{k}ln\left(P_{k}\right)-\frac{Nln\left(P_{k}\right)exp\left(\beta_{p}ln\left(P_{k}\right)\right)}{1+exp\left(\beta_{p}ln\left(P_{k}\right)\right)}\right]\\
+\frac{\partial l}{\partial\beta_{p}}=0= & \sum_{j=1}^{K}\left[\frac{ln\left(P_{k}\right)\left(\eta_{k}-\left(N-\eta_{k}\right)exp\left(\beta_{p}ln\left(P_{k}\right)\right)\right)}{1+exp\left(\beta_{p}ln\left(P_{k}\right)\right)}\right]
+\end{align*}
+$$
+
+With a high enough $\beta$, we will either get $\eta=N$ or $\eta=0$.
+Therefore:
+
+$$
+\begin{align*}
+\frac{\partial l}{\partial\beta_{p}}=0= & \sum_{j=1}^{K}\left[\begin{cases}
+-\frac{Nln\left(P_{k}\right)exp\left(\beta_{p}ln\left(P_{k}\right)\right)}{1+exp\left(\beta_{p}ln\left(P_{k}\right)\right)} & \eta_{k}=0\\
+\frac{Nln\left(P_{k}\right)}{1+exp\left(\beta_{p}ln\left(P_{k}\right)\right)} & \eta_{k}=N
+\end{cases}\right]
+\end{align*}
+$$
+
+Trying to solve for the MLE:
+
+$$
+\begin{align*}
+0= & \sum_{j=1}^{K}\left[\begin{cases}
+-exp\left(\beta_{p}ln\left(P_{k}\right)\right) & \eta_{k}=0\\
+1 & \eta_{k}=N
+\end{cases}\right]
+\end{align*}
+$$
+
+Let $K_{0}$ be the number of prices where $\eta=0$ and $K_{N}$
+be the number of times $\eta=N$. Then:
+
+$$
+\begin{align*}
+\sum_{j=1}^{K}\left[\begin{cases}
+-exp\left(\beta_{p}ln\left(P_{k}\right)\right) & \eta_{k}=0\\
+0 & \eta_{k}=N
+\end{cases}\right]= & K_{N}
+\end{align*}
+$$
+
+This equation clearly has no (real) solution.
+
+The following code demonstrates the above result empirically:
+
+```{r}
+set.seed(11);
+#allows for reproducibility
+
+#The likelihood function for a multinomial distribution 
+#In: A set of parameters and a data set
+#Out: The sum of the log likelihoods for each data point
+logitLogLike = function(V, cMat) {
+    minLike = -10 ^ 9;
+    maxLike = 10 ^ 9;
+    denom = matrix(apply(V, 2, function(x) log(sum(exp(x)))), nrow = 1);
+    #calculate the denominator for each price
+    #calculate the log probability for each value of v
+    logPVec = t(apply(V, 1, function(x) x - denom));
+
+    #The below command looks up the logged probability for each entry in cMat and sums the total
+    return(sum(sapply(1:ncol(V), function(x) sum(logPVec[cMat[, x], x]))));
+}
+
+#A wrapper function for logitLike amenable to the setup in problem 6
+# Note that a null alternative is added. The null alternative is assumed to be J=1.
+#In: Alpha, Beta, and the  data set
+#Out: The sum of the log likelihoods for each data point
+multinomChoiceModelLike = function(alpha, beta, lPrice, cMat) {
+
+    #form the matrix of Vs
+    return(logitLogLike(apply(lPrice, 2, function(x) alpha + beta * x), cMat));
+}
+
+#A gradient function specific to problem 1
+# Note that a null alternative is added. The null alternative is assumed to be J=1.
+#In: Alpha, Beta, price, and the  data set. Alpha[0] and price[0] are assumed to be zero.
+#Out: The gradient of the likelihood
+multinomChoiceModelGrad = function(alpha, beta, lPrice, cMat) {
+    L = nrow(cMat);
+    W = ncol(cMat);
+    J = length(alpha);
+    eta = matrix(sapply(1:J,
+        function(x) apply(cMat, 2, function(y) sum(y == x))), nrow = J, ncol = W, byrow = TRUE);
+        #calculate the denominator for each price series    
+    denom = apply(lPrice, 2, function(x) sum(exp(alpha + x * beta)));
+    #the below return calculates and sums the gradients accross prices
+
+    return(rbind(matrix(sapply(2:J,
+        function(x) sum(eta[x,] - L * exp(alpha[x] + beta * lPrice[x,]) / denom)), ncol = 1),
+        sum(sapply(1:J,
+            function(x) sum(lPrice[x,] * (eta[x,] - L * exp(alpha[x] + beta * lPrice[x,]) / denom))))));
+            }
+
+##########################Problem 1 Entry Point##########################
+
+#Define the Parameters
+numSamples = 50;
+numPriceVectrs = 20;
+alpha = matrix(NA, 2);
+alpha[1] = 0;
+alpha[2] = 0;
+beta = 500;
+lowerBound = 0.1;
+upperBound = 5000;
+maxIter = 100;
+
+numPrices = length(alpha);
+#get the prices
+logPrices = rbind(matrix(rep(0, numPriceVectrs), nrow = 1),
+    matrix(runif(numPriceVectrs * (numPrices - 1), -1, 1), nrow = numPrices - 1));
+
+#Simulate the data
+unifPts = 0
+iter = 0
+while ((unifPts != numSamples * numPriceVectrs) && (iter < maxIter)) {
+    popPVec = exp(rep(alpha, numPriceVectrs) + logPrices * beta);
+    popPVec = apply(popPVec, 2, function(x) x / sum(x));
+    sampMat = matrix(sapply(1:numPriceVectrs,
+        function(x) sample.int(numPrices, numSamples, replace = TRUE, popPVec[, x])),
+        nrow = numSamples, ncol = numPriceVectrs);
+    unifPts = sum(sapply(1:numPriceVectrs, function(x) sum(sampMat[1, x] == sampMat[, x])));
+    iter = iter + 1;
+}
+#print(sampMat);
+if (iter == maxIter) print("Warning: Conformed data set not generated");
+#Get the maximum likelihood of the parameters
+likeFunc = function(b)
+    - multinomChoiceModelLike(alpha, b, logPrices, sampMat);
+
+gradFunc = function(b)
+    - multinomChoiceModelGrad(alpha, b, logPrices, sampMat)[numPrices];
+
+gMin = 100;
+gMax = 1000;
+xVec = gMin:gMax;
+yVec = sapply(gMin:gMax, likeFunc)
+
+
+plot(xVec, yVec, main = "Problem 1 Plot", xlab = "beta", ylab = "-likelyhood");
+
+out = optim(700, likeFunc, gradFunc,
+    method = "L-BFGS-B",
+    lower = c(rep(lowerBound, numPrices)),
+    upper = c(rep(upperBound, numPrices)));
+
+print(out);
+```
+
+As expected, the results do not converge (in this case, the answer is pinned at the lower bound).
+
+## Problem 2
+### Likelihood Ratio Test 
+We redefine $V_{i}$ as $V_{i}\equiv\alpha_{1}+\sum_{k=2}^{K}x_{k}\beta_{k}$.
+The likelihood function then becomes:
+
+$$
+\begin{align*}
+L\left(\alpha,\beta\right)= & \prod_{i=1}^{N}\left(Pr\left(Y_{i}=1\right)\right)\\
+L\left(\alpha,\beta\right)= & \prod_{i=1}^{N}\begin{cases}
+\frac{1}{1+exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)} & Y_{i}=0\\
+\left(\frac{exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}{1+exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}\right) & Y_{i}=1
+\end{cases}
+\end{align*}
+$$
+
+Taking the log-likelihood:
+
+$$
+\begin{align*}
+l\left(\alpha,\beta\right)= & \sum_{i=1}^{N}\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)Y_{i}-\sum_{i=1}^{N}ln\left(1+exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)\right)
+\end{align*}
+$$
+
+The gradient vector becomes:
+
+$$
+\begin{align*}
+\frac{\partial l}{\partial\alpha_{1}}= & \sum_{i=1}^{N}\left(Y_{i}\right)-\sum_{i=1}^{N}\frac{exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}{1+exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}\\
+\frac{\partial l}{\partial\beta_{k}}= & \sum_{i=1}^{N}\left(x_{ik}Y_{i}\right)-\sum_{i=1}^{N}\frac{x_{ik}exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}{1+exp\left(\alpha_{1}+\sum_{k=2}^{K}x_{ik}\beta_{k}\right)}
+\end{align*}
+$$
+
+Under the null hypothesis, the MLE becomes (denoting the number of
+successes as $\eta$):
+
+$$
+\begin{align*}
+\frac{\partial l}{\partial\alpha_{1}}= & \eta-\sum_{i=1}^{N}\frac{exp\left(\alpha_{1}\right)}{1+exp\left(\alpha_{1}\right)}=0\\
+\eta & =\left(N-\eta\right)exp\left(\alpha_{1}\right)\\
+\alpha_{1}= & ln\left(\frac{\eta}{N-\eta}\right)
+\end{align*}
+$$
+
+The likelihood ratio rest statistic is defined as:
+
+$$
+\begin{align*}
+\lambda= & 2\left(ln\left(MLE\right)-\sum_{i=1}^{N}\left(ln\left(\frac{\eta}{N-\eta}\right)\right)X_{i}-\sum_{i=1}^{N}ln\left(1+exp\left(ln\left(\frac{\eta}{N-\eta}\right)\right)\right)\right)\\
+\lambda= & 2\left(ln\left(MLE\right)-\sum_{i=1}^{N}\left(ln\left(\frac{\eta}{N-\eta}\right)\right)X_{i}-\sum_{i=1}^{N}ln\left(\frac{N}{N-\eta}\right)\right)\\
+\lambda= & 2\left(ln\left(MLE\right)-\eta ln\left(\frac{\eta}{N-\eta}\right)-Nln\left(\frac{N}{N-\eta}\right)\right)
+\end{align*}
+$$
+
+The null hypothesis represents the scenario where none of the independent
+variables $x_{i}$ influence the distribution, with the distribution
+entirely specified by parameter $\alpha_{1}$. Specifically, the null
+hypothesis will denote the scenario where all $\beta$ terms equal
+zero.
+
+###Wald Test
+
+In this scenario:
+
+$$
+\begin{align*}
+r(\theta)= & \begin{bmatrix}\hat{\beta_{2}}\\
+\vdots\\
+\beta_{K}
+\end{bmatrix}\\
+R_{\left(K-1\right)x\left(K-1\right)}= & \begin{bmatrix}1 & 0 & \cdots & 0\\
+0 & \ddots & 0 & \vdots\\
+\vdots & 0 & \ddots & 0\\
+0 & \cdots & 0 & 1
+\end{bmatrix}\\
+I^{-1}= & \left[\frac{\partial l\beta}{\partial\theta_{i}\partial\theta_{j}}\right]^{-1}\\
+T\left(\hat{\theta}\right)= & r^{t}\left(RVarR^{t}\right)^{-1}r=r^{t}I^{-1}r\sim\chi_{K-1}^{2}
+\end{align*}
+$$
+
+###Simulation
+
+We use the following true value for beta to simulate $10^{5}$ data
+points:
+
+$$
+\begin{align*}
+\beta=\begin{bmatrix}\alpha_{1}\\
+\beta_{2}\\
+\beta_{3}\\
+\beta_{4}\\
+\beta_{5}
+\end{bmatrix}= & \begin{bmatrix}0.5\\
+1\\
+1.5\\
+2\\
+2.5
+\end{bmatrix}
+\end{align*}
+$$
+
+We see from the below results that we reject the null hypothesis at
+any reasonable signficance level.
+
+```{r}
+#The likelihood function for a multinomial distribution 
+#In: A set of parameters and a data set
+#Out: The sum of the binary likelihoods for each data point
+binLogLike = function(beta, xMat, yVec) {
+    expon = xMat %*% beta;
+    #calculate the exponent
+
+    return(t(yVec) %*% expon - sum(log(1 + exp(expon))));
+}
+
+#A gradient function specific to problem 7
+#In: beta coeficients, matrix of xvalues, y values. The first beta value is assumed to be the intercept
+#Out: The gradient of the likelihood
+binLogGrad = function(beta, xMat, yVec) {
+    DoF = length(beta);
+    expon = xMat %*% beta;
+
+    return(rbind(sum(yVec) - sum(exp(expon) / (1 + exp(expon))),
+        matrix(sapply(2:DoF,
+            function(k) t(xMat[, k]) %*% (yVec - (exp(expon) / (1 + exp(expon))))),
+        nrow = dof - 1)));
+}
+
+##########################Problem 2 Entry Point##########################
+
+#Define the Parameters
+numSamples = 10 ^ 5;
+beta = matrix(seq(0.5, 2.5, .5), nrow = 5);
+#beta = matrix(c(.38, 0, 0, 0, 0), nrow = 5);
+initBeta = matrix(rep(rep(1, 5), nrow = 5));
+dof = length(beta);
+lowerBound = -1;
+upperBound = 5;
+
+#Simulate the x values
+xMat = cbind(rep(1, numSamples),
+    matrix(runif((dof - 1) * numSamples, -1, 1), nrow = numSamples, ncol = dof - 1));
+
+#simulate the y values
+yVec = runif(numSamples);
+expon = xMat %*% beta;
+yVec = (yVec < exp(expon) / (1 + exp(expon)));
+
+#Get the maximum likelihood of the parameters
+likeFunc = function(b) - binLogLike(b, xMat, yVec);
+gradFunc = function(b) - binLogGrad(b, xMat, yVec);
+
+#get the mle data
+out = optim(initBeta, likeFunc, gradFunc,
+    method = "L-BFGS-B",
+    lower = c(rep(lowerBound, dof)),
+    upper = c(rep(upperBound, dof)),
+    hessian = TRUE);
+
+print(out);
+
+mlePar = matrix(out$par, nrow = dof);
+mleVal = out$value;
+mleHess = out$hessian[1:dof, 1:dof];
+nullH = rbind(sum(yVec) / (sum(yVec) + numSamples), matrix(rep(0, dof - 1), nrow = dof - 1));
+lambda = 2 * ( - mleVal + likeFunc(nullH));
+print("Likelihood Ratio Test");
+print(1 - pchisq(lambda, dof - 1));
+
+rVec = mlePar[2:dof] - nullH[2:dof];
+W = t(rVec) %*% mleHess[2:dof, 2:dof] %*% rVec;
+print("Wald Test");
+print(1 - pchisq(W, dof - 1));
+```
+
+Therefore each test provides evidence for rejecting the null hypothesis.
+
+## Problem 3
+
+We want to show that:
+
+$$
+\begin{align*}
+P\left(\left|X_{n}-1\right|<\epsilon\right)\to & 0\\
+P\left(\left|\frac{W^{2}}{\lambda}-1\right|<\epsilon\right)\to & 0
+\end{align*}
+$$
+
+First note:
+
+$$
+\begin{align*}
+W^{2}= & \left(\frac{\hat{\theta}-\theta_{0}}{SE}\right)^{2}=\left(\frac{\hat{\theta}-\theta_{0}}{s/\sqrt{n}}\right)^{2}\\
+\lambda= & 2l\left(\hat{\theta}\right)-2l(\theta_{0})\\
+s.t.\\
+\hat{\theta}= & argmax\left[l(\theta)\right]
+\end{align*}
+$$
+
+Based on the problem hint, we expand $l\left(\hat{\theta}\right)$
+to two terms:
+
+$$
+\begin{align*}
+l\left(\theta\right)\approx & l\left(\hat{\theta}\right)+l'\left(\hat{\theta}\right)\left(\theta_{0}-\hat{\theta}\right)+\frac{1}{2}l"\left(\theta\right)\left(\theta_{0}-\hat{\theta}\right)^{2}
+\end{align*}
+$$
+
+From the FOC's, we know $l'(\hat{\theta)=0}$. Therefore:
+
+$$
+\begin{align*}
+l\left(\theta\right)\approx & l\left(\hat{\theta}\right)+\frac{1}{2}l"\left(\hat{\theta}\right)\left(\theta-\hat{\theta}\right)^{2}
+\end{align*}
+$$
+
+Therefore $\lambda$ becomes:
+
+$$
+\begin{align*}
+\lambda\approx & -l"\left(\hat{\theta}\right)\left(\theta_{0}-\hat{\theta}\right)^{2}
+\end{align*}
+$$
+
+Our statistic of concern therefore becomes:
+
+$$
+\begin{align*}
+X_{n}\approx & \frac{\left(\hat{\theta}-\theta_{0}\right)^{2}}{-l"\left(\hat{\theta}\right)\left(\theta_{0}-\hat{\theta}\right)^{2}}\\
+X_{n}\approx & \frac{1}{-l"\left(\hat{\theta}\right)SE^{2}}
+\end{align*}
+$$
+
+Note however (from deck 7, slide 29):
+
+$$
+\begin{align*}
+SE\approx & \frac{1}{-l"\left(\hat{\theta}\right)}
+\end{align*}
+$$
+
+Therefore the sequence becomes:
+
+$$
+\begin{align*}
+X_{n}= & \frac{SE^{2}}{SE^{2}}=1\checkmark
+\end{align*}
+$$

@@ -1,0 +1,203 @@
+(Not set):1   {         latex filename is <Decomposing_Factor_Returns.tex>
+(Not set):1   {           rtf filename is <Decomposing_Factor_Returns.rtf>
+(Not set):1   {           aux filename is <Decomposing_Factor_Returns.aux>
+(Not set):1   {           bbl filename is <Decomposing_Factor_Returns.bbl>
+(Not set):1   {         home directory is <>
+(Not set):1   {         trying to open 'C:\Program Files (x86)\latex2rtf\cfg\direct.cfg'
+(Not set):1   {         read 639 entries for file direct.cfg
+(Not set):1   {         trying to open 'C:\Program Files (x86)\latex2rtf\cfg\fonts.cfg'
+(Not set):1   {         read 7 entries for file fonts.cfg
+(Not set):1   {         trying to open 'C:\Program Files (x86)\latex2rtf\cfg\ignore.cfg'
+(Not set):1   {         read 86 entries for file ignore.cfg
+(Not set):1   {         trying to open 'C:\Program Files (x86)\latex2rtf\cfg\style.cfg'
+(Not set):1   {         read 52 entries for file style.cfg
+(Not set):1   {         trying to open 'C:\Program Files (x86)\latex2rtf\cfg\english.cfg'
+(Not set):1   {         read 22 entries for file english.cfg
+(Not set):1   {         Opened 'Decomposing_Factor_Returns.tex'
+Decomposing_Factor_Returns.tex:1   {         Opened RTF file <Decomposing_Factor_Returns.rtf>
+Decomposing_Factor_Returns.tex:1   {         Read LaTeX Preamble
+preamble: =\documentclass[12pt]{article}=\usepackage{amssymb}=\usepackage{amsfonts}=\usepackage{amsmath}=\usep
+1445    : ackage{geometry}=\usepackage{setspace}=\usepackage{natbib}=\usepackage{hyperref}=\usepackage{caption
+preamble: 2}=\usepackage{graphicx}=\usepackage{rotating}=\usepackage{fancyhdr}=\usepackage{epstopdf}==\usepack
+preamble: age{chngcntr}==\setcounter{MaxMatrixCols}{10}==\setlength{\textwidth}{17cm}=\setlength{\oddsidemargi
+preamble: n}{0cm}=\setlength{\textheight}{22.5cm}=\setlength{\topmargin}{-1cm}=\renewcommand{\baselinestretch}
+preamble: {1.33}=\newtheorem{theorem}{Theorem}=\newtheorem{acknowledgement}[theorem]{Acknowledgement}=\newtheo
+preamble: rem{algorithm}[theorem]{Algorithm}=\newtheorem{axiom}[theorem]{Axiom}=\newtheorem{case}[theorem]{Cas
+preamble: e}=\newtheorem{claim}[theorem]{Claim}=\newtheorem{conclusion}[theorem]{Conclusion}=\newtheorem{condi
+preamble: tion}[theorem]{Condition}=\newtheorem{conjecture}[theorem]{Conjecture}=\newtheorem{corollary}{Coroll
+preamble: ary}[section]=\newtheorem{criterion}[theorem]{Criterion}=\newtheorem{definition}{Definition}[section
+preamble: ]=\newtheorem{example}[theorem]{Example}=\newtheorem{exercise}[theorem]{Exercise}=\newtheorem{lemma}
+preamble: {Lemma}[section]=\newtheorem{notation}[theorem]{Notation}=\newtheorem{problem}[theorem]{Problem}=\ne
+preamble: wtheorem{proposition}{Proposition}[section]=\newtheorem{remark}[theorem]{Remark}=\newtheorem{solutio
+preamble: n}[theorem]{Solution}=\newtheorem{summary}[theorem]{Summary}=\newenvironment{proof}[1][Proof]{\noind
+preamble: ent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}=====
+Decomposing_Factor_Returns.tex:2   {            (setDocumentOptions) option <12pt>
+Decomposing_Factor_Returns.tex:3   {           Package {amssymb} with no options
+Decomposing_Factor_Returns.tex:3   {           CmdUseOnepackage \usepackage[(null)]{amssymb}
+Decomposing_Factor_Returns.tex:4   {           Package {amsfonts} with no options
+Decomposing_Factor_Returns.tex:4   {           CmdUseOnepackage \usepackage[(null)]{amsfonts}
+Decomposing_Factor_Returns.tex:4   {            (setDocumentOptions) option <amsfonts>
+Decomposing_Factor_Returns.tex:4   Package/option 'amsfonts' unknown.
+Decomposing_Factor_Returns.tex:5   {           Package {amsmath} with no options
+Decomposing_Factor_Returns.tex:5   {           CmdUseOnepackage \usepackage[(null)]{amsmath}
+Decomposing_Factor_Returns.tex:5   {            (setDocumentOptions) option <amsmath>
+Decomposing_Factor_Returns.tex:5   Incomplete support for package/option 'amsmath' 
+Decomposing_Factor_Returns.tex:6   {           Package {geometry} with no options
+Decomposing_Factor_Returns.tex:6   {           CmdUseOnepackage \usepackage[(null)]{geometry}
+Decomposing_Factor_Returns.tex:7   {           Package {setspace} with no options
+Decomposing_Factor_Returns.tex:7   {           CmdUseOnepackage \usepackage[(null)]{setspace}
+Decomposing_Factor_Returns.tex:7   {            (setDocumentOptions) option <setspace>
+Decomposing_Factor_Returns.tex:7   Incomplete support for setspace package
+Decomposing_Factor_Returns.tex:8   {           Package {natbib} with no options
+Decomposing_Factor_Returns.tex:8   {           CmdUseOnepackage \usepackage[(null)]{natbib}
+Decomposing_Factor_Returns.tex:9   {           Package {hyperref} with no options
+Decomposing_Factor_Returns.tex:9   {           CmdUseOnepackage \usepackage[(null)]{hyperref}
+Decomposing_Factor_Returns.tex:9   {            (setDocumentOptions) option <hyperref>
+Decomposing_Factor_Returns.tex:10  {           Package {caption2} with no options
+Decomposing_Factor_Returns.tex:10  {           CmdUseOnepackage \usepackage[(null)]{caption2}
+Decomposing_Factor_Returns.tex:10  {            (setDocumentOptions) option <caption2>
+Decomposing_Factor_Returns.tex:10  Package/option 'caption2' unknown.
+Decomposing_Factor_Returns.tex:11  {           Package {graphicx} with no options
+Decomposing_Factor_Returns.tex:11  {           CmdUseOnepackage \usepackage[(null)]{graphicx}
+Decomposing_Factor_Returns.tex:12  {           Package {rotating} with no options
+Decomposing_Factor_Returns.tex:12  {           CmdUseOnepackage \usepackage[(null)]{rotating}
+Decomposing_Factor_Returns.tex:12  {            (setDocumentOptions) option <rotating>
+Decomposing_Factor_Returns.tex:12  Package/option 'rotating' unknown.
+Decomposing_Factor_Returns.tex:13  {           Package {fancyhdr} with no options
+Decomposing_Factor_Returns.tex:13  {           CmdUseOnepackage \usepackage[(null)]{fancyhdr}
+Decomposing_Factor_Returns.tex:13  {            (setDocumentOptions) option <fancyhdr>
+Decomposing_Factor_Returns.tex:13  Incomplete support for package/option 'fancyhdr' 
+Decomposing_Factor_Returns.tex:14  {           Package {epstopdf} with no options
+Decomposing_Factor_Returns.tex:14  {           CmdUseOnepackage \usepackage[(null)]{epstopdf}
+Decomposing_Factor_Returns.tex:14  {            (setDocumentOptions) option <epstopdf>
+Decomposing_Factor_Returns.tex:14  Package/option 'epstopdf' unknown.
+Decomposing_Factor_Returns.tex:16  {           Package {chngcntr} with no options
+Decomposing_Factor_Returns.tex:16  {           CmdUseOnepackage \usepackage[(null)]{chngcntr}
+Decomposing_Factor_Returns.tex:16  {            (setDocumentOptions) option <chngcntr>
+Decomposing_Factor_Returns.tex:16  Package/option 'chngcntr' unknown.
+Decomposing_Factor_Returns.tex:24  {           Adding macro 'baselinestretch' = [1.33]
+Decomposing_Factor_Returns.tex:24  {           No existing definition for \baselinestretch
+Decomposing_Factor_Returns.tex:26  {           CmdNewTheorem name=<theorem>
+Decomposing_Factor_Returns.tex:26  {           CmdNewTheorem caption=<Theorem>
+Decomposing_Factor_Returns.tex:26  {           CmdNewTheorem like=<>
+Decomposing_Factor_Returns.tex:27  {           CmdNewTheorem name=<acknowledgement>
+Decomposing_Factor_Returns.tex:27  {           CmdNewTheorem caption=<Acknowledgement>
+Decomposing_Factor_Returns.tex:27  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:28  {           CmdNewTheorem name=<algorithm>
+Decomposing_Factor_Returns.tex:28  {           CmdNewTheorem caption=<Algorithm>
+Decomposing_Factor_Returns.tex:28  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:29  {           CmdNewTheorem name=<axiom>
+Decomposing_Factor_Returns.tex:29  {           CmdNewTheorem caption=<Axiom>
+Decomposing_Factor_Returns.tex:29  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:30  {           CmdNewTheorem name=<case>
+Decomposing_Factor_Returns.tex:30  {           CmdNewTheorem caption=<Case>
+Decomposing_Factor_Returns.tex:30  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:31  {           CmdNewTheorem name=<claim>
+Decomposing_Factor_Returns.tex:31  {           CmdNewTheorem caption=<Claim>
+Decomposing_Factor_Returns.tex:31  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:32  {           CmdNewTheorem name=<conclusion>
+Decomposing_Factor_Returns.tex:32  {           CmdNewTheorem caption=<Conclusion>
+Decomposing_Factor_Returns.tex:32  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:33  {           CmdNewTheorem name=<condition>
+Decomposing_Factor_Returns.tex:33  {           CmdNewTheorem caption=<Condition>
+Decomposing_Factor_Returns.tex:33  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem name=<conjecture>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem caption=<Conjecture>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem name=<corollary>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem caption=<Corollary>
+Decomposing_Factor_Returns.tex:34  {           CmdNewTheorem like=<>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem name=<criterion>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem caption=<Criterion>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem name=<definition>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem caption=<Definition>
+Decomposing_Factor_Returns.tex:36  {           CmdNewTheorem like=<>
+Decomposing_Factor_Returns.tex:38  {           CmdNewTheorem name=<example>
+Decomposing_Factor_Returns.tex:38  {           CmdNewTheorem caption=<Example>
+Decomposing_Factor_Returns.tex:38  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem name=<exercise>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem caption=<Exercise>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem name=<lemma>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem caption=<Lemma>
+Decomposing_Factor_Returns.tex:39  {           CmdNewTheorem like=<>
+Decomposing_Factor_Returns.tex:41  {           CmdNewTheorem name=<notation>
+Decomposing_Factor_Returns.tex:41  {           CmdNewTheorem caption=<Notation>
+Decomposing_Factor_Returns.tex:41  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem name=<problem>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem caption=<Problem>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem name=<proposition>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem caption=<Proposition>
+Decomposing_Factor_Returns.tex:42  {           CmdNewTheorem like=<>
+Decomposing_Factor_Returns.tex:44  {           CmdNewTheorem name=<remark>
+Decomposing_Factor_Returns.tex:44  {           CmdNewTheorem caption=<Remark>
+Decomposing_Factor_Returns.tex:44  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:45  {           CmdNewTheorem name=<solution>
+Decomposing_Factor_Returns.tex:45  {           CmdNewTheorem caption=<Solution>
+Decomposing_Factor_Returns.tex:45  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:46  {           CmdNewTheorem name=<summary>
+Decomposing_Factor_Returns.tex:46  {           CmdNewTheorem caption=<Summary>
+Decomposing_Factor_Returns.tex:46  {           CmdNewTheorem like=<theorem>
+Decomposing_Factor_Returns.tex:46  {           CmdNewEnvironment name=<proof> param=1
+Decomposing_Factor_Returns.tex:46  {           CmdNewEnvironment begdef=<\noindent\textbf{#1.} >
+Decomposing_Factor_Returns.tex:46  {           CmdNewEnvironment enddef=<\ \rule{0.5em}{0.5em}>
+Decomposing_Factor_Returns.tex:51  {         Using geometry package
+Decomposing_Factor_Returns.tex:51  {         [l,r,t,b] = [1841,1841,1908,2861]
+Decomposing_Factor_Returns.tex:51  {{        \begin{document}
+body : \thispagestyle{empty}=\begin{titlepage}==\title{\textbf{Decomposing Factor Returns}\thanks{We would 
+1212 : like to thank Ronen Israel and Tobias Moskowitz for helpful comments and suggestions.}  \author{ And
+body : rea L. Eisfeldt,\footnote{Anderson School of Management, University of California, Los Angeles,  NBE
+body : R, and AQR, e-mail: {\tt andrea.eisfeldt@anderson.ucla.edu}} Tarun Gupta,\footnote{AQR, e-mail: {\tt
+body :  tarun.gupta@aqr.com}}} \\=                              }\date{\today}==\maketitle==\begin{abstract
+body : } \vspace{\baselineskip}=We present a simple, exact, decomposition of factor-based equity portfolio 
+body : returns into their compositional, valuation, and fundamental components.  =Our decomposition disting
+body : uishes between returns from changes in portfolio weights, or rebalancing across stocks (composition 
+body : returns), by valuation changes or increases in market relative to book values (valuation returns), o
+body : r by changes in firm fundamentals measured by book asset values (fundamental returns).=We show how t
+body : he contribution of each component varies across factor portfolios, and across strategy implementatio
+body : ns with different rebalancing and holding periods.=\end{abstract}==\end{titlepage}==\onehalfspacing=
+body : \clearpage==
+Decomposing_Factor_Returns.tex:51  {{          Unknown command '\thispagestyle'
+Decomposing_Factor_Returns.tex:70  {{        processing '\section{Introduction}'
+body : \begin{enumerate}=\item Define decomposition=\item Why we care:=\begin{itemize}=\item Decomposition 
+700  : can help to understand how much of factor returns are driven by stocks within the factor portfolios 
+body : becoming more or less expensive relative to their fundamentals, vs. the stocks themselves changing (
+body : either the actual name of the stock or the size of the fundamental assets of the stock)=\item Where 
+body : returns come from matters for how important expert implementation is=\item The decomposition likely 
+body : has implications for the costs and/or benefits of potential factor timing=\end{itemize}=\item Simple
+body :  example=\item Comparative statics across return horizon and rebalancing frequency=\end{enumerate}==
+Decomposing_Factor_Returns.tex:82  {{        processing '\section{Decomposition}'
+body : Consider the returns from capital gains to a factor-based, or style-based portfolio that is formed a
+2908 : t==\begin{eqnarray*}=\underbrace{(1+\mbox{Ret} -\mbox{Div})}_{\mbox{\footnotesize $r_{total}$}}&=& \
+body : overbrace{\left[ \frac{P^1_{t+1}}{P^0_t} \right]}^{\mbox{\footnotesize capital gains return}}\\= &=&
+body :  =\underbrace{\left[ \frac{B^0_t}{P^0_t} \cdot \frac{P^0_{t+1}}{B^0_{t+1}}\right]}_{\mbox{\footnotes
+body : ize $\Delta$ valuation, original portfolio}} \cdot =\overbrace{\left[\frac{P^1_{t+1}}{P^0_{t+1}}\rig
+body : ht]}^{\mbox{\footnotesize change in value from $\Delta$ composition}} \cdot \underbrace{ \left[ \fra
+body : c{B^0_{t+1}}{B^0_t} \right]}_{\mbox{\footnotesize $\Delta$ Fundamentals}}=\end{eqnarray*}==Where now
+body :  we have a ``VCF" decomposition between valuation changes, composition changes, and fundamental chan
+body : ges.==\paragraph{Implementation} The strategy must be ``self-financing''.  That is, upon rebalancing
+body : , no money must flow into or out of the portfolio.  Assume that the portfolio is rebalanced monthly,
+body :  for example, so that the time interval $t$ to $t+1$ is one month.  To be concrete, define portfolio
+body :  shares $w_{it} \in \left[0,1\right]$ for each stock $i \in \left\{1, 2, ... n \right\}$ and $\foral
+body : l t$.  Next, define the scale of the portfolio $\gamma_t \in \mathbb{R}^+$.  Taking optimal shares $
+body : w_{it}$ as given at each date from the portfolio optimization, then, $\gamma_t$ scales the portfolio
+body :  value up or down in order to ensure that it is self-financing.  Implemented weights are then $\gamm
+body : a_t w_{it} \,\, \forall i,t$. ==\paragraph{Example:}=\begin{itemize} =\item \textit{time 0} =\item [
+body : ]initiate portfolio by paying $\gamma_t \sum_{i=1}^n w_{it} p_{it}$.  Define $\gamma_t$ by  $\gamma_
+body : t \sum_{i=1}^n w_{it} p_{it}=\$1000$.=\item \textit{time 1} =\item[] receive value of initial portfo
+body : lio $\gamma_t \sum_{i=1}^n w_{it} p_{it+1}$, =\item[] pay $\gamma_{t+1} \sum_{i=1}^n w_{it+1} p_{it+
+body : 1}$=\item[] self-financing requires $\gamma_t \sum_{i=1}^n w_{it} p_{it+1}$ - $\gamma_{t+1} \sum_{i=
+body : 1}^n w_{it+1} p_{it+1}$ = 0.  =\item [] Taking optimal weights and market prices as given we have th
+body : e implied ratio $\frac{\gamma_{t+1}}{\gamma_t}$.=\end{itemize}=Returns can be equivalently viewed as
+body : :=\[r_{t+1}=\frac{\gamma_t \sum_{i=1}^n w_{it} p_{it+1} }{\gamma_t \sum_{i=1}^n w_{it} p_{it}} \]=or
+body : =\[r_{t+1}=\frac{\gamma_{t+1} \sum_{i=1}^n w_{it+1} p_{it+1} }{\gamma_t \sum_{i=1}^n w_{it} p_{it}} 
+body : \]==since the scaling factor will ensure that the numerators are equated, as self-financing requires
+body : .\\==\noindent\textit{Note:} This implies that, using the casual notation above, =$\frac{P^0_{t+1}}{
+body : P^0_{t}}$ from item (2) and $\frac{P^1_{t+1}}{P^0_{t}}$ can be equivalent representations of the sam
+body : e portfolio return, as long as weights and scaling factors are implemented appropriately as describe
+body : d.  Thus, we are free to use the decomposition in (3), along with the appropriate sequence of $\gamm
+body : a$'s.===
+Decomposing_Factor_Returns.tex:93  Unknown command '\mathbb'
+Decomposing_Factor_Returns.tex:116 {{        \end{document}

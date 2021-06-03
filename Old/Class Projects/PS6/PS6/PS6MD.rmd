@@ -1,0 +1,365 @@
+---
+title: "Problem Set 6"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+```{r echo = FALSE, message = FALSE}
+
+rm(list = ls());
+require(dplyr);
+require(ggplot2);
+require(reshape2);
+
+```
+
+## Problem 1
+In terms of sigma, as $\Phi(0)=0.5$ and $\frac{1}{\sigma}\phi(0)=\frac{1}{\sqrt{2\pi\sigma^{2}}}$.
+Starting from the likelihood function:
+
+$$
+\begin{align*}
+\prod_{i=1}^{n}\left(Q_{i}\right)= & \prod_{i=1}^{n}\left(\begin{cases}
+\frac{1}{\sqrt{2\pi\sigma^{2}}}exp\left(\frac{-\left(y_{i}-\beta x_{i}\right)^{2}}{2\sigma^{2}}\right) & y_{i}>0\\
+1-\Phi\left(\frac{x_{i}}{\sigma}\right) & y_{i}\le0
+\end{cases}\right)
+\end{align*}
+$$
+
+And working with the log likelihood function:
+
+$$
+\begin{align*}
+\sum_{i=1}^{n}\left(l_{i}\right)=\begin{cases}
+\frac{-\left(y_{i}-\beta x_{i}\right)^{2}}{2\sigma^{2}}-\frac{1}{2}ln\left(2\pi\sigma^{2}\right) & y_{i}>0\\
+log\left(\Phi\left(\frac{-x_{i}}{\sigma}\right)\right) & y_{i}\le0
+\end{cases}
+\end{align*}
+$$
+
+We calculate the gradiant as follows:
+
+$$
+\begin{align*}
+\\
+\frac{\partial l}{\partial\sigma}= & \sum_{i=1}^{n}\begin{cases}
+\frac{\left(y_{i}-\beta x_{i}\right)^{2}}{\sigma^{3}}-\frac{1}{\sigma} & y_{i}>0\\
+\frac{x_{i}\phi\left(\frac{-x_{i}}{\sigma}\right)}{\sigma^{2}\Phi\left(\frac{-x_{i}}{\sigma}\right)} & y_{i}\le0
+\end{cases}\\
+\frac{\partial l}{\partial\beta}= & \sum_{i=1}^{n}\begin{cases}
+\frac{x_{i}\left(y_{i}-\beta x_{i}\right)^{2}}{\sigma^{2}} & y_{i}>0\\
+0 & y_{i}\le0
+\end{cases}
+\end{align*}
+$$
+
+The following code creates the sampling distribution for the MLE:
+
+```{r}
+#The likelihood function for a two column data set where data is censored below C
+#In: C, sigma, beta, xVec, yVec
+#Out: likelihood
+tobitLogLike = function(beta, sigma, cutoff, xVec, yVec) {
+    minLike = -10 ^ 8;
+    #minimum likelihood to prevent -inf results
+    singleLike = function(x, y)
+        log(if (y > cutoff) dnorm(y - beta * x, 0, sigma) else pnorm(cutoff - beta * x, 0, sigma));
+    return(max(sum(mapply(singleLike, xVec, yVec)), minLike));
+}
+
+#The gradiant of the tobit likelihood function for a two column data set where data is censored below C
+#In: C, sigma, beta, xVec, yVec
+#Out: gradient of the tobit likelihood
+tobitGradLogLike = function(beta, sigma, cutoff, xVec, yVec) {
+    minLike = -10 ^ 8;
+    #minimum likelihood to prevent -inf results
+    singleGrad = function(x, y) matrix(
+            if (y > cutoff) c(x * (y - beta * x) / sigma ^ 2, (y - beta * x) ^ 2 / sigma ^ 3 - 1 / sigma)
+    else c(0, - x / sigma ^ 2 * dnorm( - x / sigma) / pnorm( - x / sigma)), ncol = 2);
+            #calculates one value for the likelihood
+
+    return(apply(mapply(singleGrad, xVec, yVec), 1, function(x) max(sum(x), minLike)));
+}
+
+
+#Simulates y|x provided that y|x is normally distributed about beta*x
+#In: alpha, beta, sigma, a vector of x values, (optional) a cutoff for censored values
+#Out: a vector of simulated y values
+simLinYData = function(alpha, beta, sigma, xVec, cutOff) {
+    if (missing(cutOff))
+        return(mapply(function(x, e) alpha + beta * x + sigma * e, xVec, rnorm(length(xVec))));
+    return(mapply(function(x, e) max(alpha + beta * x + sigma * e, cutOff), xVec, rnorm(length(xVec))));
+}
+
+##########################Problem 1 Entry Point##########################
+#define the simulation parameters
+numVals = 1000;
+numSampleSets = 50;
+
+#boundaries for optimization
+sigmaMin = 0.1;
+sigmaMax = 2;
+betaMin = -3;
+betaMax = 3;
+
+# the true population paramaters
+betaPop = 1;
+sigmaPop = 0.6;
+alphaPop = 0;
+
+#create a matrix of x values
+xVector = runif(numVals, -1, 1);
+
+#simulate the y values for each sample set
+yVectors = apply(matrix(rep(xVector, numSampleSets), nrow = numVals, ncol = numSampleSets),
+2, function(x) simLinYData(alphaPop, betaPop, sigmaPop, x, 0));
+
+#simulate the maximum likelihood for each data set
+
+optimFunc = function(y) optim(c(.5, .5), function(betaSigma) - tobitLogLike(betaSigma[1], betaSigma[2], 0, xVector, y),
+    function(betaSigma) - tobitGradLogLike(betaSigma[1], betaSigma[2], 0, xVector, y),
+    method = "L-BFGS-B", lower = c(betaMin, sigmaMin), upper = c(betaMax, sigmaMax));
+
+mleResults = apply(yVectors, 2, optimFunc);
+
+mleParResults = matrix(NA, numSampleSets, 2)
+for (j in 1:numSampleSets) {
+    mleParResults[j,] = mleResults[[j]]$par;
+}
+
+#boxplots
+boxplot(mleParResults[, 1], main = "Problem 6 Box Plot of Beta", ylab = "beta");
+boxplot(mleParResults[, 2], main = "Problem 6 Box Plot of Sigma", ylab = "sigma");
+```
+
+We conclude by noting that the empirical evidence suggests that the median of the sampling 
+distribution converges to the true parameters of $\beta=1$ and $\sigma=0.6$.
+
+## Problem 2
+### Part i
+In this problem, we make the assumption that the value of a given
+alternative is determined by two componenets. The first component,
+$\alpha_{j}$, represents the value of the alternative to the subject
+net of price. The second component, $\beta_{p}$, represents the value
+of the log of money. Because the utility of money remains constant,
+$\beta_{p}$ stays constant across alternatives. Thus we view the
+NET value of a purchasing decision as $\alpha_{j}$, and the gross
+value of an alternative to the subject as $\alpha_{j}+\beta_{p}P_{j}$.
+
+### Part ii
+The likelihood function for $\left\{ \alpha_{j}\right\} $ can be
+denoted as:
+
+$$
+\begin{align*}
+L\left(\alpha,\beta_{p}\right)= & \prod_{i=1}^{N}\left(Pr\left(X_{i}=j\right)\right)\\
+L\left(\alpha,\beta_{p}\right)= & \prod_{i=1}^{N}\left(\frac{exp\left(\alpha_{j}+\beta_{p}ln\left(P_{j}\right)\right)}{\sum_{k=1}^{J}exp\left(\alpha_{k}+\beta_{p}ln(P_{k})\right)}\right)
+\end{align*}
+$$
+
+Taking the log:
+
+$$
+\begin{align*}
+l\left(\alpha,\beta_{p}\right)= & \sum_{i=1}^{N}\left(\alpha_{j}+\beta_{p}ln(P_{j})-log\left(\sum_{k=1}^{J}exp\left(\alpha_{k}+\beta_{p}ln\left(P_{k}\right)\right)\right)\right)\\
+l\left(\alpha,\beta_{p}\right)= & \sum_{i=1}^{N}\left(\alpha_{j}+\beta_{p}ln(P_{j})\right)-Nlog\left(\sum_{k=1}^{J}exp\left(\alpha_{k}+\beta_{p}ln\left(P_{k}\right)\right)\right)
+\end{align*}
+$$
+
+Let $\eta_{j}$ be the number of times alternative j was chosen. Then:
+
+$$
+\begin{align*}
+\frac{\partial l\left(\alpha,\beta_{p}\right)}{\partial\alpha_{j}}= & \eta_{j}-\frac{Nexp\left(\alpha_{j}+\beta_{p}ln\left(P_{j}\right)\right)}{\sum_{k=1}^{J}exp\left(\alpha_{k}+\beta_{p}ln\left(P_{j}\right)\right)}\\
+\frac{\partial l\left(\alpha,\beta_{p}\right)}{\partial\alpha_{j}}= & \sum_{k=1}^{J}\eta_{k}ln(P_{k})-\frac{\sum_{k=1}^{J}ln\left(P_{k}\right)Nexp\left(\alpha_{k}+\beta_{p}ln\left(P_{k}\right)\right)}{\sum_{k=1}^{J}exp\left(\alpha_{k}+\beta_{p}ln\left(P_{k}\right)\right)}
+\end{align*}
+$$
+
+But $\frac{\partial l\left(\alpha,\beta_{p}\right)}{\partial\beta_{p}}=\sum_{k=1}^{N}\frac{\partial l\left(\alpha,\beta_{p}\right)}{\partial\alpha_{k}}ln\left(P_{k}\right)$.
+Therefore, the first order constraints are not linearly independent,
+and we are left with J equations and J+1 unknown parameters. Specifically,
+if we set $\alpha_{1}=0$, we have a maximum of J equations and J
+unknowns. One easy way to fix this issue is to look at the relative
+prefrences rather than the absolute prefrences. In other words, we
+can fix $\alpha_{1}+\beta P_{1}=0$, and look at the relative differences
+in the preferences for the other parameters.
+
+### Part iii/iv
+The following code simulates the distribution and optimizes the likelihood. 
+Note that optimizer convergence is fast given the parameters of the problem,
+with reasonable accuracy given only 100 data points for each of the 200 price
+distributions (we use 500 data points per price distribution below).
+
+```{r}
+#The likelihood function for a multinomial distribution 
+#In: A set of parameters and a data set
+#Out: The sum of the log likelihoods for each data point
+logitLogLike = function(V, cMat) {
+    minLike = -10 ^ 8;
+    denom = matrix(apply(V, 2, function(x) log(sum(exp(x)))),nrow=1);
+    #calculate the denominator for each price
+    #calculate the log probability for each value of v
+    logPVec = t(apply(V, 1, function(x) x - denom));
+
+    #The below command looks up the logged probability for each entry in cMat and sums the total
+    return(max(sum(sapply(1:ncol(V), function(x) sum(logPVec[cMat[, x], x])), minLike)));
+}
+
+#A wrapper function for logitLike amenable to the setup in problem 6
+# Note that a null alternative is added. The null alternative is assumed to be J=1.
+#In: Alpha, Beta, and the  data set
+#Out: The sum of the log likelihoods for each data point
+multinomChoiceModelLike = function(alpha, beta, lPrice, cMat) {
+
+    #form the matrix of Vs
+    return(logitLogLike(apply(lPrice, 2, function(x) alpha + beta * x), cMat));
+}
+
+#A gradient function specific to problem 6
+# Note that a null alternative is added. The null alternative is assumed to be J=1.
+#In: Alpha, Beta, price, and the  data set. Alpha[0] and price[0] are assumed to be zero.
+#Out: The gradient of the likelihood
+multinomChoiceModelGrad = function(alpha, beta, lPrice, cMat) {
+    L = nrow(cMat);
+    W = ncol(cMat);
+    J = length(alpha);
+    eta = matrix(sapply(1:J,
+        function(x) apply(cMat, 2, function(y) sum(y == x))), nrow = J, ncol = W, byrow = TRUE);
+        #calculate the denominator for each price series    
+    denom = apply(lPrice, 2, function(x) sum(exp(alpha + x * beta)));
+    #the below return calculates and sums the gradients accross prices
+    
+    return(rbind(matrix(sapply(2:J,
+        function(x) sum(eta[x,] - L * exp(alpha[x] + beta * lPrice[x,]) / denom)),ncol=1),
+        sum(sapply(1:J,
+            function(x) sum(lPrice[x,] * (eta[x,] - L * exp(alpha[x] + beta * lPrice[x,]) / denom))))));
+}
+
+##########################Problem 5 Entry Point##########################
+
+#Define the Parameters
+numSamples = 100;
+numPriceVectrs = 200;
+alpha = matrix(NA, 3);
+alpha[1] = 0;
+alpha[2] = 0.5;
+alpha[3] = 1.5;
+beta = 2;
+lowerBound = 0.1;
+upperBound = 5;
+
+numPrices = length(alpha);
+#get the prices
+logPrices = rbind(matrix(rep(0, numPriceVectrs), nrow = 1),
+    matrix(runif(numPriceVectrs * (numPrices - 1), -1, 1), nrow = numPrices - 1));
+
+#Simulate the data
+popPVec = exp(rep(alpha, numPriceVectrs) + logPrices * beta);
+popPVec = apply(popPVec, 2, function(x) x/sum(x));
+sampMat = matrix(sapply(1:numPriceVectrs,
+    function(x) sample.int(numPrices, numSamples, replace = TRUE, popPVec[, x])),
+    nrow = numSamples, ncol = numPriceVectrs);
+
+#Get the maximum likelihood of the parameters
+likeFunc = function(alphaBeta)
+    - multinomChoiceModelLike(rbind(0, matrix(alphaBeta[1:(numPrices - 1)], nrow = numPrices-1)),
+        alphaBeta[numPrices], logPrices, sampMat);
+
+gradFunc = function(alphaBeta)
+    - multinomChoiceModelGrad(rbind(0, matrix(alphaBeta[1:(numPrices - 1)], nrow = numPrices-1)),
+        alphaBeta[numPrices], logPrices, sampMat);
+
+out = optim(c(rep(1, numPrices)), likeFunc, gradFunc,
+    method = "L-BFGS-B",
+    lower = c(rep(lowerBound, numPrices)),
+    upper = c(rep(upperBound, numPrices)));
+
+print(out);
+```
+
+In most simulations, the value of $\alpha_2$, $\alpha_3$, and $\beta$, denoted as PAR 
+respectivelly in the output above, are reasonably close to the true values of 
+$\alpha_2=0.5$, $\alpha_3=1.5$, and $\beta=2$.
+
+## Problem 3
+
+The true distribution can be computed as the probability that all
+samples are less than x. In this case, the cumulative distribution
+comes to $(\frac{x}{\theta})^{50}$ while the density function can
+be calculated as $50\left(\frac{x}{\theta}\right)^{49}$. As shown
+in the histograms below, the parametric distribution is much closer
+to the true distribution.
+
+The following code creates histograms for the non-parametric and parametric bootstraps, 
+as well as the sampling distribution for reference.
+
+```{r}
+#Creates a non-parametric bootstrap distribution from a population distribution given an
+#arbitrary sample statistic (1 arg)
+#In: population data, a stat function (1 arg), number of samples per draw, number of draws
+#Out: a vector of bootstraps
+boot.NPBootStrapper = function(datSet, statFunc, samplesPerDraw, numDraws) {
+
+    return(matrix(sapply(1:numDraws,
+    function(x) statFunc(sample(datSet, samplesPerDraw, replace = TRUE))),
+    numDraws));
+}
+
+
+#Creates a parametric bootstrap distribution from a population distribution given an
+#arbitrary sample statistic (1 arg)
+#In: a function with parameters estimated (1arg, a stat function (1 arg), 
+# number of samples per draw, number of draws
+#Out: a vector of bootstraps
+boot.PBootStrapper = function(estFunc, statFunc, samplesPerDraw, numDraws) {
+
+    return(matrix(sapply(1:numDraws, function(x) statFunc(estFunc(samplesPerDraw))), numDraws));
+}
+
+#Creates a sample distribution from a population function given an
+#arbitrary sample statistic (1 arg)
+#In: population fucntion (1 arg which takes in number of samples per draw), a stat function (1 arg), 
+# number of samples per draw, number of draws
+#Out: a vector of sample calculations
+boot.sampleDist = function(popFunc, statFunc, samplesPerDraw, numDraws) {
+    return(matrix(sapply(rep(samplesPerDraw, numDraws), function(x) statFunc(popFunc(x))), numDraws));
+}
+
+#######################Problem 3 Script Entry Point###############
+draws = 10000;
+datSize = 50;
+popGen = function(x) runif(x);
+#define the statistic and population generator function
+statGen = function(x) max(x);
+
+dataSet = popGen(datSize);
+#acquire the data set
+datStat = statGen(dataSet);
+problemDist = boot.NPBootStrapper(dataSet, statGen, datSize, draws);
+
+cat("\n\nThe problem 3 non-parametric standard error is:\n");
+cat(var(problemDist) ^ .5);
+cat("\n\nThe pivotal non-parametric confidence interval is:\n");
+CIPivotal = c(2 * datStat - quantile(problemDist, .025), 2 * datStat - quantile(problemDist, .975));
+cat(CIPivotal);
+hist(problemDist, 50, main = "Problem 3 Non-parametric Bootstrap Distribution");
+
+
+problemDist = boot.PBootStrapper(function(x) runif(x, 0, datStat), statGen, datSize, draws);
+
+cat("\n\nThe problem 3 parametric standard error is:\n");
+cat(var(problemDist) ^ .5);
+cat("\n\nThe pivotal parametric confidence interval is:\n");
+CIPivotal = c(2 * datStat - quantile(problemDist, .025), 2 * datStat - quantile(problemDist, .975));
+cat(CIPivotal);
+hist(problemDist, 50, main = "Problem 3 Parametric Bootstrap Distribution");
+
+
+sampleDist = boot.sampleDist(popGen, statGen, datSize, draws)
+hist(sampleDist, 50, main = "Problem 3 Sample Distribution");
+
+```
+
+We conclude by noting that the parametric bootstrap has greater efficacy, as demonstrated by
+the above histograms, than the non-parametric bootstrap for the distribution of interest in
+this problem.

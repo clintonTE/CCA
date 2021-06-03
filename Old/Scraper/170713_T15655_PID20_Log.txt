@@ -1,0 +1,5 @@
+Begin Processing C:\Users\Clinton\Dropbox\Projects\Scraper\SEC10QK\2016QTR1master.txt
+Successfully downloaded C:\Users\Clinton\Dropbox\Projects\Scraper\SEC10QK\2016QTR1master.txt
+ Success Count: 0
+Failure Count:0
+Total Files:7114

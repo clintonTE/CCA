@@ -1,0 +1,106 @@
+---
+title: "Problem Set 1"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+```{r echo = FALSE}
+setwd("~/../Dropbox/Projects/StatisticalLearning/StatisticalLearning") #REPLACE with correct directory
+library(knitr)
+read_chunk("PS1Code.R")
+```
+
+##Part I
+
+1. Definition of expectation:
+$$
+\begin{aligned}
+    E\left[X\right]= & \int_{s\in\Re}p\left(s\right)sds
+\end{aligned}
+$$
+
+2. Definition of variance:
+$$
+\begin{aligned}
+    V\left[X\right]= & E\left[X^{2}\right]-E\left[X\right]^{2}\\
+    = & \int_{s\in\Re}p\left(s\right)s^{2}ds-\left(\int_{s\in\Re}p\left(s\right)sds\right)^{2}
+\end{aligned}
+$$
+
+3. Definition of $E\left[Y|X\right]$:
+$$
+\begin{aligned}
+    E\left[Y|X=x\right]= & \frac{\int_{s\in\Re}p\left(x,s\right)sds}{p_{X}\left(x\right)}
+\end{aligned}
+$$
+
+4. Independence
+$$
+\begin{aligned}
+    p\left(X,Y\right)= & p\left(X\right)p\left(Y\right)\\
+    E\left[Y|X=x\right]= & \frac{\int_{s\in\Re}p\left(x,s\right)sds}{p_{X}\left(x\right)}\\
+    = & \frac{\int_{s\in\Re}p_{X}\left(x\right)p_{Y}\left(s\right)sds}{p_{X}\left(x\right)}\\
+    = & \int_{s\in\Re}p_{Y}\left(s\right)sds\\
+    = & E\left[Y\right]
+\end{aligned}
+$$
+
+5. Scalar expectations:
+$$
+\begin{aligned}
+    E\left[aX_{1}+bX_{2}+cX_{3}\right]= & \left(a+b+c\right)E\left[X\right]\\
+    V\left[aX_{1}+bX_{2}+cX_{3}\right]= & \left(a+b+c\right)^{2}V\left[X\right]
+\end{aligned}
+$$
+
+6. Yes!
+$$
+\begin{aligned}
+    E\left[\frac{1}{N}\sum_{i}X_{i}\right]= & \frac{1}{N}E\left[\sum_{i}X_{i}\right]\\
+    = & \frac{1}{N}\sum_{i}E\left[X_{i}\right]\\
+    = & E\left[X\right]
+\end{aligned}
+$$
+
+7. Variance of $\overline{X}$:
+$$
+\begin{aligned}
+    V\left[\overline{X}\right]= & E\left[\overline{X}^{2}\right]-E\left[\overline{X}\right]^{2}\text{ (by q2 definition)}\\
+    = & E\left[\overline{X}^{2}\right]-E\left[X\right]^{2}\text{ (by q6)}\\
+    = & \frac{1}{N^{2}}E\left[\left(\sum_{i}X_{i}\right)^{2}\right]-E\left[X\right]^{2}\\
+    = & \frac{1}{N^{2}}E\left[\sum_{i}X_{i}^{2}+\sum_{i\ne j}X_{i}X_{j}\right]-E\left[X\right]^{2}\\
+    = & \frac{1}{N^{2}}\sum_{i}E\left[X_{i}^{2}\right]+\frac{1}{N^{2}}\sum_{i\ne j}E\left[X_{i}\right]E\left[X_{j}\right]-E\left[X\right]^{2}\text{ (linearity \& independence)}\\
+    = & \frac{1}{N}E\left[X^{2}\right]+\frac{N-1}{N}E\left[X\right]^{2}-E\left[X\right]^{2}\text{ (iid \& linearity)}\\
+    = & \frac{1}{N}\left(E\left[X^{2}\right]-E\left[X\right]^{2}\right)\\
+    = & \frac{1}{N}V\left[X\right]\\
+    \lim_{n\to\infty}\frac{1}{N}V\left[X\right]= & 0
+\end{aligned}
+$$
+
+
+
+## Part II
+
+8. Start with FOC:
+$$
+\begin{aligned}
+    0= & -2X'Y+2X'X\beta\\
+    \beta= & \left[X'X\right]^{-1}\left[X'Y\right]\text{ (premultiply by \ensuremath{\left[X'X\right]^{-1}})}
+\end{aligned}
+$$
+
+9. See below code:
+
+```{r echo = TRUE}
+<<p1q1>>
+p1q1(N=100)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the 
+R code that generated the plot.

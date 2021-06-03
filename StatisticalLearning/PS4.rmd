@@ -1,0 +1,713 @@
+---
+title: "Problem Set 4"
+output: pdf_document
+author: Clinton Tepper
+---
+[//]: # rmarkdown::render("PS4.rmd")
+
+
+## Problem 1
+
+### a
+
+This explanation draws from the slides. A generative classifier approach
+begins with Bayesian inversion:
+$$
+\begin{aligned}
+p\left(Y_{i}=g|X_{i}\right)= & \frac{p\left(X_{i}|Y_{i}=g\right)p\left(Y_{i}=g\right)}{p\left(X_{i}\right)}
+\end{aligned}
+$$
+
+We only care about relative probabilities:
+$$
+\begin{aligned}
+p\left(Y_{i}=g|X_{i}\right)\propto & p\left(X_{i}|Y_{i}=g\right)p\left(Y_{i}=g\right)
+\end{aligned}
+$$
+
+This means we only need our prior plus the class densities for $X_{i}$.
+Many techniques estimate this density, such as LDA, QDA, and gaussian
+mixture models. If we have a kernel density function, just plug into
+$$
+\begin{aligned}
+p\left(Y_{i}=g|X_{i}\right)\propto & p\left(X_{i}|Y_{i}=g\right)p\left(Y_{i}=g\right)
+\end{aligned}
+$$
+
+(normalizing over all $g$). 
+
+### b
+
+Kernel density estimation is one approach. Pick a kernel, then estimate
+the density $p\left(X_{i}|g\right)$ for each g. Since non-parametric
+estimation is what we are going for, pick an extremely parsimonious
+kernel- say a uniform kernel of width given by the average distance
+between each point and its nearest neighbor (L2 norm) for each classification
+g. Label this value $d_{g}$. Given N data points in the training
+set, the kernel density for $X_{i}$ and classification g, the kernel
+density is proportional to 
+$$
+\begin{aligned}
+p\left(X_{i}|g\right) & \propto\sum_{j\in1:N}\iota\left(\left|\left|X_{i}-X_{j}\right|\right|\le d_{g}\right)\iota\left(Y_{j}=g\right)
+\end{aligned}
+$$
+
+where $\iota$ is the indicator function. Also pick priors $p\left(g\right)=\frac{\iota\left(Y_{i}=g\right)}{N}$.
+Then the decision rule is given by:
+$$
+\begin{aligned}
+g^{*}|X_{i}=argmax_{g\in G} & \frac{p\left(X_{i}|g\right)p\left(g\right)}{\sum_{\tilde{g}\in G}p\left(X_{i}|\tilde{g}\right)p\left(\tilde{g}\right)}
+\end{aligned}
+$$
+ 
+
+### c
+
+The NBC assumes independence between predictor density functions.
+For instance, compute $\hat{\sigma}_{g}^{p}\left(X_{i}^{p}|Y_{i}=g\right)$
+and $\hat{\mu}_{g}^{p}\left(X_{i}^{p}|Y_{i}=g\right)$ using any reasonable
+sample estimator for the mean and variance. Then the decision rule
+is given by (in practice the function would be logged):
+$$
+\begin{aligned}
+g^{*}|X_{i}= & argmax_{g\in G}\prod_{p\in1:P}\frac{1}{\hat{\sigma}_{g}^{p}}\phi\left(\frac{X_{i}^{p}-\hat{\mu}_{g}^{p}}{\hat{\sigma}_{g}^{p}}\right)
+\end{aligned}
+$$
+
+This works well when the independence assumption between predictors
+approximately holds.
+
+QDA assumes a full multivariate normal for each classifier. If $\sum_{i\in1:N}\iota\left(Y_{i}=g\right)\gg\frac{P\left(P+1\right)}{2}\forall g\in G$
+and the data within each classifier are normal, this could be reasonable.
+However, covariance matrices are notoriously hard to estimate, and
+this requires P of them. We also need a prior $p\left(g\right)$.
+Again, in practice everything would be logged, but the non-transformed
+decision rule is given by:
+$$
+\begin{aligned}
+g^{*}|X_{i}= & argmax_{g\in G}\left|\Sigma_{G}\right|^{\frac{-1}{2}}\exp\left(\left(X_{i}-\hat{\mu}_{g}\right)^{'}\Sigma_{G}^{-1}\left(X_{i}-\hat{\mu}_{g}\right)\right)p\left(g\right)
+\end{aligned}
+$$
+
+LDA is the same as QDA, except the covariance matrix is restricted
+to be the same for all classes. LDA therefore additionally assumes
+that the correlation structure between predictors remains the same
+over the different classifies. It cuts down on the required number
+of parameters by a factor of G. Still, this approach requires a reasonable
+estimate for the covariance matrix, e.g. $N\gg P^{2}$. The (unlogged)
+decision rule is given by:
+$$
+\begin{aligned}
+g^{*}|X_{i}= & argmax_{g\in G}\left|\Sigma\right|^{\frac{-1}{2}}\exp\left(\left(X_{i}-\hat{\mu}_{g}\right)^{'}\Sigma^{-1}\left(X_{i}-\hat{\mu}_{g}\right)\right)p\left(g\right)
+\end{aligned}
+$$
+
+### d
+
+If the data are rich within classes (many more points than $\frac{P\left(P+1\right)}{2}$)
+and approximately normally distributed, the QDA could deliver a reasonable
+answer. If the data are rich across classes (many more total points
+than $\frac{P\left(P+1\right)}{2}$) and the covariance structure
+doesn't depend significantly on the classifier, then LDA could be
+reasonable. The number of parameters avoided in LDA means that it
+may be preferred even if the richness criteria of QDA is generally
+satisfied. Unfortunately, it still requires estimation of a covariance
+matrix. The Naive Bayes Estimator isn't constrained to a single parametric
+specification. If the independence assumption is reasonable, NBC seems
+like the obvious choice. 
+
+By the assumptions employed for each of the techniques, highly non-normal
+yet correlated data will not likely work well for any of the described
+techniques. If P is high relative to N, SVM could be reasonable. By
+definition, a carefully applied Bayesian (not naive) estimator will
+be at least as efficient as any other estimator, so this is another
+option in high dimensional situations. 
+
+## Problem 2
+
+### a
+
+This is just $\left|\left|X_{i}-X_{j}\right|\right|^{2}$
+
+### b
+
+This is given by $\left|\left|\phi\left(X_{i}\right)-\phi\left(X_{j}\right)\right|\right|^{2}$
+
+### c
+
+In inner product notation, the above is $\langle\phi\left(X_{i}\right)-\phi\left(X_{j}\right),\,\phi\left(X_{i}\right)-\phi\left(X_{j}\right)\rangle$. 
+
+WLOG, assume a standard deviation of 1. As a formulation of a Gaussian
+feature space was not provided for this problem, I take it from the
+slides, such that 
+$$
+\begin{aligned}
+\phi\left(X_{i}\right) & =\sum_{d\in1:\infty}\sqrt{\frac{2^{d}}{d!}}\exp\left(-X_{i}^{2}\right)X_{i}^{d}
+\end{aligned}
+$$
+
+Plug in while noting that $K\left(X_{i},X_{i}\right)=\exp\left(-\left|\left|X_{i}-X_{i}\right|\right|^{2}\right)=1$: 
+$$
+\begin{aligned}
+\langle\phi\left(X_{i}\right)-\phi\left(X_{j}\right),\,\phi\left(X_{i}\right)-\phi\left(X_{j}\right)\rangle= & \langle\phi\left(X_{i}\right),\,\phi\left(X_{i}\right)\rangle+\langle\phi\left(X_{j}\right),\,\phi\left(X_{j}\right)\rangle-2\langle\phi\left(X_{i}\right),\,\phi\left(X_{j}\right)\rangle\\
+ & \sum_{d\in1:\infty}\frac{2^{d}}{d!}\exp\left(-2X_{i}^{2}\right)X_{i}^{2d}+\sum_{d\in1:\infty}\frac{2^{d}}{d!}\exp\left(-2X_{j}^{2}\right)X_{j}^{2d}\\
+ & -2\sum_{d\in1:\infty}\frac{2^{d}}{d!}\exp\left(-X_{i}^{2}-X_{j}^{2}\right)X_{i}^{d}X_{j}^{d}\\
+= & k\left(X_{i},\,X_{i}\right)+k\left(X_{j},\,X_{j}\right)-2k\left(X_{i},\,X_{j}\right)\\
+= & 2\left(1-k\left(X_{i},\,X_{j}\right)\right)\\
+\propto & 1-k\left(X_{i},\,X_{j}\right)
+\end{aligned}
+$$
+
+Thus the Euclidean distance in feature space is proportional to 1
+less their kernel, or 1 less their dissimilarity.
+
+## Problem 3
+
+### a
+
+Start with
+
+$$
+\begin{aligned}
+argmin_{c\in R^{N}} & \left(Y-Kc\right)'\left(Y-Kc\right)+\lambda c'Kc
+\end{aligned}
+$$
+
+FOC:
+$$
+\begin{aligned}
+0= & 2K'\left(Y-Kc\right)-2\lambda Kc\\
+\lambda Kc= & K'\left(Y-Kc\right)\\
+\lambda Ic= & \left(Y-Kc\right)\text{ (Since K is symmetric)}\\
+\left(\lambda I+K\right)c= & Y\\
+c= & \left[K+\lambda I\right]^{-1}Y
+\end{aligned}
+$$
+
+### b 
+
+This is the classical bias-variance trade-off. Increasing lambda increases
+bias but reduces the variability of the response. Leave one out cross-validation
+is one method for picking $\lambda$. Alternatively in the Bayesian
+formulation, $\lambda=\frac{\sigma^{2}}{\tau^{2}}$ where $\tau^{2}$
+is a hyperparameter and $\sigma^{2}$ is the variability of the conditional
+data generating process. Thus careful assessment of the relative certainty
+of an existing prior would form another viable method.
+
+## Problem 4
+
+### a
+
+We have:
+$$
+\begin{aligned}
+Y_{i}= & \phi\left(X_{i}\right)'\theta+\epsilon_{i}\\
+E\left[Y_{i}|X_{i}\right]= & E\left[\phi\left(X_{i}\right)'\theta+\epsilon_{i}|X_{i}\right]\\
+= & E\left[\phi\left(X_{i}\right)'\theta|X_{i}\right]+E\left[\epsilon_{i}|X_{i}\right]\\
+= & \phi\left(X_{i}\right)'\theta+E\left[\epsilon_{i}|X_{i}\right]
+\end{aligned}
+$$
+
+Thus $E\left[Y_{i}|X_{i}\right]=\phi\left(X_{i}\right)'\theta$ provided
+the exogeneity condition holds ($E\left[\epsilon_{i}|X_{i}\right]=0$).
+
+###b
+
+Start with the FOC:
+$$
+\begin{aligned}
+0= & \sum_{i\in1:N}\phi\left(X_{i}\right)\left(Y_{i}-\phi\left(X_{i}\right)'\theta\right)+\lambda\theta\\
+\theta= & \sum_{i\in1:N}\phi\left(X_{i}\right)c_{i}\\
+s.t.\\
+c_{i}\equiv & \frac{1}{\lambda}\left[Y_{i}-\phi\left(X_{i}\right)'\theta\right]
+\end{aligned}
+$$
+
+###c
+
+Plug into the model and re-indexing as appropriate:
+$$
+\begin{aligned}
+Y_{i}= & \phi\left(X_{i}\right)'\theta+\epsilon_{i}\\
+= & \phi\left(X_{i}\right)'\left[\sum_{j\in1:N}\phi\left(X_{j}\right)c_{j}\right]+\epsilon_{i}\\
+= & \sum_{j\in1:N}k\left(X_{i},\,X_{j}\right)c_{j}+\epsilon_{i}\\
+E\left[Y_{i}|X_{i}\right]= & \sum_{j\in1:N}k\left(X_{i},\,X_{j}\right)c_{j}
+\end{aligned}
+$$
+
+### d
+
+Begin with the solution to part b:
+$$
+\begin{aligned}
+\theta= & \sum_{i\in1:N}\phi\left(X_{i}\right)c_{i}\\
+\left|\theta\right|^{2}= & \left[\phi'c\right]^{'}\left[\phi'c\right]\\
+= & c'\phi\phi'c\\
+= & c'Kc
+\end{aligned}
+$$
+
+## Problem 5
+
+### a
+
+Random forest start from decision trees. A decision tree is formed
+as follows (ISLR version):
+
+1. For each feature, determine the threshold value that maximally reduces
+the RSS, assuming that each value in each region is averaged to from
+the prediction
+2. Select the feature which maximizes the sum squared errors. The threshold
+for this feature forms the node of the tree
+3. Repeat steps 1 and 2 for each existing region, until the data are
+entirely seperated or each node has a very small number of observations
+4. Prune the tree by selecting the sub-tree which minimizes the total
+tree's RSS plus $\alpha\left|T\right|$, where $\left|T\right|$ is
+the number of terminal nodes and $\alpha$ is a bias/variance tradeoff
+parameter. 
+5. Select the value of $\alpha$which minimizes the K-fold cross-validation
+squared error.
+
+A single tree has low bias, if any, but is generally unstable to new
+data and has high variance due to overfitting. A random forest avoids
+these issues by consists of many modified trees generated through
+bagging and decorrelation.
+
+1. Resample the data N times with replacement to form an artificial data
+set, as in bootstrapping (bagging)
+2. Generate a tree using the generated data set, but only consider a
+small subset of the predictors at each node (instead of all nodes).
+This de-correlates the individual trees. Note pruning is generally
+not needed due to the the bootstrapping and decorrelation.
+3. Repeat steps 1 and 2 many times to generate the forest. 
+
+
+### b\c
+
+```{r}
+require(ggplot2) #for graphs
+require(parallel) #good for bootstrapping
+require(data.table) #this and the below package are needed to work with data
+require(xtable)
+require(randomForest)
+require(glmnet)
+require(reshape2)
+
+
+
+
+
+#holds constants and program parameters
+CONST = list(
+    EPSILON = .Machine$double.eps, #machine precision
+    MIN_DOUBLE = .Machine$double.xmin,
+    NUM_WORKERS = max(round(detectCores() * .5), 2), #just a heuristic for multi-threading
+    FILE_NAME = "Heart.csv",
+    Y_NAME = "AHD",
+    X_NAMES = ".",
+    FORMULA = formula("AHD ~ ."),
+    TRAIN = 150,
+    MTRY = 3,
+    NTREE = 1000
+)
+
+#reads in the sample and makes any data adjustmetns needed
+prepsample = function(ntrain = CONST$TRAIN) {
+    d = fread(file = CONST$FILE_NAME)
+
+    if (CONST$X_NAMES == ".")
+        xnames = setdiff(names(d), CONST$Y_NAME)
+    else
+        xnames = CONST$X_NAMES
+
+    #break into test and training samples
+    d = na.omit(d)
+
+    train = sample(nrow(d), ntrain)
+    test = setdiff(1:nrow(d), train)
+    d$AHD = as.factor(d$AHD)
+    d$Thal = as.factor(d$Thal)
+    d$ChestPain = as.factor(d$ChestPain)
+
+    S = list(d = d, dtrain = d[train,], dtest = d[test,], train = train, test = test,
+        spec = CONST$FORMULA, yname = CONST$Y_NAME, xnames = xnames)
+
+    return(S)
+}
+
+#primary funciton for estimating a forest
+estimateForest = function(S, mtry = CONST$MTRY, ntree = CONST$NTREE) {
+
+    rf = randomForest(formula = CONST$FORMULA, data = S$dtrain, mtry = mtry,
+        ntree = ntree, importance = TRUE)
+    rfpredict = predict(rf, newdata = S$d[!S$train])
+
+    #get the appropriate error metrics
+    ooberr = tail(rf$err.rate[, "OOB"], 1)
+    ooserr = sum(rfpredict != S$dtest[, AHD]) / nrow(S$dtest)
+
+    return(list(mod = rf, ooberr = ooberr, ooserr = ooserr))
+
+}
+
+p3c = function(S, verbose = true) {
+    set.seed(11) #A seed for me
+    S = prepsample()
+    results = estimateForest(S)
+
+    #this gets the results of problem
+    print(results)
+
+    return(S)
+}
+
+out = p3c()
+```
+
+The model realized out-of-bag error rate was 13.3\% and out-of-sample
+error 22.4\%.
+
+The out-of-bag estimate corresponds to the model's prediction performance
+over all observations, where for each observation the model only uses
+trees which excluded the observation from their bootstrap draw of
+simulated observations. Per ISLR, the OOB estimate is equivalent to
+K-fold cross-validation if the number of bags is sufficiently high.
+Of course, nothing works better than true out-of-sample error as a
+generalized measure. 
+
+### d
+
+```{r}
+p3d = function() {
+    set.seed(11) #A seed for me
+    S = prepsample()
+
+    allmtrys = 1:(ncol(S$d) - 1)
+    estimates = lapply(allmtrys, function(mtry) estimateForest(S, mtry = mtry, ntree = 500))
+
+    ooberrs = sapply(estimates, function(r) r$ooberr)
+    ooserrs = sapply(estimates, function(r) r$ooserr)
+
+    resultswide = data.table(mtry = allmtrys, ooberrs = ooberrs, ooserrs = ooserrs)
+    results = melt(resultswide, id.vars = "mtry")
+
+    p = ggplot(results, aes(x = mtry, y = value, color = variable)) + geom_line() + theme_bw() +
+            ggtitle("OOB and OOS errors vs mtry")
+
+    print(p)
+}
+
+p3d()
+```
+
+### e
+
+```{r}
+estimateNet = function(S, alpha = 1.0) {
+
+    #setup training and test
+    xmattrain = model.matrix(~., S$dtrain[, S$xnames, with = FALSE])
+    yvectrain = as.factor(S$dtrain[[S$yname]])
+    xmattest = model.matrix(~., S$dtest[, S$xnames, with = FALSE])
+    yvectest = as.factor(S$dtest[[S$yname]])
+
+
+    #alpha=1 corresponds to full lasso
+    net = cv.glmnet(xmattrain, yvectrain, alpha = alpha, family = "binomial", type.measure = "mse")
+    netpredict = predict(net, newx = xmattest, type = "class")
+
+    #get the appropriate error metrics
+    ooserr = sum(netpredict != yvectest) / nrow(S$dtest)
+
+    return(list(mod = net, ooserr = ooserr))
+
+}
+
+p3e = function() {
+    set.seed(11) #A seed for me
+    S = prepsample()
+    rfresults = estimateForest(S)
+    #print(rfresults)
+
+    lassoresults = estimateNet(S)
+    cat("Lasso OOS Error: ", lassoresults$ooserr)
+
+
+}
+
+p3e()
+```
+
+The lasso model did fairly well with an out-of-sample error of 24.5\%.
+
+## Problem 6
+
+### a
+
+I use the following models:
+
+* RandomForest: This technique is resistant to overfitting and has generally
+low prediction varaince with minimal bias. Delivers strong performance
+with high dimensional data. Uses 1000 trees with mtry set at the square
+root of the number of columns
+* Lasso logit: Highly effective with high-dimensional data. Drops features
+determined as ineffective, leading to high efficiency and parsimony.
+Lambda is selected via cross-validation.
+* Tree: I implement a tree as in ISLR with cross-validation informed
+pruning (although I use the ``rpart'' package). I expect this will
+not perform as well as the others per the information disclosed in
+ISLR.
+* SVM: SVM classifiers are generally effective with high dimensional
+data.
+* Naive mix: I set the mix without looking at the results. I use 3 parts
+random forest, 2 parts lasso, 1 part tree, and 2 parts SVM. I overweight
+the random forest and underweight the tree. I do this because I expect,
+from my prior experience, the random forest to perform better out
+of sample, while I also want to be careful about placing too much
+weight on ``tree-based'' methodologies. This is a subjective prior
+imposed before analyzing the out of sample results. Also as a tiebreaker,
+I remove the Tree model's vote.
+
+
+### b
+
+```{r, results='asis'}
+require(ggplot2) #for graphs
+require(parallel) #good for bootstrapping
+require(data.table) #this and the below package are needed to work with data
+require(xtable)
+require(randomForest)
+require(glmnet)
+require(e1071)
+require(reshape2)
+require(rpart)
+
+setwd("C:\\Users\\Clinton\\Dropbox\\Projects\\StatisticalLearning\\StatisticalLearning")
+
+
+
+
+#holds constants and program parameters
+CONST = list(
+    NUM_WORKERS = max(round(detectCores() * .5), 2), #just a heuristic for multi-threading
+    DATA_NAME = "pset4words.RData",
+    TABLE_NAME = "words.rbin",
+    Y_NAME = "vote",
+    X_NAMES = ".",
+    FORMULA = formula("vote ~ ."),
+    NTREE = 1000, #set to 1000 in production
+    PER_TRAINING = .75, #set to .75 in production
+    SVM_COST = 1,
+    RF_W = 3,
+    LASSO_W = 2,
+    SVM_W = 2,
+    TREE_W = 1
+
+    )
+
+#no need to call this every time
+prepDataSet = function() {
+    load(CONST$DATA_NAME)
+
+    vote = pmax(vote, 0)
+    d = cbind(data.table(vote = vote), data.table(wordMatrix))
+    d$vote = pmax(d$vote, 0) #gets rid of the annoying negative values
+
+    #this was cruel to debug
+    setnames(d, "else", "elsenew")
+    setnames(d, "break", "breaknew")
+    setnames(d, "function", "functionnew")
+    setnames(d, "repeat", "repeatnew")
+
+    #names(mydf)[names(mydf) == "MyName.1"] = "MyNewName"
+
+    #setDT(data)
+    for (j in names(d)) {
+        set(d, i = NULL, j = j, value = as.factor(d[[j]])) #convert all columns to factors
+        if (length(unique(d[[j]])) == 1) #delete columns with the same value
+            d[[j]] == NULL
+        }
+
+    save(d, file = CONST$TABLE_NAME)
+
+
+
+}
+
+#reads in the sample and makes any data adjustmetns needed
+prepsample = function(ntrain = CONST$TRAIN, prep = FALSE) {
+    if (prep) prepDataSet()
+
+    load(CONST$TABLE_NAME, verbose = FALSE)
+
+
+
+    #break into test and training samples
+    d = na.omit(d)
+
+    train = sample(nrow(d), round(nrow(d) * CONST$PER_TRAINING))
+    test = setdiff(1:nrow(d), train)
+
+    for (j in names(d)) {
+        if (length(unique(d[[j]][train])) == 1) #delete columns with the same value
+            {
+            d[, c(j) := NULL]
+        }
+
+    }
+
+    #get the names of x for when we need them
+    if (CONST$X_NAMES == ".")
+        xnames = setdiff(names(d), CONST$Y_NAME)
+    else
+        xnames = CONST$X_NAMES
+
+    S = list(d = d, dtrain = d[train,], dtest = d[test,], train = train, test = test,
+        spec = CONST$FORMULA, yname = CONST$Y_NAME, xnames = xnames)
+
+    return(S)
+}
+
+#primary funciton for estimating a forest
+estimateForest = function(S, mtry = round(sqrt(ncol(S$d))), ntree = CONST$NTREE) {
+    set.seed(11) #A seed for me
+
+    rf = randomForest(formula = CONST$FORMULA, data = S$dtrain, mtry = mtry, ntree = ntree)
+    rfpredict = predict(rf, newdata = S$d[!S$train])
+
+    #get the appropriate error metrics
+    ooberr = tail(rf$err.rate[, "OOB"], 1)
+    ooserr = sum(rfpredict != S$dtest[[S$yname]]) / nrow(S$dtest)
+
+    cat("rfresult OOS Error: ", ooserr, "\n")
+    return(list(modtype = "randomforest",
+        pred = as.numeric(as.character(rfpredict)),
+        mod = rf, ooberr = ooberr,
+        ooserr = ooserr))
+
+}
+
+estimateNet = function(S, alpha = 1.0) {
+    set.seed(11) #A seed for me
+    #setup training and test
+    xmattrain = model.matrix(~., S$dtrain[, S$xnames, with = FALSE])
+    yvectrain = as.factor(S$dtrain[[S$yname]])
+    xmattest = model.matrix(~., S$dtest[, S$xnames, with = FALSE])
+    yvectest = as.factor(S$dtest[[S$yname]])
+
+
+    #alpha=1 corresponds to full lasso)
+    net = cv.glmnet(xmattrain, yvectrain, alpha = alpha, family = "binomial", type.measure = "mse")
+    netpredict = predict(net, newx = xmattest, type = "class")
+
+    #get the appropriate error metrics
+    ooserr = sum(netpredict != yvectest) / nrow(S$dtest)
+
+    cat("Lasso OOS Error: ", ooserr, "\n")
+    return(list(modtype = "lasso",
+        mod = net,
+        pred = as.numeric(as.character(netpredict)),
+        ooserr = ooserr))
+
+}
+
+estimateSVM = function(S, tunesvm = FALSE, kern = "linear") {
+    set.seed(11) #A seed for me
+    if (tunesvm) {
+        tuning = tune(svm, S$spec, data = S$dtrain, kernel = kern)
+        mod = tuning$best.model
+    } else {
+        mod = svm(S$spec, data = S$dtrain, kernel = kern, cost = CONST$SVM_COST)
+    }
+    #setup training and test
+    svmpredict = predict(mod, S$dtest)
+
+    ooserr = sum(svmpredict != S$dtest[[S$yname]]) / nrow(S$dtest)
+
+    cat("SVM OOS Error: ", ooserr, "\n")
+    return(list(modtype = "svm", mod = mod, pred = as.numeric(as.character(svmpredict)), ooserr = ooserr))
+}
+
+#estimates the tree
+estimatetree = function(S) {
+    set.seed(11) #A seed for me
+    inittree = rpart(S$spec, data = S$dtrain)
+    idxmin = which.min(inittree$cptable[, "xerror"])
+    besttree = prune(inittree, cp = inittree$cptable[idxmin, "CP"])
+    treepredict = predict(besttree, newdata = S$dtest, type = "class")
+
+    #get the appropriate error metrics
+    ooserr = sum(treepredict != S$dtest[[S$yname]]) / nrow(S$dtest)
+
+    cat("Tree OOS Error: ", ooserr, "\n")
+    return(list(modtype = "tree", mod = besttree,
+        pred = as.numeric(as.character(treepredict)), ooserr = ooserr))
+}
+
+#runs all the models
+runmodels = function(S) {
+    set.seed(11) #A seed for me
+
+    rfresults = estimateForest(S)
+    lassoresults = estimateNet(S)
+    svmresults = estimateSVM(S)
+    treeresults = estimatetree(S)
+
+    ##now build the ensemble
+    maxw = CONST$RF_W + CONST$LASSO_W + CONST$SVM_W + CONST$TREE_W
+    threshold = maxw / 2
+    fallbackthreshold = (CONST$RF_W + CONST$LASSO_W + CONST$SVM_W) / 2
+
+    rawensemble = (rfresults$pred * CONST$RF_W +
+        lassoresults$pred * CONST$LASSO_W +
+        svmresults$pred * CONST$SVM_W +
+        treeresults$pred * CONST$TREE_W)
+
+    tiebreakerfallback = (rfresults$pred * CONST$RF_W +
+        lassoresults$pred * CONST$LASSO_W +
+        svmresults$pred * CONST$SVM_W)
+
+    ensemble = ifelse(rawensemble == threshold,
+        tiebreakerfallback > fallbackthreshold, rawensemble > threshold)
+    ensemblepred = ifelse(ensemble, 1, 0)
+    ooserr = sum(ensemblepred != S$dtest[[S$yname]]) / nrow(S$dtest)
+
+    ensembleresults = list(modtype = "ensemble", pred = ensemblepred, ooserr = ooserr)
+    cat("Ensemble OOS Error: ", ooserr, "\n")
+
+    modeltypes = c(rfresults$modtype, lassoresults$modtype,
+        svmresults$modtype, treeresults$modtype, ensembleresults$modtype)
+    ensembleWeights = c(CONST$RF_W, CONST$LASSO_W, CONST$SVM_W, CONST$TREE_W, NA)
+    ooserrs = c(rfresults$ooserr, lassoresults$ooserr, svmresults$ooserr, treeresults$ooserr, ensembleresults$ooserr)
+
+    outtab = data.table(type = modeltypes, ooserr = ooserrs, ensembleW = ensembleWeights)
+    print(xtable(outtab, type = "html"))
+
+
+
+}
+
+p6 = function() {
+    set.seed(3) #A seed for me
+    S = prepsample()
+
+    results = runmodels(S)
+
+}
+
+p6()
+```
+
+### c
+
+All of the models generally performed well. The random forest model
+and the ensemble models performed best, while the single tree model
+and SVM performed worst. But generally I was surprised with how well
+each model performed, given the high dimensionality of the data set. 
+
+The tree model likely performed worst due to such model's tendencies
+to overfit. Random forests are just an amazing algorithm which seem
+to perform almost as well as the ensemble model. Lasso delivers strong
+out of sample performance, while the SVM seems to underperform my
+expectations out of sample.. The ensemble model provides a degree
+of model diversification, and as expected exhibits strong performance. 

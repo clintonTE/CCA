@@ -1,0 +1,137 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{caption2}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{fancyhdr}
+\usepackage{epstopdf}
+
+\usepackage{chngcntr}
+%\usepackage{apptools}
+%\AtAppendix{\counterwithin{lemma}{section}}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=Latex.dll}
+%TCIDATA{Version=5.50.0.2953}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=BibTeX}
+%TCIDATA{LastRevised=Friday, February 15, 2013 22:56:20}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
+\setlength{\textwidth}{17cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textheight}{22.5cm}
+\setlength{\topmargin}{-1cm}
+\renewcommand{\baselinestretch}{1.33}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+
+%\pagestyle{fancy}
+%\fancyfoot{} % clear all footer fields
+%%\fancyfoot[RE,LO]{\footnotesize{OSU 04/03/15.  Please do not redistribute.}}
+%\fancyhead{} % clear all header fields
+%\renewcommand{\headrulewidth}{0pt} % no line in header area
+
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\begin{titlepage}
+
+\title{\textbf{Decomposing Factor Returns}\thanks{We would like to thank Ronen Israel and Tobias Moskowitz for helpful comments and suggestions.}  \author{ Andrea L. Eisfeldt,\footnote{Anderson School of Management, University of California, Los Angeles,  NBER, and AQR, e-mail: {\tt andrea.eisfeldt@anderson.ucla.edu}} Tarun Gupta,\footnote{AQR, e-mail: {\tt tarun.gupta@aqr.com}}} \\
+                              %\textsc{\small Preliminary and incomplete, please do not circulate}
+}\date{\today}
+
+\maketitle
+
+\begin{abstract} \vspace{\baselineskip}
+We present a simple, exact, decomposition of factor-based equity portfolio returns into their compositional, valuation, and fundamental components.  
+Our decomposition distinguishes between returns from changes in portfolio weights, or rebalancing across stocks (composition returns), by valuation changes or increases in market relative to book values (valuation returns), or by changes in firm fundamentals measured by book asset values (fundamental returns).
+We show how the contribution of each component varies across factor portfolios, and across strategy implementations with different rebalancing and holding periods.
+%Finally, we examine the implications for factor timing, and for the relative performance of hypothetical factor investors with realistic timing behavior.
+\end{abstract}
+
+\end{titlepage}
+
+\onehalfspacing
+\clearpage
+
+\section{Introduction}
+\begin{enumerate}
+\item Define decomposition
+\item Why we care:
+\begin{itemize}
+\item Decomposition can help to understand how much of factor returns are driven by stocks within the factor portfolios becoming more or less expensive relative to their fundamentals, vs. the stocks themselves changing (either the actual name of the stock or the size of the fundamental assets of the stock)
+\item Where returns come from matters for how important expert implementation is
+\item The decomposition likely has implications for the costs and/or benefits of potential factor timing
+\end{itemize}
+\item Simple example
+\item Comparative statics across return horizon and rebalancing frequency
+\end{enumerate}
+
+\section{Decomposition}
+Consider the returns from capital gains to a factor-based, or style-based portfolio that is formed at
+
+\begin{eqnarray*}
+\underbrace{(1+\mbox{Ret} -\mbox{Div})}_{\mbox{\footnotesize $r_{total}$}}&=& \overbrace{\left[ \frac{P^1_{t+1}}{P^0_t} \right]}^{\mbox{\footnotesize capital gains return}}\\
+ &=& 
+\underbrace{\left[ \frac{B^0_t}{P^0_t} \cdot \frac{P^0_{t+1}}{B^0_{t+1}}\right]}_{\mbox{\footnotesize $\Delta$ valuation, original portfolio}} \cdot 
+\overbrace{\left[\frac{P^1_{t+1}}{P^0_{t+1}}\right]}^{\mbox{\footnotesize change in value from $\Delta$ composition}} \cdot \underbrace{ \left[ \frac{B^0_{t+1}}{B^0_t} \right]}_{\mbox{\footnotesize $\Delta$ Fundamentals}}
+\end{eqnarray*}
+
+Where now we have a ``VCF" decomposition between valuation changes, composition changes, and fundamental changes.
+
+\paragraph{Implementation} The strategy must be ``self-financing''.  That is, upon rebalancing, no money must flow into or out of the portfolio.  Assume that the portfolio is rebalanced monthly, for example, so that the time interval $t$ to $t+1$ is one month.  To be concrete, define portfolio shares $w_{it} \in \left[0,1\right]$ for each stock $i \in \left\{1, 2, ... n \right\}$ and $\forall t$.  Next, define the scale of the portfolio $\gamma_t \in \mathbb{R}^+$.  Taking optimal shares $w_{it}$ as given at each date from the portfolio optimization, then, $\gamma_t$ scales the portfolio value up or down in order to ensure that it is self-financing.  Implemented weights are then $\gamma_t w_{it} \,\, \forall i,t$. 
+
+\paragraph{Example:}
+\begin{itemize} 
+\item \textit{time 0} 
+\item []initiate portfolio by paying $\gamma_t \sum_{i=1}^n w_{it} p_{it}$.  Define $\gamma_t$ by  $\gamma_t \sum_{i=1}^n w_{it} p_{it}=\$1000$.
+\item \textit{time 1} 
+\item[] receive value of initial portfolio $\gamma_t \sum_{i=1}^n w_{it} p_{it+1}$, 
+\item[] pay $\gamma_{t+1} \sum_{i=1}^n w_{it+1} p_{it+1}$
+\item[] self-financing requires $\gamma_t \sum_{i=1}^n w_{it} p_{it+1}$ - $\gamma_{t+1} \sum_{i=1}^n w_{it+1} p_{it+1}$ = 0.  
+\item [] Taking optimal weights and market prices as given we have the implied ratio $\frac{\gamma_{t+1}}{\gamma_t}$.
+\end{itemize}
+Returns can be equivalently viewed as:
+\[r_{t+1}=\frac{\gamma_t \sum_{i=1}^n w_{it} p_{it+1} }{\gamma_t \sum_{i=1}^n w_{it} p_{it}} \]
+or
+\[r_{t+1}=\frac{\gamma_{t+1} \sum_{i=1}^n w_{it+1} p_{it+1} }{\gamma_t \sum_{i=1}^n w_{it} p_{it}} \]
+
+since the scaling factor will ensure that the numerators are equated, as self-financing requires.\\
+
+\noindent\textit{Note:} This implies that, using the casual notation above, 
+$\frac{P^0_{t+1}}{P^0_{t}}$ from item (2) and $\frac{P^1_{t+1}}{P^0_{t}}$ can be equivalent representations of the same portfolio return, as long as weights and scaling factors are implemented appropriately as described.  Thus, we are free to use the decomposition in (3), along with the appropriate sequence of $\gamma$'s.
+
+
+\end{document}

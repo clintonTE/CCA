@@ -1,0 +1,35 @@
+#list of added packages- note consider updating drivers and CUDA
+
+#routines for adding the packages
+add Atom Juno Revise Pkg
+add DataFrames Revise Distributions StatsBase GLM Dates Formatting
+add DataStructures LinearAlgebra Measures Formatting XLSX
+add CSV CategoricalArrays Serialization Distributed Random
+add CodecZstd CodecZlib Statistics
+add VegaLite PGFPlotsX Colors LaTeXStrings
+add BenchmarkTools StatsModels SparseArrays
+add UnPack Optim
+add Transducers LineSearches LoopVectorization InteractiveUtils BangBang
+
+add Zygote CUDA GPUArrays MCMCChains
+
+add https://github.com/clintonTE/Finometrics
+
+(Temporary-try to skip)
+
+add Flux#master GPUArrays#master CUDA#master Zygote#master
+
+
+CUDA_HOME C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2
+CUDA_ROOT C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2
+
+using CUDA, Zygote
+X = rand(5,2) |> CuArray{Float64}
+y=rand(5)|> CuArray{Float64}
+tf(X,y) = sum(CUDA.cholesky(X'*X)\ (X' * y))
+tf(X,y) #works fine
+gradient((X)->tf(X,y),X) 
+
+
+add Atom Juno UnPack
+add Optim Pkg SparseArrays CSV DataFrames Serialization Dates Statistics StatsBase BenchmarkTools LinearAlgebra Distributions Distributed VegaLite Random CodecZlib CodecZstd GLM XLSX InteractiveUtils

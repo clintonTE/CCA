@@ -1,0 +1,16 @@
+SEQQ Shareholder's equity
+CEQQ Common Equity
+PSTKQ Preferred Stock
+ATQ Total Assets
+LTQ Total Liabilities
+PSTKNQ Preferred Stock Redeemable
+TXDITCQ Deferred Taxes
+RDQ Report Date of Quarterly Earnings
+IBQ Income Before Extraordinary Items
+EPSPXQ Earnings Per Share Ex Extraordinary
+MKVALTQ Market value
+Stock Exchange Code
+CUSIP
+CIK number
+FYRC Current Fiscal Year End Month
+Fiscal Year End

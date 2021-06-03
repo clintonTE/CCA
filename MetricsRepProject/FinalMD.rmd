@@ -1,0 +1,14 @@
+---
+title: "Problem Set 5"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+
+```{r}
+source("Rep Scripts.R");
+
+```
+
+
+

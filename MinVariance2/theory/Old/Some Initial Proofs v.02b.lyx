@@ -1,0 +1,1004 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\usepackage{dcolumn}
+\thispagestyle{empty}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Solve for global min var portfolio
+\end_layout
+
+\begin_layout Standard
+Begin with portfolio covariance 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ and returns z.
+ The global minimum variance portfolio is given by
+\begin_inset Formula 
+\begin{align*}
+\min & w'\Sigma w\\
+s.t.1'w= & 1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the last term imposes a unique solution w/o loss of generality.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+0= & \Sigma w_{g}-\lambda1\\
+w_{g}= & \lambda\Sigma^{-1}1\\
+1= & \lambda1'\Sigma^{-1}1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $A=1'\Sigma^{-1}1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $w_{g}=\frac{\Sigma^{-1}1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Proof that 
+\begin_inset Formula $w_{p}\Sigma w_{g}=\frac{1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pick any portfolio s.t.
+ wlog 
+\begin_inset Formula $w_{p}'1=1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\begin{align*}
+w_{g}= & \frac{\Sigma^{-1}1}{A}\\
+w_{p}\Sigma w_{g}= & \frac{w_{p}'1}{A}=\frac{1}{A}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Delta Method: Derivation of Asymtotic Sample Covariance
+\end_layout
+
+\begin_layout Itemize
+Note: Heavily adapted from (https://stats.stackexchange.com/questions/105337/asymp
+totic-distribution-of-sample-variance-of-non-normal-sample)
+\begin_inset Formula 
+\begin{align*}
+nS_{XY}= & \sum_{I}\left[\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}-\left(\overline{X}-\mu_{X}\right)\right)\left(Y_{i}-\mu_{Y}-\left(\overline{Y}-\mu_{Y}\right)\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sum_{I}\left(Y_{i}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+ & -\sum_{I}\left(X_{i}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)+n\left(\overline{X}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)= & \frac{\sqrt{n}}{n}\sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)-\sqrt{n}\sigma_{XY}\\
+= & \sqrt{n}\sum_{I}\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Next note that since by the CLT 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\stackrel{d}{\rightarrow}N\left(\cdot\right)$
+\end_inset
+
+ and by WLLN 
+\begin_inset Formula $\overline{X}-\mu_{X}\stackrel{p}{\to}0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Thus by Slutsky's Theorem 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\stackrel{p}{\to}0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Hence
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\approx & \sqrt{n}\sum_{I}\left[\frac{1}{n}\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Since 
+\begin_inset Formula $E\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]=\sigma_{XY}$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{align*}
+V\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]= & E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]-\sigma_{XY}^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\;\sigma_{XXYY}-\sigma_{XY}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Where 
+\begin_inset Formula $\sigma_{XXYY}$
+\end_inset
+
+ is defined as 
+\begin_inset Formula $E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]$
+\end_inset
+
+.
+ Use the plug-in estimators to get the estimated distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Moreover, the sample covariance matrix is distributed as 
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(\boldsymbol{S}_{XY}-\Sigma_{XY}\right)\stackrel{d}{\to} & N\left(\boldsymbol{0},\,\begin{bmatrix}\mu_{4X}-\sigma_{X}^{4} & \sigma_{XXYY}-\sigma_{XY}^{2}\\
+\sigma_{XXYY}-\sigma_{XY}^{2} & \mu_{4Y}-\sigma_{Y}^{4}
+\end{bmatrix}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Finally, it will be helpful to have an alternative definition of sample
+ covariance which can be formed via convex partitions of the data.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Suppose X and Y are vectors of data and Z is their sum.
+ Then 
+\begin_inset Formula $\sigma_{Z}^{2}=\sigma_{X}^{2}+\sigma_{Y}^{2}+2\sigma_{XY}$
+\end_inset
+
+, so we should be able to estimate 
+\begin_inset Formula $\sigma_{XY}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\begin{align*}
+2nS_{XY}= & \sum_{I}\left[\left(Z_{i}-\overline{Z}\right)^{2}\right]-\sum_{I}\left[\left(Y_{i}-\overline{Y}\right)^{2}\right]-\sum_{I}\left[\left(X_{i}-\overline{X}\right)^{2}\right]\\
+ & \sum_{I}\left[\left(\left(X_{i}-\overline{X}\right)+\left(Y_{i}-\overline{Y}\right)\right)^{2}\right]-\sum_{I}\left[\left(Y_{i}-\overline{Y}\right)^{2}\right]-\sum_{I}\left[\left(X_{i}-\overline{X}\right)^{2}\right]\\
+= & 2\sum_{I}\left[\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\right]\checkmark
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus 
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{Z}^{2}-S_{X}^{2}-S_{Y}^{2}-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\,\sigma_{XXYY}-\sigma_{XY}^{2}\right)\\
+\equiv & N\left(0,\,\mu_{4Z}-\mu_{4X}-\mu_{4Y}-\left(\sigma_{Z}^{4}-\sigma_{X}^{4}-\sigma_{Y}^{4}\right)\right)
+\end{align*}
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+MCMC
+\end_layout
+
+\begin_layout Itemize
+Use a Bayesian MCMC approach, with Gibbs sampling where deriving a posterior
+ given a conjugate prior is possible and Metropolis Hastings where the posterior
+ is not tractable.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This approach relies heavily on the central limit theorem and other asymtotics
+\end_layout
+
+\begin_layout Itemize
+Suppose we have q test portfolios, m assets, and n time series observiations.
+\end_layout
+
+\begin_layout Itemize
+Define 
+\begin_inset Formula $\zeta_{G}^{2}\equiv\frac{\mu_{4G}-\sigma_{G}^{4}}{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\zeta_{P_{j}}^{2}\equiv\frac{\mu_{4P_{j}}-\sigma_{P_{j}}^{4}}{n}$
+\end_inset
+
+ (both unobserved).
+ For shorthand, designate 
+\begin_inset Formula $\zeta^{2}\equiv\left\{ \zeta_{G}^{2},\,\zeta_{1}^{2}...\zeta_{q}^{2}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Define 
+\begin_inset Formula $D\equiv S_{GP}$
+\end_inset
+
+, the vector of sample covariances between the test portfolios and 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Also adopt the notation that negative vector indices indicate the vector
+ sans the respective indices.
+\end_layout
+
+\begin_layout Itemize
+We must estimate 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\zeta$
+\end_inset
+
+, implying m+q parameters.
+\end_layout
+
+\begin_layout Itemize
+We impose a restriction that the weights must add to 1.
+ One way to do this is to pair each estimation of 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ with another weight, say 
+\begin_inset Formula $w_{i+1}\forall i<m$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{1}$
+\end_inset
+
+ for 
+\begin_inset Formula $w_{i}=m$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For notational convenience let 
+\begin_inset Formula $w_{i}'$
+\end_inset
+
+ correspond to the next value of 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Also, define 
+\begin_inset Formula $\tilde{w}_{i}$
+\end_inset
+
+ as the weight of i just after picking 
+\begin_inset Formula $w_{i-1}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Then use the following algorithm:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+For the first pass, set all weights to 
+\begin_inset Formula $w_{i}=\frac{1}{m}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Pick 
+\begin_inset Formula $w_{1}'$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{2}'=w_{2}-\left(w_{1}'-w_{1}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Its easy to see that changing the weights in this way doesn't affect the
+ total weight: 
+\begin_inset Formula 
+\begin{align*}
+\Delta= & w_{1}'+w_{2}'-w_{1}-w_{2}\\
+= & w_{1}'+w_{2}-\left(w_{1}'-w_{1}\right)-w_{1}-w_{2}\\
+= & 0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Execute the above steps 
+\begin_inset Formula $\forall i\in1:(m-1)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+The likelihood is given by
+\begin_inset Formula 
+\begin{align*}
+p\left(D|w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Consider the following priors (IG is the inverse gamma distribution):
+\begin_inset Formula 
+\begin{align*}
+\sigma_{G}^{2}\sim & N\left(\theta_{G},\,\delta_{G}^{2}\right)\\
+\zeta_{G}^{2}\sim & IG\left(\alpha_{G},\,\beta_{G}\right)\\
+\zeta_{j}^{2}\sim & IG\left(\alpha_{j},\,\beta_{j}\right)\\
+w_{i}\sim & N\left(\theta_{i},\,\delta_{i}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Now derive the posteriors:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Start with 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use the property that the convolution of normals is a normal 
+\begin_inset Formula $N\left(a,b\right)$
+\end_inset
+
+ where a is the precision weighted average of the source means and b is
+ the inverse sum of the source precisions.
+\begin_inset Formula 
+\begin{align*}
+p\left(\sigma_{G}^{2}|D,\,w_{G},\,\zeta^{2}\right)\propto & p\left(D|w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\sigma_{G}^{2};\,N\left(\theta_{G},\,\delta_{G}^{2}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\prod_{j\in1:q}\left(\left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\times\left(\frac{1}{\delta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(\theta_{G}-\sigma_{G}^{2}\right)^{2}}{2\delta_{G}^{2}}\right]\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{S_{G}}{\zeta_{G}^{2}}+\sum_{j\in1:q}\frac{S_{GP_{j}}}{\zeta_{_{j}}^{2}}+\frac{\theta_{G}}{\delta_{G}^{2}}\right]\zeta_{G}^{2*},\;\zeta_{G}^{2*}\right)\right)\\
+s.t.\\
+\zeta_{G}^{2*}= & \left[\frac{1}{\zeta_{G}^{2}}+\sum_{j\in1:q}\frac{1}{\zeta_{_{j}}^{2}}+\frac{1}{\delta_{G}^{2}}\right]^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Now for 
+\begin_inset Formula $\zeta_{G}^{2}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p\left(\zeta_{G}^{2}|D,\,w_{G},\,\zeta_{-G}^{2}\,\sigma_{G}^{2}\right)\propto & p\left(D|\,w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\zeta_{G}^{2};\;IG\left(\alpha_{G},\,\beta_{G}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\prod_{j\in1:q}\left(\left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\times p\left(\zeta_{G},\,IG\left(\alpha_{G},\,\beta_{G}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\zeta_{G}^{2}\right)^{-\alpha_{G}-1}\exp\left(-\frac{\beta_{G}}{\zeta_{G}^{2}}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\alpha_{G}+\frac{1}{2}}\exp\left(-\frac{\beta}{\zeta_{G}^{2}}-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right)\\
+\propto & p\left(\zeta_{G},\,IG\left(\alpha_{G}+\frac{1}{2},\,\beta_{G}+\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Apply the same logic to 
+\begin_inset Formula $\zeta_{j}^{2}\forall j\in1:m$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p\left(\zeta_{j}^{2}|D\,w_{G},\,\zeta_{-j}^{2},\,\sigma_{G}^{2}\right)\propto & p\left(D|\,w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\zeta_{j}^{2};\,IG\left(\alpha_{j},\,\beta_{j}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\prod_{j\in1:q}\left(\left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{i}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\times p\left(\zeta_{j};\,IG\left(\alpha_{j},\,\beta_{j}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\times\left(\left(\zeta_{j}^{2}\right)^{-\alpha_{j}-1}\exp\left(-\frac{\beta_{j}}{\zeta_{j}^{2}}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{j}^{2}}\right)^{\alpha_{j}+\frac{1}{2}}\exp\left(-\frac{\beta_{j}}{\zeta_{j}^{2}}-\frac{\left(S_{GP_{j}}-\sigma_{j}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right)\\
+\propto & \left(\zeta_{j}^{2};\,IG\left(\alpha_{j}+\frac{1}{2},\,\beta_{j}+\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Now derive the posterior of 
+\begin_inset Formula $w_{i}\forall i\in1:\left(m-1\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula 
+\begin{align*}
+p\left(w_{i}|D,\,w_{-i},\,\zeta_{j}^{2},\,\sigma_{G}^{2},\,w_{i}\right)\propto & p\left(D|\,w_{G},\,\zeta^{2},\,\sigma_{G}^{2},\,w_{i}\right)p\left(w_{i};\,N\left(\theta_{i},\,\delta_{i}^{2}\right)\right)\\
+\propto & \phi\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\prod_{j\in1:q}\left(\phi\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\times\phi\left[-\frac{\left(w_{i}-\theta_{i}\right)^{2}}{2\delta_{i}^{2}}\right]\\
+\propto & \phi\left[-\frac{\left(S_{iG}+S_{-iG}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\prod_{j\in1:q}\left(\phi\left[-\frac{\left(S_{iGP_{j}}+S_{-iGP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\times\phi\left[-\frac{\left(w_{i}-\theta_{i}\right)^{2}}{2\delta_{i}^{2}}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Where:
+\begin_inset Formula 
+\begin{align*}
+S_{iG}= & w_{i}^{2}S_{i}+w_{i+1}^{2}S_{i+1}+w_{i}w_{i+1}S_{i,i+1}+w_{i}S_{i,-iG}+w_{i+1G}S_{i+1,-iG}\\
+= & w_{i}^{2}S_{i}+\left(w_{2}-\left(w_{1}'-w_{1}\right)\right)^{2}S_{i+1}+w_{i}w_{i+1}S_{i,i+1}+w_{i}S_{i,-iG}+w_{i+1G}S_{i+1,-iG}\\
+S_{iGP_{j}}= & w_{i}S_{iP_{j}}+w_{i+1,P_{j}}S_{i+1P_{j}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Here, 
+\begin_inset Formula $S_{i}$
+\end_inset
+
+ be the sample variance of asset i, 
+\begin_inset Formula $S_{i,i+1}$
+\end_inset
+
+ be the sample covariance of asset i with asset i+1, 
+\begin_inset Formula $S_{-}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+TODO: Finish this.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Alternative using differences: Derive the posterior of 
+\begin_inset Formula $\Delta w_{i}\forall i\in1:m$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+p\left(\Delta w_{i}|D,\,w_{G},\,\zeta_{j}^{2},\,\sigma_{G}^{2}\right)\propto & p\left(D|\,w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(w_{i};\,N\left(\theta_{i},\,\delta_{i}^{2}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Here the chosen portfolio is 
+\begin_inset Formula $w_{i-1}'$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{i}'$
+\end_inset
+
+ with a remaining portfolio of all other assets.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Metropolis Hastings approach for 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+TODO: Needs more work.
+ Needs a proposal distribution of some sort.
+ Probably should be symmetric.
+ Doesn't have to be Gaussian, but T, normal, and cauchy are all possibilities.
+\end_layout
+
+\begin_layout Itemize
+Intuition:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Define the following notation: Let 
+\begin_inset Formula $\overline{z_{G}}=\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}$
+\end_inset
+
+.
+ Similarly, denote 
+\begin_inset Formula $\overline{z_{p}}=\frac{1}{n}\sum_{k\in1:n}w_{P_{j}}z_{k}$
+\end_inset
+
+ where 
+\begin_inset Formula $w_{P_{j}}$
+\end_inset
+
+ is the vector of weights for test portfolio j.
+\end_layout
+
+\begin_layout Itemize
+Thus 
+\begin_inset Formula $S_{G}=\frac{1}{n}\sum_{k\in1:n}\left(w_{G}'z_{k}-\overline{z_{G}}\right)^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{GP_{j}}=\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(w_{G}'z_{k}-\overline{z_{G}}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Now write down the likelihood:
+\begin_inset Formula 
+\begin{align*}
+p\left(D|w_{G},\,\zeta^{2},\,\sigma_{G}^{2}\right)\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\left(\frac{1}{\zeta_{j}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)\\
+\propto & \exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{j}^{2}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Next note that changing 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ also changes 
+\begin_inset Formula $w_{m}$
+\end_inset
+
+ due to the restriction that 
+\begin_inset Formula $w_{G}'1=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This changing 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ affects the likelihood in a non-linear manner, specifically as some exponentiat
+ed fourth order polynomial
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+BELOW IS PROBABLY WRONG
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Suppose instead of picking a value of 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+, we picked a perturbation of 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+, say 
+\begin_inset Formula $S_{G}'$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Then 
+\begin_inset Formula $S_{G}=\frac{1}{n}\sum_{k\in1:n}\left(w_{G}'z_{k}-\overline{z_{G}}\right)^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Maybe have a look at hierarchical models?
+\end_layout
+
+\begin_layout Itemize
+However, 
+\begin_inset Formula $\Delta w_{i}$
+\end_inset
+
+ seems likely to be tiny.
+ For a random walk M-H, we care most picking a distribution with an upper-bound
+ variance term.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Center on mean of 0 (since we only care about the variance) and thus drop
+ some of the centering terms:
+\begin_inset Formula 
+\begin{align*}
+\approx & \exp\left[-\frac{\left(\frac{1}{n}\sum_{k\in1:n}\left(w_{G}'z_{k}-\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}\right)^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{\left(\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(w_{G}'z_{k}-\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}\right)\right)^{2}}{2\zeta_{j}^{2}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+We know that 
+\begin_inset Formula $S_{GP_{j}}$
+\end_inset
+
+ is an estimator for 
+\begin_inset Formula $S_{G}$
+\end_inset
+
+ given the correct value of 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+.Hence it seems reasonable to replace the numerator on the first term with
+ the average numerator of the product sums.
+ This is equivleent to multiplying
+\begin_inset Formula 
+\begin{align*}
+\approx & \exp\left[-\frac{\frac{1}{q}\sum_{j\in1:q}\left(\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(w_{G}'z_{k}-\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}\right)\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{\left(\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(w_{G}'z_{k}-\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}\right)\right)^{2}}{2\zeta_{j}^{2}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Drop more centering terms and pull out 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\approx & \exp\left[-\frac{\left(\frac{w_{i}}{q}\sum_{j\in1:q}\left(\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(z_{ki}-\frac{1}{n}\sum_{k\in1:n}z_{ki}\right)\right)^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{\left(\frac{w_{i}}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{ki}-\overline{z_{P_{j}}}\right)\left(z_{ki}-\frac{1}{n}\sum_{k\in1:n}z_{ki}\right)\right)^{2}}{2\zeta_{j}^{2}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Denote 
+\begin_inset Formula $\kappa_{ji}=\frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{ki}-\overline{z_{P_{j}}}\right)\left(z_{ki}-\frac{1}{n}\sum_{k\in1:n}z_{ki}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{\kappa}_{i}=\frac{1}{q}\sum_{j\in1:q}\kappa_{ji}$
+\end_inset
+
+ .
+ Then we have
+\begin_inset Formula 
+\begin{align*}
+\approx & \approx\exp\left[-\frac{w_{i}^{2}}{2\left(\zeta_{G}^{2}/\overline{\kappa}_{i}^{2}\right)}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{w_{i}^{2}}{2\left(\zeta_{j}^{2}/\kappa_{ji}^{2}\right)}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus the Gaussian proposal distribution is given by
+\end_layout
+
+\begin_layout Itemize
+Thus we can write
+\begin_inset Formula 
+\begin{align*}
+\approx & \exp\left[-\frac{\left(\frac{w_{i}}{n}\sum_{k\in1:n}\left(w_{P_{1}}'z_{k}-\overline{z_{P_{1}}}\right)\left(z_{ki}-\frac{1}{n}\sum_{k\in1:n}z_{ki}\right)\right)^{2}}{2\zeta_{G}^{2}/\kappa_{1}}\right]\prod_{j\in1:q}\left(\exp\left[-\frac{\left(\frac{w_{i}}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(z_{k}-\frac{1}{n}\sum_{k\in1:n}z_{k}\right)\right)^{2}}{2\zeta_{j}^{2}/\kappa_{j}}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+What a mess! Its not even symmetric.
+ But again, we only want the upper bound.
+ We can also drop some more constants
+\end_layout
+
+\begin_layout Itemize
+Define a selection vector 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ which is a vector of 0s except for a 1 at the ith index.
+ Then we can drop some more constants
+\begin_inset Formula 
+\begin{align*}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Maybe try a Taylor expansion?
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial S_{G}}{\partial w_{i}}= & \frac{2}{n}\sum_{k\in1:n}\left(w_{G}'z_{k}-\frac{1}{n}\sum_{k\in1:n}w_{G}'z_{k}\right)\left(z_{ki}-z_{km}-\frac{1}{n}\sum_{k\in1:n}\left(z_{ki}-z_{km}\right)\right)\\
+\frac{\partial S_{GP_{j}}}{\partial w_{i}}= & \frac{1}{n}\sum_{k\in1:n}\left(w_{P_{j}}'z_{k}-\overline{z_{P_{j}}}\right)\left(z_{ki}-z_{km}-\frac{1}{n}\sum_{k\in1:n}\left(z_{ki}-z_{km}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Idea: Any test portfolio will have a higher variance than 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Important References
+\end_layout
+
+\begin_layout Itemize
+Wikipedia
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Gamma distribution
+\end_layout
+
+\begin_layout Itemize
+Inverse gamma distribution
+\end_layout
+
+\begin_layout Itemize
+Wishart Distribution
+\end_layout
+
+\begin_layout Itemize
+Inverse Wishart Distribution
+\end_layout
+
+\begin_layout Itemize
+Estimation of Covariance Matrices
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Other web sites
+\end_layout
+
+\end_body
+\end_document

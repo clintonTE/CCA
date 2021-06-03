@@ -1,0 +1,292 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{extarticle}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage[authoryear]{natbib}
+\doublespacing
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{dcolumn}
+\thispagestyle{empty}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\subsection*{Solve for global min var portfolio}
+
+Begin with portfolio covariance $\Sigma$ and returns z. The global
+minimum variance portfolio is given by
+\begin{align*}
+\min & w'\Sigma w\\
+s.t.1'w= & 1
+\end{align*}
+
+where the last term imposes a unique solution w/o loss of generality.
+Then:
+\begin{align*}
+0= & \Sigma w_{g}-\lambda1\\
+w_{g}= & \lambda\Sigma^{-1}1\\
+1= & \lambda1'\Sigma^{-1}1
+\end{align*}
+
+Let $A=1'\Sigma^{-1}1$. Then $w_{g}=\frac{\Sigma^{-1}1}{A}$
+
+\subsection*{Proof that $w_{p}\Sigma w_{g}=\frac{1}{A}$}
+
+Pick any portfolio s.t. wlog $w_{p}'1=1$. Then 
+\begin{align*}
+w_{g}= & \frac{\Sigma^{-1}1}{A}\\
+w_{p}\Sigma w_{g}= & \frac{w_{p}'1}{A}=\frac{1}{A}
+\end{align*}
+
+\subsection*{Delta Method: Derivation of Asymtotic Sample Covariance}
+\begin{itemize}
+\item Note: Heavily adapted from (https://stats.stackexchange.com/questions/105337/asymptotic-distribution-of-sample-variance-of-non-normal-sample)
+\begin{align*}
+nS_{XY}= & \sum_{I}\left[\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}-\left(\overline{X}-\mu_{X}\right)\right)\left(Y_{i}-\mu_{Y}-\left(\overline{Y}-\mu_{Y}\right)\right)\right]\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sum_{I}\left(Y_{i}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+ & -\sum_{I}\left(X_{i}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)+n\left(\overline{X}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)\\
+= & \sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)= & \frac{\sqrt{n}}{n}\sum_{I}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)-\sqrt{n}\sigma_{XY}\\
+= & \sqrt{n}\sum_{I}\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)
+\end{align*}
+\item Next note that since by the CLT $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\stackrel{d}{\rightarrow}N\left(\cdot\right)$
+and by WLLN $\overline{X}-\mu_{X}\stackrel{p}{\to}0$.
+\begin{itemize}
+\item Thus by Slutsky's Theorem $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\stackrel{p}{\to}0$
+\end{itemize}
+\item Hence
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\approx & \sqrt{n}\sum_{I}\left[\frac{1}{n}\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]
+\end{align*}
+\begin{itemize}
+\item Since $E\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]=\sigma_{XY}$
+and 
+\begin{align*}
+V\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]= & E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]-\sigma_{XY}^{2}
+\end{align*}
+\item Thus
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\;\sigma_{XXYY}-\sigma_{XY}^{2}\right)
+\end{align*}
+\begin{itemize}
+\item Where $\sigma_{XXYY}$ is defined as $E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]$.
+Use the plug-in estimators to get the estimated distribution.
+\end{itemize}
+\item Moreover, the sample covariance matrix is distributed as 
+\begin{align*}
+\sqrt{n}\left(\boldsymbol{S}_{XY}-\Sigma_{XY}\right)\stackrel{d}{\to} & N\left(\boldsymbol{0},\,\begin{bmatrix}\mu_{4X}-\sigma_{X}^{4} & \sigma_{XXYY}-\sigma_{XY}^{2}\\
+\sigma_{XXYY}-\sigma_{XY}^{2} & \mu_{4Y}-\sigma_{Y}^{4}
+\end{bmatrix}\right)
+\end{align*}
+\end{itemize}
+\item Finally, it will be helpful to have an alternative definition of sample
+covariance which can be formed via convex partitions of the data. 
+\begin{itemize}
+\item Suppose X and Y are vectors of data and Z is their sum. Then $\sigma_{Z}^{2}=\sigma_{X}^{2}+\sigma_{Y}^{2}+2\sigma_{XY}$,
+so we should be able to estimate $\sigma_{XY}$ as 
+\begin{align*}
+2nS_{XY}= & \sum_{I}\left[\left(Z_{i}-\overline{Z}\right)^{2}\right]-\sum_{I}\left[\left(Y_{i}-\overline{Y}\right)^{2}\right]-\sum_{I}\left[\left(X_{i}-\overline{X}\right)^{2}\right]\\
+ & \sum_{I}\left[\left(\left(X_{i}-\overline{X}\right)+\left(Y_{i}-\overline{Y}\right)\right)^{2}\right]-\sum_{I}\left[\left(Y_{i}-\overline{Y}\right)^{2}\right]-\sum_{I}\left[\left(X_{i}-\overline{X}\right)^{2}\right]\\
+= & 2\sum_{I}\left[\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\right]\checkmark
+\end{align*}
+\item Thus 
+\begin{align*}
+\sqrt{n}\left(\frac{1}{2}\left(S_{Z}^{2}-S_{X}^{2}-S_{Y}^{2}\right)-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\,\sigma_{XXYY}-\sigma_{XY}^{2}\right)\\
+\equiv & N\left(0,\,\mu_{4Z}-\mu_{4X}-\mu_{4Y}-\left(\sigma_{Z}^{4}-\sigma_{X}^{4}-\sigma_{Y}^{4}\right)\right)
+\end{align*}
+ 
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{MCMC}
+
+\subsubsection*{Overview}
+\begin{itemize}
+\item Use a Bayesian MCMC approach, with Gibbs sampling
+\begin{itemize}
+\item This approach relies heavily on the central limit theorem and other
+asymptotics
+\item Suppose we pick a test portfolio P of mx1 weights $w_{P}$ from which
+to test our candidate weights for the minimum variance portfolio $w_{G}$
+\begin{itemize}
+\item Define $S_{G}$ as the sample variance of $R_{G}$, the returns of
+all assets weighted by $w_{G}$
+\item Define $S_{GP}$ as the sanoke covariance of the minimum variance
+portfolio and the test portfolio. For shorthand, designate $S\equiv\left\{ S_{G},\,S_{GP}\right\} $ 
+\begin{itemize}
+\item Note given $w_{G}$, the test portfolio weights $w_{P}$, and the
+data $D$, S is fully specified. 
+\item Since $w_{P},\,D,\,w_{G}$ only enter the model via $S$, conditioning
+on $S$ is equivelent to conditioning on $w_{P}$, $w_{G}$, and $D$
+\end{itemize}
+\item Define $\zeta_{G}^{2}\equiv\frac{\mu_{4G}-\sigma_{G}^{4}}{n}$ and
+$\zeta_{P}^{2}\equiv\frac{\mu_{4P}-\sigma_{P}^{4}}{n}$ (both unobserved).
+For shorthand, designate $\zeta^{2}\equiv\left\{ \zeta_{G}^{2},\,\zeta_{P}^{2}\right\} $
+\item We must estimate $w_{G}$, $\sigma_{G}^{2}$ and $\zeta$, implying
+m+1 parameters.
+\end{itemize}
+\item Unfortunately, directly evaluating the weights leads to intractable
+posteriors. This leads to the following general ``almost MCMC''
+algorithm:
+\begin{enumerate}
+\item Draw a random test portfolio P with overall returns $R_{P}$.
+\item Draw from $p\left(\sigma_{G}^{2}|\cdot\right)$, $p\left(\zeta_{G}|\cdot\right)$,
+$p\left(\zeta_{P}|\cdot\right)$, $p\left(S_{G}|\cdot\right)$, $p\left(S_{P}|\cdot\right)$
+that is, draw from the parameter posteriors for these parameters given
+all other parameters. Note this fully specifies a new vector of weights
+for $w_{G}$, as shown in the following steps.
+\item Now we partition the portfolio into three components. Assign each
+index $i\in1:m$ randomly to one of sets $G1$, $G2$, or $G3$. Then
+define the following mx1 vectors:
+\begin{align*}
+\Omega_{G1}\equiv & \omega_{G1}\left\{ \iota\left(i\in G1\right)\right\} _{i\in1:m}\\
+\Omega_{G2}\equiv & \omega_{G2}\left\{ \iota\left(i\in G2\right)\right\} _{i\in1:m}\\
+\Omega_{G3}\equiv & \omega_{G3}\left\{ \iota\left(i\in G3\right)\right\} _{i\in1:m}
+\end{align*}
+where $\iota$is an indicator function, and $\omega_{G1},\,\omega_{G2},\,\omega_{G3}$
+are scalars. That is, each vector contains a constant value for all
+assigned indices and zero for all other indices.
+\item Define $w_{G}'\equiv\left\{ \left(\Omega_{iG1}+\Omega_{iG2}+\Omega_{iG3}\right)w_{iG}\right\} _{i\in1:m}$.
+Then solve for $\omega\equiv\left\{ \omega_{G1},\,\omega_{G2},\,\omega_{G3}\right\} $.
+Note that these parameters are fully specified by the following three
+conditions:
+\begin{enumerate}
+\item The sample variance of the new vector of weights is $S_{G}$. That
+is, $V\left(R_{G}'\right)=S_{G}$
+\item The sample covariance of the new vector of weights with the test portfolio
+is $S_{GP}$, or $cov\left(R_{G}',\,R_{P}\right)=S_{GP}$.
+\item The weights of the new portfolio add to 1. This can be expressed as
+$\left(\Omega_{G1}+\Omega_{G2}+\Omega_{G3}\right)\cdot w_{G}=1$.
+\end{enumerate}
+\item Repeat steps 1-5 many many times. 
+\end{enumerate}
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{Posteriors}
+\begin{itemize}
+\item The likelihood is proportional to
+\begin{align*}
+p\left(S|w_{G},\,\zeta^{2},\,\sigma_{G}^{2},\,w_{P}\right)\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]
+\end{align*}
+\item Consider the following priors (IG is the inverse gamma distribution):
+\begin{align*}
+\sigma_{G}^{2}\sim & N\left(\theta_{G},\,\delta_{G}^{2}\right)\\
+\zeta_{G}^{2}\sim & IG\left(\alpha_{G},\,\beta_{G}\right)\\
+\zeta_{P}^{2}\sim & IG\left(\alpha_{P},\,\beta_{P}\right)\\
+S_{G}\sim & N\left(\theta_{SG},\,\delta_{SG}^{2}\right)\\
+S_{GP}\sim & N\left(\theta_{SGP},\,\delta_{SGP}^{2}\right)
+\end{align*}
+\item Now derive the posteriors:
+\begin{itemize}
+\item Start with $\sigma_{G}^{2}$
+\begin{itemize}
+\item Use the property that the convolution of normals is a normal $N\left(a,b\right)$
+where a is the precision weighted average of the source means and
+b is the inverse sum of the source precisions.
+\begin{align*}
+p\left(\sigma_{G}^{2}|S,\,\zeta^{2}\right)\propto & p\left(S|\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\sigma_{G}^{2};\,N\left(\theta_{G},\,\delta_{G}^{2}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\right)\times\left(\frac{1}{\delta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(\theta_{G}-\sigma_{G}^{2}\right)^{2}}{2\delta_{G}^{2}}\right]\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{S_{G}}{\zeta_{G}^{2}}+\frac{S_{GP}}{\zeta_{P}^{2}}+\frac{\theta_{G}}{\delta_{G}^{2}}\right]\zeta_{G}^{2*},\;\zeta_{G}^{2*}\right)\right)\\
+s.t.\\
+\zeta_{G}^{2*}= & \left[\frac{1}{\zeta_{G}^{2}}+\frac{1}{\zeta_{_{P}}^{2}}+\frac{1}{\delta_{G}^{2}}\right]^{-1}
+\end{align*}
+\end{itemize}
+\item Now for $\zeta_{G}^{2}$
+\begin{align*}
+p\left(\zeta_{G}^{2}|S,\,\zeta_{P}^{2}\,\sigma_{G}^{2}\right)\propto & p\left(S|\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\zeta_{G}^{2};\;IG\left(\alpha_{G},\,\beta_{G}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\frac{1}{\zeta^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\right)\times p\left(\zeta_{G},\,IG\left(\alpha_{G},\,\beta_{G}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\zeta_{G}^{2}\right)^{-\alpha_{G}-1}\exp\left(-\frac{\beta_{G}}{\zeta_{G}^{2}}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\alpha_{G}+\frac{1}{2}}\exp\left(-\frac{\beta}{\zeta_{G}^{2}}-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right)\\
+\propto & p\left(\zeta_{G},\,IG\left(\alpha_{G}+\frac{1}{2},\,\beta_{G}+\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2}\right)\right)
+\end{align*}
+\item Apply the same logic to $\zeta_{P}^{2}$
+\begin{align*}
+p\left(\zeta_{P}^{2}|S,\,\sigma_{G}^{2}\right)\propto & p\left(S|\zeta^{2},\,\sigma_{G}^{2}\right)p\left(\zeta_{P}^{2};\,IG\left(\alpha_{P},\,\beta_{P}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\right)\times p\left(\zeta_{P};\,IG\left(\alpha_{P},\,\beta_{P}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{-1}{2}}\exp\left[-\frac{\left(S_{GP_{j}}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\times\left(\left(\zeta_{P}^{2}\right)^{-\alpha_{P}-1}\exp\left(-\frac{\beta_{P}}{\zeta_{P}^{2}}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{P}^{2}}\right)^{\alpha_{P}+\frac{1}{2}}\exp\left(-\frac{\beta_{P}}{\zeta_{P}^{2}}-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right)\\
+\propto & \left(\zeta_{P}^{2};\,IG\left(\alpha_{P}+\frac{1}{2},\,\beta_{P}+\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2}\right)\right)
+\end{align*}
+\item Again for $S_{G}$:
+\begin{align*}
+p\left(S_{G}|\zeta^{2},\,\sigma_{G}^{2},\,S_{P}\right)\propto & p\left(D|S,\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(S_{G};\,N\left(\theta_{SG},\,\delta_{SG}^{2}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\right)\times\left(\frac{1}{\delta_{SG}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(\theta_{SG}-S_{G}\right)^{2}}{2\delta_{SG}^{2}}\right]\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{\sigma_{G}^{2}}{\zeta_{G}^{2}}+\frac{\theta_{G}}{\delta_{G}^{2}}\right]\zeta_{SG}^{2*},\;\zeta_{SG}^{2*}\right)\right)\\
+s.t.\\
+\zeta_{SG}^{2*}= & \left[\frac{\sigma_{G}^{2}}{\zeta_{G}^{2}}+\frac{\theta_{SG}}{\delta_{SG}^{2}}\right]^{-1}
+\end{align*}
+\item Again for $S_{P}$:
+\begin{align*}
+p\left(S_{P}|\zeta^{2},\,\sigma_{G}^{2},\,S_{G}\right)\propto & p\left(D|S,\,\zeta^{2},\,\sigma_{G}^{2}\right)p\left(S_{P};\,N\left(\theta_{SGP},\,\delta_{SGP}^{2}\right)\right)\\
+\propto & \left(\frac{1}{\zeta_{G}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{G}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{G}^{2}}\right]\times\left(\left(\frac{1}{\zeta_{P}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(S_{GP}-\sigma_{G}^{2}\right)^{2}}{2\zeta_{P}^{2}}\right]\right)\times\left(\frac{1}{\delta_{SGP}^{2}}\right)^{\frac{1}{2}}\exp\left[-\frac{\left(\theta_{SGP}-S_{GP}\right)^{2}}{2\delta_{SGP}^{2}}\right]\\
+\propto & p\left(\sigma_{G}^{2},\,N\left(\left[\frac{\sigma_{G}^{2}}{\zeta_{P}^{2}}+\frac{\theta_{SGP}}{\delta_{SGP}^{2}}\right]\zeta_{SGP}^{2*},\;\zeta_{SGP}^{2*}\right)\right)\\
+s.t.\\
+\zeta_{SGP}^{2*}= & \left[\frac{\sigma_{G}^{2}}{\zeta_{P}^{2}}+\frac{\theta_{SGP}}{\delta_{SGP}^{2}}\right]^{-1}
+\end{align*}
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{Mapping draws to weights}
+\begin{itemize}
+\item Solving the system for the three weight
+\begin{itemize}
+\item Define the following. The key here is each of these quantities is
+known given our previous guess of $w_{G}$. 
+\begin{align*}
+w_{s}= & \left\{ \sum_{i\in1:m}w_{iG}\iota\left(i\in Gk\right)\right\} _{k\in1:3}\text{ (3x1)}\\
+\Psi_{G}= & \begin{bmatrix}S_{G1} & S_{G12} & S_{G13}\\
+S_{G12} & S_{G2} & S_{G23}\\
+S_{G13} & S_{G23} & S_{G3}
+\end{bmatrix}\text{ (3x3)}\\
+\Psi_{PG}= & \begin{bmatrix}S_{PG1}\\
+S_{PG2}\\
+S_{PG3}
+\end{bmatrix}\text{ (3x1)}
+\end{align*}
+\begin{itemize}
+\item Here, $S_{G1}$ is the sample variance of the G1 partion, $S_{G13}$
+is the sample covariance between the G1 and G3 portfolios, while $S_{PG1}$is
+the covariance between portfolio P and the G1 portfolio. $w_{s}$
+is the sum of the weights of the G1, G2, and G3 portfolios (3x1 vector)
+\end{itemize}
+\item Then we solve:
+\begin{align*}
+\omega'\Psi_{G}\omega= & S_{G}\\
+\omega'\Psi_{PG}= & S_{GP}\\
+\omega'w_{s}= & 1
+\end{align*}
+\item (See the mathematica file Algebra for some solution strategies)
+\end{itemize}
+\end{itemize}
+
+\subsection*{Important References}
+\begin{itemize}
+\item Wikipedia
+\begin{itemize}
+\item Gamma distribution
+\item Inverse gamma distribution
+\item Wishart Distribution
+\item Inverse Wishart Distribution
+\item Estimation of Covariance Matrices
+\end{itemize}
+\item Other web sites
+\end{itemize}
+
+\end{document}

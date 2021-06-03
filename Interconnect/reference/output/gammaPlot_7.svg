@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="190.5mm" height="114.3mm" viewBox="0 0 190.5 114.3"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<g class="plotroot xscalable yscalable" id="img-4af90b1e-1">
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-4af90b1e-2">
+    <text x="103.37" y="102.77" text-anchor="middle" dy="0.6em">gamma value</text>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-4af90b1e-3">
+    <text x="23.23" y="96.66" text-anchor="middle" dy="0.6em">0</text>
+    <text x="63.3" y="96.66" text-anchor="middle" dy="0.6em">2</text>
+    <text x="103.37" y="96.66" text-anchor="middle" dy="0.6em">4</text>
+    <text x="143.43" y="96.66" text-anchor="middle" dy="0.6em">6</text>
+    <text x="183.5" y="96.66" text-anchor="middle" dy="0.6em">8</text>
+  </g>
+<g clip-path="url(#img-4af90b1e-4)">
+  <g id="img-4af90b1e-5">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-4af90b1e-6">
+      <rect x="21.23" y="5" width="164.27" height="90.66"/>
+    </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-4af90b1e-7">
+      <path fill="none" d="M21.23,93.66 L 185.5 93.66"/>
+      <path fill="none" d="M21.23,79.21 L 185.5 79.21"/>
+      <path fill="none" d="M21.23,64.77 L 185.5 64.77"/>
+      <path fill="none" d="M21.23,50.33 L 185.5 50.33"/>
+      <path fill="none" d="M21.23,35.89 L 185.5 35.89"/>
+      <path fill="none" d="M21.23,21.44 L 185.5 21.44"/>
+      <path fill="none" d="M21.23,7 L 185.5 7"/>
+    </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-4af90b1e-8">
+      <path fill="none" d="M23.23,5 L 23.23 95.66"/>
+      <path fill="none" d="M63.3,5 L 63.3 95.66"/>
+      <path fill="none" d="M103.37,5 L 103.37 95.66"/>
+      <path fill="none" d="M143.43,5 L 143.43 95.66"/>
+      <path fill="none" d="M183.5,5 L 183.5 95.66"/>
+    </g>
+    <g class="plotpanel" id="img-4af90b1e-9">
+      <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" stroke-dasharray="none" stroke="#00BFFF" id="img-4af90b1e-10">
+        <path fill="none" d="M23.23,50.33 L 43.26 51.01 63.3 49.51 83.33 52.61 103.37 37.84 123.4 80.16 143.43 19.17 163.47 62.01"/>
+      </g>
+    </g>
+  </g>
+</g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-4af90b1e-11">
+    <text x="20.23" y="93.66" text-anchor="end" dy="0.35em">-300</text>
+    <text x="20.23" y="79.21" text-anchor="end" dy="0.35em">-200</text>
+    <text x="20.23" y="64.77" text-anchor="end" dy="0.35em">-100</text>
+    <text x="20.23" y="50.33" text-anchor="end" dy="0.35em">0</text>
+    <text x="20.23" y="35.89" text-anchor="end" dy="0.35em">100</text>
+    <text x="20.23" y="21.44" text-anchor="end" dy="0.35em">200</text>
+    <text x="20.23" y="7" text-anchor="end" dy="0.35em">300</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-4af90b1e-12">
+    <text x="9.12" y="48.33" text-anchor="middle" dy="0.35em" transform="rotate(-90, 9.12, 50.33)">γ (restricted)</text>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-4af90b1e-4">
+  <path d="M21.23,5 L 185.5 5 185.5 95.66 21.23 95.66" />
+</clipPath>
+</defs>
+</svg>

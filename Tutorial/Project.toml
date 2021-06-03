@@ -1,0 +1,15 @@
+name = "Tutorial"
+uuid = "cd3e4891-6747-4a84-a276-23ea07b11740"
+authors = ["clintonTE <cstepper@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+GLM = "38e38edf-8417-5370-95a0-9cbb8c7f171a"
+GPUArrays = "0c68f7d7-f131-5f86-a1c3-88cf8149b2d7"
+GPUCompiler = "61eb1bfa-7361-4325-ad38-22787b887f55"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"

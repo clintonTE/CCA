@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "PS4", "PS4\PS4.rxproj", "{B019B2C2-7AD2-49AE-8E2C-193C7C01CF26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B019B2C2-7AD2-49AE-8E2C-193C7C01CF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B019B2C2-7AD2-49AE-8E2C-193C7C01CF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B019B2C2-7AD2-49AE-8E2C-193C7C01CF26}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B019B2C2-7AD2-49AE-8E2C-193C7C01CF26}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

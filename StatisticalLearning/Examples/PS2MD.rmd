@@ -1,0 +1,298 @@
+---
+title: "Problem Set 2"
+author: "Clinton Tepper"
+output: pdf_document
+---
+
+```{r echo = FALSE, message = FALSE}
+
+rm(list = ls());
+require(devtools);
+require(DataAnalytics);
+require(plyr);
+require(ggplot2);
+
+```
+
+## Problem 1
+
+
+### a
+
+If $X=QR$ then:
+$$
+\begin{align*}
+\beta & =\left[\left[QR\right]^{t}QR\right]^{-1}\left[\left[QR\right]^{t}Y\right]\\
+\beta & =\left[R^{t}Q^{t}QR\right]^{-1}\left[\left[QR\right]^{t}Y\right]\\
+\beta & =\left[R^{t}R\right]^{-1}\left[QR\right]^{t}Y*\\
+\beta & =R^{-1}Q^{t}Y*
+\end{align*}
+$$
+
+The hat matrix is thus:
+$$
+\begin{align*}
+H= & QR\left[R^{t}R\right]^{-1}\left[R^{t}Q^{t}\right]\\
+H= & QRR^{-1}Q^{t}\\
+H= & QQ^{t}
+\end{align*}
+$$
+
+### b
+
+Then the white standard errors become
+
+$$
+\begin{align*}
+V= & \left[R^{t}R\right]^{-1}R^{t}Q^{t}\Lambda QR\left[R^{t}R\right]^{-1}\\
+V= & R^{-1}Q^{t}\Lambda Q\left[R^{t}\right]^{-1}\\
+\end{align*}
+$$
+
+Where $\Lambda=diag\left(\left(\frac{e_{i}}{\left(1-h_{ii}\right)}\right)^{2}\right)$
+and $h_{ii}$ is defined by the hat matrix above.
+
+### c
+
+The first part, $X^{t}\lambda$ multiplies the columns of $X^{t}$.
+We can vectorize the entire operation with $t(X*rep(lamda,ncol(X)))\%*\%X$where
+X is a matrix and lamda is a vector.
+
+### d
+
+```{r}
+#in: a regression object
+#out: a matrix object for the coefficients
+GetCoefAsMatrix = function(reg) matrix(coef(reg),
+    nrow = length(coef(reg)),
+    dimnames = list(names(coef(reg))));
+
+#Obtains the modified white standard errors given X and residuals
+#In: A QR decomposition object for X, a vector of residuals
+#Out: a vector of white standard errors
+GetMWhiteErrors = function(qrX, vResid) {
+    #extract the temporary variables
+    mX = qr.X(qrX);
+    mR = qr.R(qrX);
+    mQ = qr.Q(qrX);
+
+    mQRTInv = mQ %*% t(solve(mR));
+    return(t(mQRTInv * rep((vResid / (1 - rowSums(mQ * mQ))) ^ 2, ncol(mX))) %*% mQRTInv);
+}
+
+
+#in: a matrix of X values and a vector of residuals
+#out: a a matrix of white standard errors 
+IneffGetMWhiteErrors = function(mX, vResid) {
+    #extract the temporary variables
+
+    return(solve(t(mX) %*% mX) %*% t(mX) %*%
+        diag(as.vector((vResid / (1 - diag(mX %*% solve(t(mX) %*% mX) %*% t(mX)))) ^ 2)) %*%
+             mX %*% solve(t(mX) %*% mX));
+
+}
+
+####################################Script Entry Point##########################
+Problem1Script = function() {
+    #Create a test data set
+    iNumPoints = 10000;
+    iVars = 3;
+
+    #simulate our data and add some noise
+    mX = matrix(rnorm(iNumPoints * iVars), iNumPoints);
+    vY = mX %*% matrix(1:iVars, iVars) + rnorm(iNumPoints) * 10;
+    m1X = cbind(matrix(1, iNumPoints), mX);
+    qrX = qr(m1X);
+
+    reg = lm(vY ~ mX);
+    vResid = vY - m1X %*% (GetCoefAsMatrix(reg = reg));
+
+    ptm = proc.time();
+
+    print("Efficient White Errors");
+    print(GetMWhiteErrors(qrX = qrX, vResid = vResid));
+    ptm2 = proc.time();
+    print(ptm2 - ptm);
+
+    print("Inefficient White Errors");
+    print(IneffGetMWhiteErrors(mX = m1X, vResid = vResid));
+    print(proc.time() - ptm2);
+
+    return(1);
+}
+
+Problem1Script();
+```
+
+### Discussion
+
+* As shown by the results, the efficient algorithm is several orders
+of magnitude faster than the brute force algorithm, although both
+approaches produce the same answer.
+
+## Problem 2
+We assume that we know the population consists of two regions, and
+assume we must estimate the variance of each region. This simulation
+runs 2500 iterations. 
+
+```{r}
+iN = 200;
+#number of points
+iNumSim = 2500;
+
+mX = matrix(runif(iN), nrow = iN, ncol = 1);
+mPopResid = rbind(matrix(rnorm(iN / 2 * iNumSim, mean = 0, sd = 0.5), nrow = iN / 2),
+    matrix(rnorm(iN / 2 * iNumSim, mean = 0, sd = 2), nrow = iN / 2));
+mY = matrix(rep(mX, iNumSim), nrow = iN, ncol = iNumSim) * 2 + mPopResid;
+m1X = cbind(rep(1, iN), mX);
+
+#first do the OLS calcualtions
+mPreMult = solve(t(m1X) %*% m1X);
+mBetaOLS = matrix(apply(mY, 2, function(v) mPreMult %*% t(m1X) %*% mY), nrow = 2, ncol = iNumSim);
+mResid = matrix(rep(mX, iNumSim), nrow = iN, ncol = iNumSim) * rep(t(mBetaOLS[2,]), iN) - mY;
+
+print("We calculate our beta coefficient using GLS:");
+
+#estimate the standard deviations for the model among the groups
+dVar1 = matrix(apply(mResid, 2, function(v) var(v[1:iN / 2])), nrow = 1, ncol = iNumSim);
+dVar2 = matrix(apply(mResid, 2, function(v) var(v[(iN / 2):iN])), nrow = 1, ncol = iNumSim);
+
+#generate the weights as a vector
+mWeights = rbind(1 / matrix(rep(dVar1, iN / 2), nrow = iN / 2, ncol = iNumSim, byrow = TRUE),
+    1 / matrix(rep(dVar2, iN / 2), nrow = iN / 2, ncol = iNumSim, byrow = TRUE));
+
+#now print the GLS simulation stats
+mBetaGLS = matrix(sapply(1:iNumSim, function(x) solve(t(m1X * mWeights[, x])
+    %*% m1X) %*% t(m1X * mWeights[, x]) %*% mY[, x]), nrow = 2, ncol = iNumSim);
+print("The average GLS beta is:")
+print(rowMeans(mBetaGLS));
+
+print("The simulation standard error of the GLS beta estimates is:")
+print(sd(mBetaGLS[2,]));
+print("The simulation variance of the GLS beta estimates is:")
+print(var(mBetaGLS[2,]));
+
+#now get the standard error for the GLS regressions
+mBetaGLSSE = matrix(sapply(1:iNumSim, function(x) diag(solve(t(m1X * mWeights[, x])
+    %*% m1X))), nrow = 2, ncol = iNumSim);
+print("The RMS (sqrt of mean variance) of the GLS SE of the beta coefficient is:")
+print(sqrt(mean(mBetaGLSSE[2,])));
+print("The mean of the calculated GLS variance is:")
+print(mean(mBetaGLSSE[2,]));
+
+#now provide the OLS results
+print("The average OLS beta is:")
+print(rowMeans(mBetaOLS));
+print("The simulation standard error of the OLS beta estimates is:")
+print(sd(mBetaOLS[2,]));
+print("The simulation variance of the OLS beta estimates is:")
+print(var(mBetaOLS[2,]));
+
+print("The RMS of the homoskedastic calculated standard error of OLS estimates is:")
+mBetaOLSSE = matrix(apply(mResid, 2, var), nrow = 1, ncol = iNumSim) * diag(mPreMult)[2];
+print(sqrt(mean(mBetaOLSSE)));
+print("The mean of the calculated homoskedastic variances is:")
+print(mean(mBetaOLSSE));
+
+
+print("The true OLS standard error of beta is: ");
+trueOLSVar = mPreMult %*% t(m1X) %*% diag(c(rep(.5 ^ 2, iN / 2), rep(2 ^ 2, iN / 2))) %*% m1X %*% t(mPreMult);
+print(sqrt(trueOLSVar[2, 2]));
+print("The true OLS variance is: ")
+print(trueOLSVar[2, 2]);
+
+#Now provide results for White Standard Errors
+qrX = qr(m1X);
+mBetaWhiteSE = matrix(apply(mResid, 2, function(v) diag(GetMWhiteErrors(qrX = qrX, v))), ncol = iNumSim);
+print("The RMS  of the calculated Modified White SE of OLS estimates is:")
+print(sqrt(mean(mBetaWhiteSE[2,])));
+print("The mean  of the calculated Modified White SE of OLS estimates is:")
+print(mean(mBetaWhiteSE[2,]));
+
+#Graphical Summary of results
+ggplot(stack(data.frame(as.vector(mBetaGLS[2,]), as.vector(mBetaOLS[2,]))), aes(x = values)) +
+    geom_density(aes(group = ind, color = ind)) + theme_bw() + ggtitle("Distribution of GLS and OLS Betas");
+
+ggplot(stack(data.frame(as.vector(sqrt(mBetaGLSSE[2,])), as.vector(sqrt(mBetaOLSSE)), as.vector(sqrt(mBetaWhiteSE[2,])))), aes(x = values)) +
+    geom_density(aes(group = ind, color = ind)) + theme_bw() +
+    ggtitle("Distribution of GLS, OLS Homoskedastic, and OLS Modified White Standard Errors");
+```
+
+### Discussion
+
+* Both regression methodologies produced substantially similar beta
+estimates on average.
+* The standard error of the simulated beta estimates is comparable to
+the RMS of calculated standard errors. This conclusion holds both
+for GLS and OLS regression techniques. 
+* The GLS standard error is substantially smaller than the standard
+error provided using OLS techniques. Both the standard deviation of
+the simulated betas and the RMS of calculated standard errors support
+this conclusion. The simulation variance of betas tended to be closest to
+the true variance of beta.
+* The modified White standard errors are higher than both the standard
+errors calculated in the homoskedastic case and the OLS beta simulation
+standard deviation. Furthermore, the distribution histogram includes a 
+wider range of values than the OLS regression.
+
+
+## Problem 3
+We first filter the data for complete cases, and then calculate weights
+based on the inverse variance of the residuals fo each DMA sub-group.
+A summary report of the standard OLS method is provided for reference.
+
+```{r}
+load("pl_share_demo_2005.rda");
+
+#we drop irrelevant columns and rows with missing data
+dfPLData = pl_share_demo_2005[complete.cases(pl_share_demo_2005[, c("pl_share", "lnIncome", "DMA2005")]),
+    c("pl_share", "lnIncome", "DMA2005")];
+
+iN = nrow(dfPLData);
+
+#generate the x matrix
+mLNIncome = matrix(, iN, 1);
+
+m1X = cbind(rep(1, iN), dfPLData$lnIncome);
+
+regOLS = lm(dfPLData$pl_share ~ dfPLData$lnIncome);
+mOLSBeta = GetCoefAsMatrix(regOLS);
+vResid = dfPLData$pl_share - m1X %*% mOLSBeta;
+print("Results of OLS regression:")
+print(regOLS);
+print("OLS homoskedastic standard errors:");
+print(sqrt(diag(as.numeric(var(vResid)) * solve(t(m1X) %*% m1X))));
+print("OLS White corrected standard errors:")
+print(sqrt(diag(GetMWhiteErrors(qr(m1X), vResid = vResid))));
+
+#estimate the variances and apply the weights
+mDMAVars = aggregate(x = vResid, by = list(dfPLData$DMA2005), FUN = var);
+mDMAVars = rename(cbind(mDMAVars, 1 / mDMAVars$V1), c("1/mDMAVars$V1" = "weights"));
+
+dfPLData = merge(dfPLData, mDMAVars, by.x = "DMA2005", by.y = "Group.1", all.x = TRUE);
+m1X = cbind(rep(1, iN), dfPLData$lnIncome);
+#reassign due to different sorting order
+
+mGLSBeta = matrix(solve(t(m1X * dfPLData$weights) %*% m1X) %*% t(m1X * dfPLData$weights) %*%
+    dfPLData$pl_share, nrow = 2, ncol = 1);
+
+print("The GLS intercept and beta coeficients are respectively:");
+print(mGLSBeta);
+print("The standard error of the two GLS coefficients is:")
+print(sqrt(diag(solve(t(m1X * rep(dfPLData$weights, 2)) %*% m1X))));
+```
+
+### Discussion
+
+* We make two decisions which could impact the results. First, we set
+the weights of groups with a zero variance equal to zero. Second,
+we drop any row with relevant data missing.
+* The GLS regression performs better than the OLS regression, as expected
+given the greater amount of information. While the beta coefficients
+are comparable, the standard error values in particular are smaller
+in the GLS regression than both the White standard errors and Homoskedastic
+errors produced by the OLS regression. 
+
+
+
+

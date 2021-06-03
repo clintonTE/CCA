@@ -1,0 +1,5 @@
+Revise.LogRecord(Debug, DeleteMethod, Action, Revise_4ac0f476, "C:\Users\Clinton\.julia\packages\Revise\agmgx\src\Revise.jl", 226, (time=1.564013467903e9, deltainfo=(Tuple{typeof(mwe.func)}, MethodSummary(:func, :mwe, Symbol("C:\\Users\\Clinton\\Dropbox\\Projects\\mwe\\src\\mwe.jl"), 4, Tuple{typeof(mwe.func)}))))
+Revise.LogRecord(Debug, Eval, Action, Revise_9147188b, "C:\Users\Clinton\.julia\packages\Revise\agmgx\src\Revise.jl", 276, (time=1.56401346808e9, deltainfo=(mwe, :(function func()
+      #= C:\Users\Clinton\Dropbox\Projects\mwe\src\mwe.jl:4 =#
+      println("hello again")
+  end))))

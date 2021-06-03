@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<HTML lang = "en">
+<HEAD>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+  </script>
+
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+  <style type="text/css">
+  @font-face {
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-style: normal;
+  font-weight: 600;
+}
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+
+
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
+  .one.column,
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three.columns                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six.columns                    { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+
+  /* Offsets */
+  .offset-by-one.column,
+  .offset-by-one.columns          { margin-left: 8.66666666667%; }
+  .offset-by-two.column,
+  .offset-by-two.columns          { margin-left: 17.3333333333%; }
+  .offset-by-three.column,
+  .offset-by-three.columns        { margin-left: 26%;            }
+  .offset-by-four.column,
+  .offset-by-four.columns         { margin-left: 34.6666666667%; }
+  .offset-by-five.column,
+  .offset-by-five.columns         { margin-left: 43.3333333333%; }
+  .offset-by-six.column,
+  .offset-by-six.columns          { margin-left: 52%;            }
+  .offset-by-seven.column,
+  .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+  .offset-by-eight.column,
+  .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+  .offset-by-nine.column,
+  .offset-by-nine.columns         { margin-left: 78.0%;          }
+  .offset-by-ten.column,
+  .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+  .offset-by-eleven.column,
+  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+  .offset-by-one-third.column,
+  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
+  .offset-by-two-thirds.column,
+  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+
+  .offset-by-one-half.column,
+  .offset-by-one-half.columns     { margin-left: 52%; }
+
+}
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 3.6rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.4rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.2rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.8rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 2.4rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+p {
+  margin-top: 0; }
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+ul {
+  list-style: circle; }
+ol {
+  list-style: decimal; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li {
+  margin-bottom: 1rem; }
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+pre.sourceCode.julia {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+@media (min-width: 400px) {}
+@media (min-width: 550px) {}
+@media (min-width: 750px) {}
+@media (min-width: 1000px) {}
+@media (min-width: 1200px) {}
+
+h1.title {margin-top : 20px}
+img {max-width : 100%%}
+div.title {text-align: center;}
+
+  </style>
+
+  
+<style>
+pre.hljl {
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 5px;
+    overflow-x: auto;
+    color: rgb(68,68,68); background-color: rgb(251,251,251); }
+pre.hljl > span.hljl-t { }
+pre.hljl > span.hljl-w { }
+pre.hljl > span.hljl-e { }
+pre.hljl > span.hljl-eB { }
+pre.hljl > span.hljl-o { }
+pre.hljl > span.hljl-k { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kc { color: rgb(59,151,46); font-style: italic; }
+pre.hljl > span.hljl-kd { color: rgb(214,102,97); font-style: italic; }
+pre.hljl > span.hljl-kn { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kp { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kr { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kt { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-n { }
+pre.hljl > span.hljl-na { }
+pre.hljl > span.hljl-nb { }
+pre.hljl > span.hljl-nbp { }
+pre.hljl > span.hljl-nc { }
+pre.hljl > span.hljl-ncB { }
+pre.hljl > span.hljl-nd { color: rgb(214,102,97); }
+pre.hljl > span.hljl-ne { }
+pre.hljl > span.hljl-neB { }
+pre.hljl > span.hljl-nf { color: rgb(66,102,213); }
+pre.hljl > span.hljl-nfm { color: rgb(66,102,213); }
+pre.hljl > span.hljl-np { }
+pre.hljl > span.hljl-nl { }
+pre.hljl > span.hljl-nn { }
+pre.hljl > span.hljl-no { }
+pre.hljl > span.hljl-nt { }
+pre.hljl > span.hljl-nv { }
+pre.hljl > span.hljl-nvc { }
+pre.hljl > span.hljl-nvg { }
+pre.hljl > span.hljl-nvi { }
+pre.hljl > span.hljl-nvm { }
+pre.hljl > span.hljl-l { }
+pre.hljl > span.hljl-ld { color: rgb(148,91,176); font-style: italic; }
+pre.hljl > span.hljl-s { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sa { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sb { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sc { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sd { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdC { color: rgb(201,61,57); }
+pre.hljl > span.hljl-se { color: rgb(59,151,46); }
+pre.hljl > span.hljl-sh { color: rgb(201,61,57); }
+pre.hljl > span.hljl-si { }
+pre.hljl > span.hljl-so { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sr { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ss { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ssB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-nB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nbB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nfB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nh { color: rgb(59,151,46); }
+pre.hljl > span.hljl-ni { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nil { color: rgb(59,151,46); }
+pre.hljl > span.hljl-noB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-oB { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-ow { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-p { }
+pre.hljl > span.hljl-c { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-ch { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cm { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cp { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cpB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cs { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-csB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-g { }
+pre.hljl > span.hljl-gd { }
+pre.hljl > span.hljl-ge { }
+pre.hljl > span.hljl-geB { }
+pre.hljl > span.hljl-gh { }
+pre.hljl > span.hljl-gi { }
+pre.hljl > span.hljl-go { }
+pre.hljl > span.hljl-gp { }
+pre.hljl > span.hljl-gs { }
+pre.hljl > span.hljl-gsB { }
+pre.hljl > span.hljl-gt { }
+</style>
+
+
+
+</HEAD>
+  <BODY>
+    <div class ="container">
+      <div class = "row">
+        <div class = "col-md-12 twelve columns">
+
+          <div class="title">
+            
+            
+            
+          </div>
+
+          
+<pre class='hljl'>
+<span class='hljl-k'>module</span><span class='hljl-t'>  </span><span class='hljl-n'>A2</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#this is useful if we have mdoules</span><span class='hljl-t'>
+</span><span class='hljl-cm'>#=
+weave(Pkg.dir(&quot;$(pwd())\\A2.jl&quot;),
+  informat=&quot;script&quot;,
+  out_path = &quot;$(pwd())\\A2.html&quot;,
+  doctype = &quot;md2html&quot;)
+=#</span><span class='hljl-t'>
+</span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-nf'>pwd</span><span class='hljl-p'>()</span><span class='hljl-t'> </span><span class='hljl-oB'>∉</span><span class='hljl-t'> </span><span class='hljl-n'>LOAD_PATH</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>LOAD_PATH</span><span class='hljl-p'>,</span><span class='hljl-nf'>pwd</span><span class='hljl-p'>())</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>using</span><span class='hljl-t'> </span><span class='hljl-n'>DataFrames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Distributions</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>StatsBase</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>GZip</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>JLD</span><span class='hljl-p'>,</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Gadfly</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>CTModCopy</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>JuMP</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>NLopt</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>ForwardDiff</span><span class='hljl-t'>
+
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>DATA_PATH</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>pwd</span><span class='hljl-p'>()</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\\</span><span class='hljl-s'>data&quot;</span><span class='hljl-t'> </span><span class='hljl-cs'>#path where we store the data</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>OUTPUT_PATH</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>pwd</span><span class='hljl-p'>()</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\\</span><span class='hljl-s'>output&quot;</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>DATE_FORMAT_STR</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;m/d/y&quot;</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>SP500_NAME</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;GSPC&quot;</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>FOOTER_NAME</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;footer.tex&quot;</span><span class='hljl-t'> </span><span class='hljl-cs'>#these are just headers for the tex tables</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>HEADER_NAME</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;header.tex&quot;</span><span class='hljl-t'>
+
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_ITER</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>1200000</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_BURN</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>200000</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>DO_NOT_WRITE</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-kc'>false</span><span class='hljl-t'>
+</span><span class='hljl-kd'>const</span><span class='hljl-t'> </span><span class='hljl-n'>PlotContainer</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Union</span><span class='hljl-p'>{</span><span class='hljl-n'>Plot</span><span class='hljl-p'>,</span><span class='hljl-n'>Gadfly</span><span class='hljl-oB'>.</span><span class='hljl-n'>Compose</span><span class='hljl-oB'>.</span><span class='hljl-n'>Context</span><span class='hljl-p'>}</span><span class='hljl-t'>
+
+
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>preProcessSP500</span><span class='hljl-p'>()</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-n'>dateFormat</span><span class='hljl-oB'>::</span><span class='hljl-n'>String</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DATE_FORMAT_STR</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-oB'>::</span><span class='hljl-n'>DataFrame</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>readtable</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$SP500_NAME</span><span class='hljl-s'>.csv&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#fix the dates</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>rename!</span><span class='hljl-p'>(</span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:Date</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:DATE</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>DATE</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>((</span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>String</span><span class='hljl-p'>)</span><span class='hljl-oB'>-&gt;</span><span class='hljl-nf'>Date</span><span class='hljl-p'>(</span><span class='hljl-n'>s</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>dateFormat</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Date</span><span class='hljl-p'>)</span><span class='hljl-oB'>.</span><span class='hljl-p'>(</span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>DATE</span><span class='hljl-p'>])</span><span class='hljl-oB'>::</span><span class='hljl-nf'>DataVector</span><span class='hljl-p'>{</span><span class='hljl-n'>Date</span><span class='hljl-p'>}</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>sort!</span><span class='hljl-p'>(</span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>cols</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-sc'>:DATE</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>returns</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>similar</span><span class='hljl-p'>(</span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>Adj_Close</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-ni'>2</span><span class='hljl-oB'>:</span><span class='hljl-k'>end</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>returns</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>log</span><span class='hljl-oB'>.</span><span class='hljl-p'>(</span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-ni'>2</span><span class='hljl-oB'>:</span><span class='hljl-k'>end</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>Adj_Close</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>./</span><span class='hljl-t'>  </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-k'>end</span><span class='hljl-oB'>-</span><span class='hljl-ni'>1</span><span class='hljl-p'>),</span><span class='hljl-oB'>:</span><span class='hljl-n'>Adj_Close</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>#showcols(sp500DF)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>stream</span><span class='hljl-oB'>::</span><span class='hljl-n'>IOStream</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>open</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$SP500_NAME</span><span class='hljl-s'>.jls&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;w&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>serialize</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>close</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#contains all prior parameters</span><span class='hljl-t'>
+</span><span class='hljl-k'>struct</span><span class='hljl-t'> </span><span class='hljl-n'>GibbsPriors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priorNames</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priorValues</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>index</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#constructor which forms the index</span><span class='hljl-t'>
+</span><span class='hljl-nf'>GibbsPriors</span><span class='hljl-p'>(</span><span class='hljl-n'>priorNames</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>},</span><span class='hljl-t'> </span><span class='hljl-n'>priorValues</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>})</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsPriors</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>
+            </span><span class='hljl-nf'>GibbsPriors</span><span class='hljl-p'>(</span><span class='hljl-n'>priorNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>priorValues</span><span class='hljl-p'>,</span><span class='hljl-t'>
+              </span><span class='hljl-nf'>Dict</span><span class='hljl-p'>(</span><span class='hljl-n'>priorNames</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-oB'>=&gt;</span><span class='hljl-n'>priorValues</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>priorNames</span><span class='hljl-p'>)))</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#make the priors</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsPriors</span><span class='hljl-p'>(</span><span class='hljl-n'>priorTuples</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Tuple</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>,</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}})</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsPriors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priorNames</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>priorTuples</span><span class='hljl-p'>))</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priorValues</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>priorTuples</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>priorTuples</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-n'>priorNames</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>priorValues</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>priorTuples</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsPriors</span><span class='hljl-p'>(</span><span class='hljl-n'>priorNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>priorValues</span><span class='hljl-p'>)</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#this contains parameters and all distributions</span><span class='hljl-t'>
+</span><span class='hljl-k'>mutable struct</span><span class='hljl-t'> </span><span class='hljl-n'>GibbsProblem</span><span class='hljl-t'>
+  </span><span class='hljl-n'>names</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>values</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>posteriors!</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Function</span><span class='hljl-p'>}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priors</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsPriors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Y</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-cs'>#the data</span><span class='hljl-t'>
+  </span><span class='hljl-n'>paramDistribution</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Matrix</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}</span><span class='hljl-t'>
+  </span><span class='hljl-n'>recordParams</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Bool</span><span class='hljl-p'>}</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>index</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'>
+  </span><span class='hljl-n'>targetIterations</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'>
+  </span><span class='hljl-n'>burnIn</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'>
+  </span><span class='hljl-n'>iter</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'>
+  </span><span class='hljl-n'>T</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#constructor for a Gibbs Problem</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#Requires all symbols, posterior distribution functions, initial values, and simulation parameters</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsProblem</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>},</span><span class='hljl-t'>
+            </span><span class='hljl-n'>posteriors!</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Function</span><span class='hljl-p'>},</span><span class='hljl-t'>
+            </span><span class='hljl-n'>priors</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsPriors</span><span class='hljl-p'>,</span><span class='hljl-t'>
+            </span><span class='hljl-n'>Y</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>};</span><span class='hljl-t'>
+            </span><span class='hljl-n'>initialValues</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}</span><span class='hljl-oB'>=</span><span class='hljl-nfB'>1.0</span><span class='hljl-oB'>/</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>),</span><span class='hljl-t'>
+            </span><span class='hljl-n'>targetIterations</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-oB'>=</span><span class='hljl-n'>DEFAULT_ITER</span><span class='hljl-p'>,</span><span class='hljl-t'>
+            </span><span class='hljl-n'>burnIn</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_BURN</span><span class='hljl-p'>,</span><span class='hljl-t'>
+            </span><span class='hljl-n'>recordParams</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Bool</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>trues</span><span class='hljl-p'>(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>)))</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#this is the space where we will store the parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>paramDistribution</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Matrix</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>Matrix</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>targetIterations</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>burnIn</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#pre-allocate the space</span><span class='hljl-t'>
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>c</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>size</span><span class='hljl-p'>(</span><span class='hljl-n'>paramDistribution</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>2</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>r</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>)</span><span class='hljl-t'>
+      </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-n'>recordParams</span><span class='hljl-p'>[</span><span class='hljl-n'>r</span><span class='hljl-p'>]</span><span class='hljl-t'>
+        </span><span class='hljl-n'>paramDistribution</span><span class='hljl-p'>[</span><span class='hljl-n'>r</span><span class='hljl-p'>,</span><span class='hljl-n'>c</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>similar</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>[</span><span class='hljl-n'>r</span><span class='hljl-p'>])</span><span class='hljl-t'>
+      </span><span class='hljl-k'>end</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>index</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>   </span><span class='hljl-nf'>Dict</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=&gt;</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsProblem</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Y</span><span class='hljl-p'>,</span><span class='hljl-t'>
+  </span><span class='hljl-n'>paramDistribution</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#pre-allocated space to store realizations</span><span class='hljl-t'>
+  </span><span class='hljl-n'>recordParams</span><span class='hljl-p'>,</span><span class='hljl-t'>
+  </span><span class='hljl-n'>index</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#an index of the variable names</span><span class='hljl-t'>
+  </span><span class='hljl-n'>targetIterations</span><span class='hljl-p'>,</span><span class='hljl-t'>
+  </span><span class='hljl-n'>burnIn</span><span class='hljl-p'>,</span><span class='hljl-t'>
+  </span><span class='hljl-ni'>1</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#start the iteration counter</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>Y</span><span class='hljl-p'>))</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#realizes a complete set of parameters</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>IterateProblem!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>names</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>](</span><span class='hljl-n'>p</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+    </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>iter</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>burnIn</span><span class='hljl-t'> </span><span class='hljl-oB'>&amp;&amp;</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>recordParams</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'>
+      </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>paramDistribution</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>iter</span><span class='hljl-oB'>-</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>burnIn</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>.=</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>values</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>iter</span><span class='hljl-t'> </span><span class='hljl-oB'>+=</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-t'>
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#performans the Gibbs sampling exercise</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>getParameterDistribution!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-nd'>@fastmath</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>targetIterations</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>IterateProblem!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>getSeriesLabels</span><span class='hljl-p'>(</span><span class='hljl-n'>N</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>prefix</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-sc'>:Y</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nf'>Symbol</span><span class='hljl-p'>(</span><span class='hljl-n'>prefix</span><span class='hljl-p'>,</span><span class='hljl-n'>i</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>N</span><span class='hljl-p'>]</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#easy access of values</span><span class='hljl-t'>
+</span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>values</span><span class='hljl-p'>[</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>index</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]]</span><span class='hljl-t'>
+</span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>priors</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsPriors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>priors</span><span class='hljl-oB'>.</span><span class='hljl-n'>index</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>getResult</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>valIndex</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>index</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>result</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>targetIterations</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>burnIn</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>result</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-n'>result</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>paramDistribution</span><span class='hljl-p'>[</span><span class='hljl-n'>valIndex</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-p'>][</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>result</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>getResults</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>names</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>names</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>Dict</span><span class='hljl-p'>(</span><span class='hljl-n'>s</span><span class='hljl-t'> </span><span class='hljl-oB'>=&gt;</span><span class='hljl-t'> </span><span class='hljl-nf'>getResult</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-n'>s</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>names</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw from the posterior mean of a normal distribution</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>μPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>##Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>θ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:θ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>δ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:δ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σ²</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Z</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pμ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>μ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-oB'>/</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-oB'>/</span><span class='hljl-n'>σ²</span><span class='hljl-oB'>+</span><span class='hljl-nfB'>1.0</span><span class='hljl-oB'>/</span><span class='hljl-n'>δ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#intermediate variables</span><span class='hljl-t'>
+  </span><span class='hljl-n'>YₜMinusξₜZₜOverσ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>Y</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'>  </span><span class='hljl-p'>(</span><span class='hljl-n'>ξ</span><span class='hljl-t'> </span><span class='hljl-oB'>.*</span><span class='hljl-t'> </span><span class='hljl-n'>Z</span><span class='hljl-p'>))</span><span class='hljl-oB'>/</span><span class='hljl-n'>σ²</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#form the distribution</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pμ</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>Normal</span><span class='hljl-p'>(</span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>*</span><span class='hljl-p'>(</span><span class='hljl-n'>YₜMinusξₜZₜOverσ²</span><span class='hljl-oB'>+</span><span class='hljl-n'>θ</span><span class='hljl-oB'>/</span><span class='hljl-n'>δ²</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>μₛPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>##Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>θₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:θₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>δ²ₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:δ²ₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²ₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σ²ₛ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pμₛ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>μₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-oB'>/</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-oB'>/</span><span class='hljl-n'>σ²ₛ</span><span class='hljl-oB'>+</span><span class='hljl-nfB'>1.0</span><span class='hljl-oB'>/</span><span class='hljl-n'>δ²ₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#intermediate variables</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξOverσ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>ξ</span><span class='hljl-p'>)</span><span class='hljl-oB'>/</span><span class='hljl-n'>σ²ₛ</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#form the distribution</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pμₛ</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>Normal</span><span class='hljl-p'>(</span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>*</span><span class='hljl-p'>(</span><span class='hljl-n'>ξOverσ²</span><span class='hljl-oB'>+</span><span class='hljl-n'>θₛ</span><span class='hljl-oB'>/</span><span class='hljl-n'>δ²ₛ</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw from the psoterior variance of a normal distribution</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>σ²Posterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>##Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>α</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:α</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>β</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:β</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>μ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Z</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pσ²</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#intermediate variables</span><span class='hljl-t'>
+  </span><span class='hljl-n'>YtMinusμ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>((</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>Y</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>μ</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-n'>ξ</span><span class='hljl-t'> </span><span class='hljl-oB'>.*</span><span class='hljl-t'> </span><span class='hljl-n'>Z</span><span class='hljl-p'>))</span><span class='hljl-oB'>.^</span><span class='hljl-nfB'>2.0</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#form the distribution</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pσ²</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>InverseGamma</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-oB'>/</span><span class='hljl-nfB'>2.</span><span class='hljl-oB'>+</span><span class='hljl-n'>α</span><span class='hljl-p'>,</span><span class='hljl-nfB'>0.5</span><span class='hljl-oB'>*</span><span class='hljl-p'>(</span><span class='hljl-n'>YtMinusμ²</span><span class='hljl-oB'>+</span><span class='hljl-nfB'>2.0</span><span class='hljl-oB'>*</span><span class='hljl-n'>β</span><span class='hljl-p'>)))</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>#draw</span><span class='hljl-t'>
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw from the psoterior variance of a normal distribution</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>σ²ₛPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>##Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>αₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:αₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>βₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:βₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>μₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pσ²ₛ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²ₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#intermediate variables</span><span class='hljl-t'>
+  </span><span class='hljl-n'>YtMinusμ²ₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>((</span><span class='hljl-n'>ξ</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>μₛ</span><span class='hljl-p'>)</span><span class='hljl-oB'>.^</span><span class='hljl-nfB'>2.0</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#form the distribution</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pσ²ₛ</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>InverseGamma</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-oB'>/</span><span class='hljl-nfB'>2.</span><span class='hljl-oB'>+</span><span class='hljl-n'>αₛ</span><span class='hljl-p'>,</span><span class='hljl-nfB'>0.5</span><span class='hljl-oB'>*</span><span class='hljl-p'>(</span><span class='hljl-n'>YtMinusμ²ₛ</span><span class='hljl-oB'>+</span><span class='hljl-nfB'>2.0</span><span class='hljl-oB'>*</span><span class='hljl-n'>βₛ</span><span class='hljl-p'>)))</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>#draw</span><span class='hljl-t'>
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw λ</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>λPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>##Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>γ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:γ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>η</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:η</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Z</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pλ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:λ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#intermediate variables</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ΣZ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#form the distribution and draw</span><span class='hljl-t'>
+  </span><span class='hljl-n'>pλ</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>Beta</span><span class='hljl-p'>(</span><span class='hljl-n'>ΣZ</span><span class='hljl-oB'>+</span><span class='hljl-n'>γ</span><span class='hljl-p'>,</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-oB'>-</span><span class='hljl-n'>ΣZ</span><span class='hljl-oB'>+</span><span class='hljl-n'>η</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw ξₜ</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>ξPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>#parameters</span><span class='hljl-t'>
+  </span><span class='hljl-n'>μ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>μ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>μₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>μₛ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σ²</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²ₛ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σ²ₛ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>Z</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>pξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>t</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-t'>
+    </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-nfB'>1.0</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-n'>Z</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-n'>σ²</span><span class='hljl-t'> </span><span class='hljl-oB'>+</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-n'>σ²ₛ</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+    </span><span class='hljl-n'>pξ</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>  </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>Normal</span><span class='hljl-p'>(</span><span class='hljl-n'>Δ²</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-p'>((</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>Y</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>μ</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-n'>Z</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-n'>σ²</span><span class='hljl-t'> </span><span class='hljl-oB'>+</span><span class='hljl-t'> </span><span class='hljl-n'>μₛ</span><span class='hljl-oB'>/</span><span class='hljl-n'>σ²ₛ</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Δ²</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>))</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#helper function to draw Zₜ</span><span class='hljl-t'>
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>ZPosterior!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>μ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>μ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σ²</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>λ</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>λ</span><span class='hljl-p'>)[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>ξ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>pZ</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>get</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>t</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>T</span><span class='hljl-t'>
+    </span><span class='hljl-n'>propZ1</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>λ</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>0.5</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>Y</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>μ</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>ξ</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>])</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>2.0</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-n'>σ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-n'>propZ0</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-nfB'>1.0</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>λ</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>0.5</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>Y</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-t'> </span><span class='hljl-n'>μ</span><span class='hljl-p'>)</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>2.0</span><span class='hljl-t'> </span><span class='hljl-oB'>/</span><span class='hljl-t'> </span><span class='hljl-n'>σ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-n'>pZ</span><span class='hljl-p'>[</span><span class='hljl-n'>t</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>rand</span><span class='hljl-p'>(</span><span class='hljl-nf'>Bernoulli</span><span class='hljl-p'>(</span><span class='hljl-n'>propZ1</span><span class='hljl-oB'>/</span><span class='hljl-p'>(</span><span class='hljl-n'>propZ0</span><span class='hljl-oB'>+</span><span class='hljl-n'>propZ1</span><span class='hljl-p'>)))</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+
+
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>problemA2Script</span><span class='hljl-p'>(;</span><span class='hljl-n'>refreshData</span><span class='hljl-oB'>::</span><span class='hljl-n'>Bool</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>doNotWrite</span><span class='hljl-oB'>::</span><span class='hljl-n'>Bool</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DO_NOT_WRITE</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+  </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-oB'>!</span><span class='hljl-nf'>isfile</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$SP500_NAME</span><span class='hljl-s'>.jls&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-oB'>||</span><span class='hljl-t'> </span><span class='hljl-n'>refreshData</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>preProcessSP500</span><span class='hljl-p'>()</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#read the binary file</span><span class='hljl-t'>
+  </span><span class='hljl-n'>stream</span><span class='hljl-oB'>::</span><span class='hljl-n'>IOStream</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>open</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$SP500_NAME</span><span class='hljl-s'>.jls&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-oB'>::</span><span class='hljl-n'>DataFrame</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>deserialize</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>close</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>Y</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>sp500DF</span><span class='hljl-p'>[</span><span class='hljl-ni'>2</span><span class='hljl-oB'>:</span><span class='hljl-k'>end</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:returns</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>T</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>Y</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#################Priors</span><span class='hljl-t'>
+  </span><span class='hljl-n'>priors</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsPriors</span><span class='hljl-p'>([</span><span class='hljl-t'>
+  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:θ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>Y</span><span class='hljl-p'>)),</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-sc'>:δ²</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>var</span><span class='hljl-p'>(</span><span class='hljl-n'>Y</span><span class='hljl-p'>)),</span><span class='hljl-t'> </span><span class='hljl-cs'># μ~N(θ,δ²) #use std deviation as upper bound for δ</span><span class='hljl-t'>
+  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:α</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.001</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-sc'>:β</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.001</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-cs'>#σ²~IG(α,β)</span><span class='hljl-t'>
+  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:θₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.0</span><span class='hljl-t'> </span><span class='hljl-p'>),</span><span class='hljl-t'>  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:δ²ₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>),</span><span class='hljl-t'>  </span><span class='hljl-cs'>#μₛ~N(θₛ,δ²ₛ)</span><span class='hljl-t'>
+  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:αₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.001</span><span class='hljl-t'> </span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-sc'>:βₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.001</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-cs'>#σ²ₛ~IG(αₛ,βₛ)</span><span class='hljl-t'>
+  </span><span class='hljl-p'>(</span><span class='hljl-sc'>:γ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-t'> </span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-sc'>:η</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>)])</span><span class='hljl-t'> </span><span class='hljl-cs'>#λ~β(γ,η) (use uniform distribution)</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#Form posterior distributions</span><span class='hljl-t'>
+  </span><span class='hljl-n'>names</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}()</span><span class='hljl-t'>
+  </span><span class='hljl-n'>posteriors!</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Function</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Function</span><span class='hljl-p'>}()</span><span class='hljl-t'>
+  </span><span class='hljl-n'>initialValues</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>  </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}()</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#assign variable labels, posterior functions, and initial values</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>μPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>0.0</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>μₛPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-cs'>#push!(posteriors!, μₛPosterior)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>0.0</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>σ²Posterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>0.01</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²ₛ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>σ²ₛPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>0.01</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:λ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>λPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>0.01</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:ξ</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>ξPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-n'>T</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:Z</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>ZPosterior!</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-n'>T</span><span class='hljl-p'>))</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-nf'>println</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;&quot;&quot;Beginning Gibbs Problem
+    targetIterations=</span><span class='hljl-si'>$DEFAULT_ITER</span><span class='hljl-s'>,
+    burnIn = </span><span class='hljl-si'>$DEFAULT_BURN</span><span class='hljl-s'>
+    length Of Values = </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    length Of posteriors! = </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    length Of Names = </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>))</span><span class='hljl-s'>
+
+  &quot;&quot;&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>p</span><span class='hljl-oB'>::</span><span class='hljl-n'>GibbsProblem</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>GibbsProblem</span><span class='hljl-p'>(</span><span class='hljl-n'>names</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>posteriors!</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>priors</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Y</span><span class='hljl-p'>,</span><span class='hljl-t'>
+              </span><span class='hljl-n'>initialValues</span><span class='hljl-oB'>=</span><span class='hljl-n'>initialValues</span><span class='hljl-p'>,</span><span class='hljl-t'>
+              </span><span class='hljl-n'>targetIterations</span><span class='hljl-oB'>=</span><span class='hljl-n'>DEFAULT_ITER</span><span class='hljl-p'>,</span><span class='hljl-t'>
+              </span><span class='hljl-n'>burnIn</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_BURN</span><span class='hljl-p'>,</span><span class='hljl-t'>
+              </span><span class='hljl-n'>recordParams</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>true</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>false</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-kc'>false</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nd'>@time</span><span class='hljl-t'> </span><span class='hljl-nf'>getParameterDistribution!</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>results</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>getResults</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ²ₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:λ</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-n'>μMean</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²Mean</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ²</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>μₛMean</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>σ²ₛMean</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ²ₛ</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-n'>λMean</span><span class='hljl-oB'>::</span><span class='hljl-n'>Float64</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:λ</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>println</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;&quot;&quot;
+  Results (Iterations=</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>targetIterations</span><span class='hljl-p'>)</span><span class='hljl-s'>, Burnin=</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>burnIn</span><span class='hljl-p'>)</span><span class='hljl-s'>): (Mean, annualized)
+    μ: </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-n'>μMean</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    σ: </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-n'>σ²Mean</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    μₛ: </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-n'>μₛMean</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    σₛ: </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-n'>σ²ₛMean</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    λ: </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-n'>λMean</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+
+    μ (Ann.): </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-nfB'>255.0</span><span class='hljl-oB'>*</span><span class='hljl-n'>μMean</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+    σ (Ann.): </span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-nf'>round</span><span class='hljl-p'>((</span><span class='hljl-nfB'>255.0</span><span class='hljl-t'> </span><span class='hljl-oB'>*</span><span class='hljl-t'> </span><span class='hljl-n'>σ²Mean</span><span class='hljl-p'>)</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>,</span><span class='hljl-ni'>6</span><span class='hljl-p'>))</span><span class='hljl-s'>
+  &quot;&quot;&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-oB'>!</span><span class='hljl-n'>doNotWrite</span><span class='hljl-t'>
+    </span><span class='hljl-n'>gstream</span><span class='hljl-oB'>::</span><span class='hljl-n'>GZipStream</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>gzopen</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-s'>A2Out_</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>targetIterations</span><span class='hljl-p'>)</span><span class='hljl-s'>_</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>p</span><span class='hljl-oB'>.</span><span class='hljl-n'>burnIn</span><span class='hljl-p'>)</span><span class='hljl-s'>.jls.gz&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;w&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>serialize</span><span class='hljl-p'>(</span><span class='hljl-n'>gstream</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>results</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>close</span><span class='hljl-p'>(</span><span class='hljl-n'>gstream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>function</span><span class='hljl-t'> </span><span class='hljl-nf'>getA2Graphs</span><span class='hljl-p'>(;</span><span class='hljl-n'>targetIterations</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_ITER</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>burnIn</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>DEFAULT_BURN</span><span class='hljl-p'>)</span><span class='hljl-oB'>::</span><span class='hljl-n'>Void</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>gstream</span><span class='hljl-oB'>::</span><span class='hljl-n'>GZipStream</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>gzopen</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-s'>A2Out_</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>targetIterations</span><span class='hljl-p'>)</span><span class='hljl-s'>_</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>burnIn</span><span class='hljl-p'>)</span><span class='hljl-s'>.jls.gz&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>results</span><span class='hljl-oB'>::</span><span class='hljl-n'>Dict</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>  </span><span class='hljl-nf'>deserialize</span><span class='hljl-p'>(</span><span class='hljl-n'>gstream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>close</span><span class='hljl-p'>(</span><span class='hljl-n'>gstream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>stream</span><span class='hljl-oB'>::</span><span class='hljl-n'>IOStream</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>open</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$DATA_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$SP500_NAME</span><span class='hljl-s'>.jls&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>sp500DF</span><span class='hljl-oB'>::</span><span class='hljl-n'>DataFrame</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>deserialize</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>close</span><span class='hljl-p'>(</span><span class='hljl-n'>stream</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>targetIterations</span><span class='hljl-oB'>-</span><span class='hljl-n'>burnIn</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ</span><span class='hljl-oB'>=&gt;</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ²</span><span class='hljl-p'>]</span><span class='hljl-oB'>.^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σₛ</span><span class='hljl-oB'>=&gt;</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ²ₛ</span><span class='hljl-p'>]</span><span class='hljl-oB'>.^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>Gadfly</span><span class='hljl-oB'>.</span><span class='hljl-nf'>push_theme</span><span class='hljl-p'>(</span><span class='hljl-sc'>:default</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-n'>plots</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>PlotContainer</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>PlotContainer</span><span class='hljl-p'>}()</span><span class='hljl-t'>
+  </span><span class='hljl-n'>plotNames</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}()</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plotNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;IterationPlots1&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plots</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>vstack</span><span class='hljl-p'>(</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>y</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>line</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.25</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;μ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xticks</span><span class='hljl-p'>(</span><span class='hljl-n'>ticks</span><span class='hljl-oB'>=</span><span class='hljl-nf'>collect</span><span class='hljl-p'>(</span><span class='hljl-ni'>0</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>÷</span><span class='hljl-ni'>5</span><span class='hljl-p'>)</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>))),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Draws of μ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>y</span><span class='hljl-oB'>=</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ</span><span class='hljl-p'>]),</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>line</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;σ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xticks</span><span class='hljl-p'>(</span><span class='hljl-n'>ticks</span><span class='hljl-oB'>=</span><span class='hljl-nf'>collect</span><span class='hljl-p'>(</span><span class='hljl-ni'>0</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>÷</span><span class='hljl-ni'>5</span><span class='hljl-p'>)</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>))),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Draws of σ&quot;</span><span class='hljl-p'>))))</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plotNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;IterationPlots2&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plots</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>vstack</span><span class='hljl-p'>(</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>y</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>line</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;μₛ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xticks</span><span class='hljl-p'>(</span><span class='hljl-n'>ticks</span><span class='hljl-oB'>=</span><span class='hljl-nf'>collect</span><span class='hljl-p'>(</span><span class='hljl-ni'>0</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>÷</span><span class='hljl-ni'>5</span><span class='hljl-p'>)</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>))),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Draws of μₛ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>y</span><span class='hljl-oB'>=</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σₛ</span><span class='hljl-p'>]),</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>line</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;σₛ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xticks</span><span class='hljl-p'>(</span><span class='hljl-n'>ticks</span><span class='hljl-oB'>=</span><span class='hljl-nf'>collect</span><span class='hljl-p'>(</span><span class='hljl-ni'>0</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>÷</span><span class='hljl-ni'>5</span><span class='hljl-p'>)</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>))),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Draws of σₛ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>y</span><span class='hljl-oB'>=</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:λ</span><span class='hljl-p'>]),</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>line</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;λ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xticks</span><span class='hljl-p'>(</span><span class='hljl-n'>ticks</span><span class='hljl-oB'>=</span><span class='hljl-nf'>collect</span><span class='hljl-p'>(</span><span class='hljl-ni'>0</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-oB'>÷</span><span class='hljl-ni'>5</span><span class='hljl-p'>)</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-n'>numPoints</span><span class='hljl-p'>))),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Draws of λ&quot;</span><span class='hljl-p'>))))</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plotNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;HistogramPlots1&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plots</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>vstack</span><span class='hljl-p'>(</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>histogram</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;μ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Distribution of μ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ</span><span class='hljl-p'>]),</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>histogram</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;σ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Distribution of :σ&quot;</span><span class='hljl-p'>))))</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plotNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;HistogramPlots2&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+  </span><span class='hljl-nf'>push!</span><span class='hljl-p'>(</span><span class='hljl-n'>plots</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>vstack</span><span class='hljl-p'>(</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>histogram</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;μₛ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Distribution of μₛ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σₛ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>histogram</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;σₛ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Distribution of σₛ&quot;</span><span class='hljl-p'>)),</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>plot</span><span class='hljl-p'>(</span><span class='hljl-n'>x</span><span class='hljl-oB'>=</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:λ</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-n'>Geom</span><span class='hljl-oB'>.</span><span class='hljl-n'>histogram</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>Theme</span><span class='hljl-p'>(</span><span class='hljl-n'>line_width</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.2</span><span class='hljl-n'>pt</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>ylabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;λ&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'> </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>xlabel</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Iteration&quot;</span><span class='hljl-p'>),</span><span class='hljl-t'>
+      </span><span class='hljl-n'>Guide</span><span class='hljl-oB'>.</span><span class='hljl-nf'>title</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;Distribution of λ&quot;</span><span class='hljl-p'>))))</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>plots</span><span class='hljl-p'>)</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>draw</span><span class='hljl-p'>(</span><span class='hljl-nf'>SVG</span><span class='hljl-p'>(</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$OUTPUT_PATH</span><span class='hljl-se'>\\</span><span class='hljl-si'>$</span><span class='hljl-p'>(</span><span class='hljl-n'>plotNames</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>])</span><span class='hljl-s'>.svg&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>7.5</span><span class='hljl-n'>inch</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>9</span><span class='hljl-n'>inch</span><span class='hljl-p'>),</span><span class='hljl-n'>plots</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>])</span><span class='hljl-t'>
+  </span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>########################make the summary data table</span><span class='hljl-t'>
+  </span><span class='hljl-n'>summaryDecimals</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>6</span><span class='hljl-t'>
+  </span><span class='hljl-n'>summaryCols</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Symbol</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:σ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-n'>σₛ</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-sc'>:λ</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>summaryRowNames</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>
+    </span><span class='hljl-p'>[</span><span class='hljl-s'>&quot;mean&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;median&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;Ann. Median&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;Std Dev&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;5th Percentile&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'>
+      </span><span class='hljl-s'>&quot;95th Percentile&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;N&quot;</span><span class='hljl-p'>]</span><span class='hljl-t'>
+  </span><span class='hljl-n'>summaryNumRows</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>summaryRowNames</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>annualizedMedians</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Float64</span><span class='hljl-p'>}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μ</span><span class='hljl-p'>])</span><span class='hljl-oB'>*</span><span class='hljl-ni'>255</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σ</span><span class='hljl-p'>])</span><span class='hljl-oB'>*</span><span class='hljl-ni'>255</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>exp</span><span class='hljl-p'>(</span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:μₛ</span><span class='hljl-p'>])</span><span class='hljl-oB'>*</span><span class='hljl-ni'>255</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-nfB'>1.0</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:σₛ</span><span class='hljl-p'>])</span><span class='hljl-oB'>*</span><span class='hljl-ni'>255</span><span class='hljl-oB'>^</span><span class='hljl-nfB'>0.5</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-sc'>:λ</span><span class='hljl-p'>])</span><span class='hljl-oB'>*</span><span class='hljl-ni'>255</span><span class='hljl-p'>,</span><span class='hljl-ni'>1</span><span class='hljl-p'>)]</span><span class='hljl-t'>
+
+  </span><span class='hljl-cs'>#make the content matrix</span><span class='hljl-t'>
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}}</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'>
+    </span><span class='hljl-p'>[</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}()</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-n'>summaryNumRows</span><span class='hljl-p'>]</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>1</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>mean</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]),</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>2</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>median</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]),</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>3</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-n'>annualizedMedians</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>],</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>::</span><span class='hljl-n'>Int</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>)])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>4</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>std</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>]),</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>5</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>quantile</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.05</span><span class='hljl-p'>),</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>6</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>string</span><span class='hljl-oB'>.</span><span class='hljl-p'>([</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>round</span><span class='hljl-p'>(</span><span class='hljl-nf'>quantile</span><span class='hljl-p'>(</span><span class='hljl-n'>results</span><span class='hljl-p'>[</span><span class='hljl-n'>s</span><span class='hljl-p'>],</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.95</span><span class='hljl-p'>),</span><span class='hljl-n'>summaryDecimals</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>s</span><span class='hljl-oB'>::</span><span class='hljl-n'>Symbol</span><span class='hljl-t'> </span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>])</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>[</span><span class='hljl-ni'>7</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-s'>&quot;</span><span class='hljl-si'>$numPoints</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>]</span><span class='hljl-t'>
+
+  </span><span class='hljl-n'>tableSummary</span><span class='hljl-oB'>::</span><span class='hljl-n'>String</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>texTable</span><span class='hljl-p'>(</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;Summary of Data&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-s'>&quot;&quot;&quot;See Tex File&quot;&quot;&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#caption</span><span class='hljl-t'>
+    </span><span class='hljl-p'>[[</span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\$\\</span><span class='hljl-s'>mu</span><span class='hljl-se'>\$</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\$\\</span><span class='hljl-s'>sigma</span><span class='hljl-se'>\$</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\$\\</span><span class='hljl-s'>mu_{s}</span><span class='hljl-se'>\$</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>,</span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\$\\</span><span class='hljl-s'>sigma_{s}</span><span class='hljl-se'>\$</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;</span><span class='hljl-se'>\$\\</span><span class='hljl-s'>lambda</span><span class='hljl-se'>\$</span><span class='hljl-s'>&quot;</span><span class='hljl-p'>]],</span><span class='hljl-t'> </span><span class='hljl-cs'>#colNames</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}(),</span><span class='hljl-cs'>#contentRowNames</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Matrix</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}}(),</span><span class='hljl-t'> </span><span class='hljl-cs'>#content</span><span class='hljl-t'>
+    </span><span class='hljl-n'>summaryRowNames</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#descRowNames</span><span class='hljl-t'>
+    </span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-cs'>#descContent</span><span class='hljl-t'>
+    </span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>String</span><span class='hljl-p'>}(),</span><span class='hljl-t'>
+    </span><span class='hljl-n'>columnSepPt</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-oB'>-</span><span class='hljl-ni'>5</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-n'>widthDescContent</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[[</span><span class='hljl-nf'>ones</span><span class='hljl-p'>(</span><span class='hljl-n'>Int</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>))</span><span class='hljl-t'> </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-oB'>∈</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-p'>(</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>summaryContent</span><span class='hljl-p'>)</span><span class='hljl-oB'>-</span><span class='hljl-ni'>1</span><span class='hljl-p'>)];</span><span class='hljl-t'>
+      </span><span class='hljl-p'>[[</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>summaryCols</span><span class='hljl-p'>)]]]</span><span class='hljl-oB'>::</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-nf'>Vector</span><span class='hljl-p'>{</span><span class='hljl-n'>Int</span><span class='hljl-p'>}})</span><span class='hljl-t'>
+
+  </span><span class='hljl-nf'>writeTables2File</span><span class='hljl-p'>([</span><span class='hljl-n'>tableSummary</span><span class='hljl-p'>],</span><span class='hljl-t'>
+    </span><span class='hljl-n'>HEADER_NAME</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>FOOTER_NAME</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>path</span><span class='hljl-oB'>=</span><span class='hljl-n'>OUTPUT_PATH</span><span class='hljl-p'>,</span><span class='hljl-t'>
+    </span><span class='hljl-n'>outName</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;SummaryTable.tex&quot;</span><span class='hljl-p'>)</span><span class='hljl-t'>
+
+
+  </span><span class='hljl-k'>return</span><span class='hljl-t'> </span><span class='hljl-n'>nothing</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-cs'>#enable these to run the program</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#problemA2Script(refreshData=false)</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#getA2Graphs()</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span>
+</pre>
+
+
+
+
+
+          <HR/>
+          <div class="footer"><p>
+          Published from <a href="A2.jl">A2.jl</a> using
+          <a href="http://github.com/mpastell/Weave.jl">Weave.jl</a>
+          0.4.4 on 2017-10-11.
+          <p></div>
+
+
+        </div>
+      </div>
+    </div>
+  </BODY>
+</HTML>

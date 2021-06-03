@@ -1,0 +1,789 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\usepackage{dcolumn}
+\thispagestyle{empty}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification false
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Solve for global min var portfolio
+\end_layout
+
+\begin_layout Standard
+Begin with portfolio covariance 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ and returns z.
+ The global minimum variance portfolio is given by
+\begin_inset Formula 
+\begin{align*}
+\min & w'\Sigma w\\
+s.t.1'w= & 1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the last term imposes a unique solution w/o loss of generality.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+0= & \Sigma w_{g}-\lambda1\\
+w_{g}= & \lambda\Sigma^{-1}1\\
+1= & \lambda1'\Sigma^{-1}1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $A=1'\Sigma^{-1}1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $w_{g}=\frac{\Sigma^{-1}1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Proof that 
+\begin_inset Formula $w_{p}\Sigma w_{g}=\frac{1}{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pick any portfolio s.t.
+ wlog 
+\begin_inset Formula $w_{p}'1=1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\begin{align*}
+w_{g}= & \frac{\Sigma^{-1}1}{A}\\
+w_{p}\Sigma w_{g}= & \frac{w_{p}'1}{A}=\frac{1}{A}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Thought
+\end_layout
+
+\begin_layout Subsection*
+Thoughts
+\end_layout
+
+\begin_layout Subsubsection*
+Potential Issue: Uniform Returns
+\end_layout
+
+\begin_layout Standard
+The weight vector is not observed, and neither is the covariance matrix.
+ Suppose we regress 
+\begin_inset Formula $w_{p}$
+\end_inset
+
+ on the minimum variance portfolio.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+E\left[R_{P}|R_{G}\right]= & E\left[R_{P}\right]+\frac{w_{p}\Sigma w_{g}}{\sigma_{G}^{2}}\left(E\left[R_{G}\right]-E\left[R_{P}\right]\right)\\
+= & E\left[R_{G}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus the expected return of the portfolio is just the return on the minimum
+ variance portfolio, and the beta of the portfolio to any other portfolio
+ of the same weights is 1.
+\end_layout
+
+\begin_layout Standard
+Interestingly, this implies the beta of any stock to the minimum variance
+ portfolio is 1.
+\end_layout
+
+\begin_layout Subsubsection*
+Resolution
+\end_layout
+
+\begin_layout Standard
+To understand what is going on, return to the original problem with no rfr:
+\begin_inset Formula 
+\begin{align*}
+\min & w'\Sigma w\\
+s.t.w'1= & 1\\
+w'z= & \mu
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Lagrangian is:
+\begin_inset Formula 
+\begin{align*}
+L= & w'\Sigma w+\gamma\left(r-w'z\right)+\lambda\left(1-w'1\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+FOC:
+\begin_inset Formula 
+\begin{align*}
+\Sigma w= & \gamma z+\lambda1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define 
+\begin_inset Formula $A=1'\Sigma^{-1}1$
+\end_inset
+
+, 
+\begin_inset Formula $B\equiv1'\Sigma^{-1}z$
+\end_inset
+
+, 
+\begin_inset Formula $C=z'\Sigma^{-1}z$
+\end_inset
+
+.
+ Then plug in the constraints:
+\begin_inset Formula 
+\begin{align*}
+1= & \gamma B+\lambda A\\
+\mu= & \gamma C+\lambda B
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solve for 
+\begin_inset Formula $\gamma$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\lambda= & \frac{1-\gamma B}{A}\\
+\mu= & \gamma C+B\left[\frac{1-\gamma B}{A}\right]\\
+\gamma= & \frac{\mu A-B}{AC-B^{2}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solve for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\gamma= & \frac{1-\lambda A}{B}\\
+\mu= & \frac{C-\lambda AC}{B}+\lambda B\\
+\lambda= & \frac{\mu B-C}{B^{2}-AC}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Use Black's result that the convex combo of MV portfolios is MV.
+ Solve for the global minimum variance portfolio:
+\begin_inset Formula 
+\begin{align*}
+w_{G}\equiv arg\min_{w} & \gamma\mu_{G}+\lambda\\
+FOC:\\
+0= & \frac{2A\mu_{G}-B}{AC-B^{2}}+\frac{B}{B^{2}-AC}\\
+\mu_{G}= & \frac{B}{A}\\
+\lambda_{G}= & \frac{1}{A},\;\gamma_{G}=0\\
+w_{G}= & \frac{\Sigma^{-1}1}{A}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Need a distinct portfolio:
+\begin_inset Formula 
+\begin{align*}
+\mu_{D}= & \frac{C}{B}\\
+\gamma_{D}= & \frac{1}{B},\;\lambda_{D}=0\\
+w_{D}= & \frac{\Sigma^{-1}z}{B}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define a convex combination:
+\begin_inset Formula 
+\begin{align*}
+w_{a}= & \left(1-a\right)\frac{\Sigma^{-1}1}{A}+a\frac{\Sigma^{-1}z}{B}\\
+\sigma_{a}\equiv\Sigma w_{a}= & \frac{1-a}{A}1+\frac{a}{B}z\\
+\sigma_{a}^{2}\equiv w'_{a}\sigma_{a}= & \frac{1-a}{A}+\frac{a}{B}z_{a}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let p be any portfolio.
+ Then solve for 
+\begin_inset Formula $\frac{1-a}{A}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{a}{B}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\sigma_{ap}\equiv w_{p}\sigma_{a}= & \frac{1-a}{A}+\frac{a}{B}z_{p}\\
+\frac{a}{B}= & \frac{\sigma_{a}^{2}-\sigma_{ap}}{z_{a}-z_{p}}\\
+\frac{1-a}{A}= & \sigma_{a}^{2}-\left[\frac{\sigma_{a}^{2}-\sigma_{ap}}{z_{a}-z_{p}}\right]z_{a}\\
+= & \frac{\sigma_{ap}z_{a}-\sigma_{a}^{2}z_{p}}{z_{a}-z_{p}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plug in:
+\begin_inset Formula 
+\begin{align*}
+\frac{a}{B}z= & \sigma_{a}-\frac{1-a}{A}1\\
+z= & \left[\sigma_{a}-\frac{\sigma_{ap}z_{a}-\sigma_{a}^{2}z_{p}}{z_{a}-z_{p}}1\right]\frac{z_{a}-z_{p}}{\sigma_{a}^{2}-\sigma_{ap}}\\
+= & \frac{z_{a}-z_{p}}{\sigma_{a}^{2}-\sigma_{ap}}\sigma_{a}-\frac{\sigma_{ap}z_{a}-\sigma_{a}^{2}z_{p}}{\sigma_{a}^{2}-\sigma_{ap}}1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pick 
+\begin_inset Formula $\sigma_{ap}$
+\end_inset
+
+ that is orthogonal:
+\begin_inset Formula 
+\begin{align*}
+z= & \frac{\sigma_{a}}{\sigma_{a}^{2}}\left(z_{a}-z_{p}\right)+z_{p}1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus we have the capm, since for any portfolio i:
+\begin_inset Formula 
+\begin{align*}
+z_{i}= & \beta_{ai}\left(z_{a}-z_{p}\right)+z_{p}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now the market portfolio is not unique.
+ Suppose 
+\begin_inset Formula $a=0$
+\end_inset
+
+ (is a GMV).
+ Then the previous solution fails, as we can't plug in for 
+\begin_inset Formula $\sigma_{a}$
+\end_inset
+
+ to get the CAPM: 
+\begin_inset Formula 
+\begin{align*}
+\sigma_{a}^{2}= & \sigma_{ap}=\frac{1}{A}\\
+\frac{a}{B}= & 0\\
+\frac{1-a}{A}= & 1\\
+0= & \sigma_{a}-\left[\frac{\sigma_{ap}z_{a}-\sigma_{a}^{2}z_{p}}{z_{a}-z_{p}}\right]1\\
+0= & 0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Could we still have a valid discount factor? I doubt it.
+ 
+\begin_inset Formula 
+\begin{align*}
+z_{a}=\\
+1= & EMz_{i}\\
+1= & cov\left(M,z\right)+E\left[M\right]E\left[z_{i}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, 
+\begin_inset Formula 
+\begin{align*}
+cov\left(M,z\right) & =w_{i}'\Sigma w_{G}\\
+ & =\frac{w_{i}\Sigma\Sigma^{-1}1}{A}\\
+ & =\frac{1}{A}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Which means the above equation is invalid.
+\end_layout
+
+\begin_layout Subsection*
+Delta Method: Derivation of Asymtotic Sample Covariance
+\end_layout
+
+\begin_layout Standard
+The result is standard from asymtotic theory.
+ Start with the definition of 
+\begin_inset Formula $S_{XY}$
+\end_inset
+
+ and define 
+\begin_inset Formula $\sigma_{XY}\equiv\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]$
+\end_inset
+
+.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+nS_{XY}= & \sum\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)\\
+nS_{XY}= & \sum\left(\left(X_{i}-\mu_{X}\right)-\left(\overline{X}-\mu_{X}\right)\right)\left(\left(Y_{i}-\mu_{Y}\right)-\left(\overline{Y}-\mu_{Y}\right)\right)\\
+= & \sum\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sum\left(X_{i}-\mu_{X}\right)\left(\overline{Y}-\mu_{Y}\right)\\
+ & -\sum\left(Y_{i}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)+n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+= & \sum\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+n\left(S_{XY}-\sigma_{XY}\right)= & n\sum\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]-n\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\\
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)= & \sqrt{n}\sum\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]-\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now apply the asymtotics.
+ By the Central Limit Theorem, 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\stackrel{d}{\to}N\left(\cdot\right)$
+\end_inset
+
+.
+ By the Weak Law of Large Numbers, 
+\begin_inset Formula $\left(\overline{X}-\mu_{X}\right)\stackrel{p}{\to}0$
+\end_inset
+
+.
+ Thus by Slutsky's theorem, 
+\begin_inset Formula $\sqrt{n}\left(\overline{Y}-\mu_{Y}\right)\left(\overline{X}-\mu_{X}\right)\to0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Applying the Central Limit Theorem to the remaining term implies 
+\begin_inset Formula $\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\stackrel{d}{\to}N\left(\cdot\right)$
+\end_inset
+
+.
+ Note 
+\begin_inset Formula $E\left[\sum\frac{1}{n}\left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)-\sigma_{XY}\right]\right]=0$
+\end_inset
+
+.
+ The variance is given by:
+\begin_inset Formula 
+\begin{align*}
+V & \left[\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)\right]=E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]-E\left[\left(X_{i}-\mu_{X}\right)^{2}\right]E\left[\left(Y_{i}-\mu_{Y}\right)^{2}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define 
+\begin_inset Formula $\sigma_{XXYY}\equiv E\left[\left(X_{i}-\mu_{X}\right)^{2}\left(Y_{i}-\mu_{Y}\right)^{2}\right]$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma_{X}^{2}\equiv E\left[\left(X_{i}-\mu_{X}\right)^{2}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{Y}^{2}\equiv E\left[\left(Y_{i}-\mu_{Y}\right)^{2}\right]$
+\end_inset
+
+.
+ Then we have shown:
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{XY}-\sigma_{XY}\right)\stackrel{d}{\to} & N\left(0,\;\sigma_{XXYY}-\sigma_{X}^{2}\sigma_{Y}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As a special case, let 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $Y$
+\end_inset
+
+ be drawn from the same distribution.
+ Define 
+\begin_inset Formula $\sigma_{X^{4}}\equiv E\left[\left(X_{i}-\mu_{X}\right)^{4}\right]$
+\end_inset
+
+.
+ Then:
+\begin_inset Formula 
+\begin{align*}
+\sqrt{n}\left(S_{X}-\sigma_{X}^{2}\right)\stackrel{d}{\to} & N\left(0,\;\sigma_{X^{4}}-\sigma_{X}^{4}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Q.E.D.
+\end_layout
+
+\begin_layout Subsection*
+MCMC
+\end_layout
+
+\begin_layout Subsubsection*
+Overview
+\end_layout
+
+\begin_layout Subsection*
+MCMC Version 2.0
+\end_layout
+
+\begin_layout Itemize
+Suppose we have 
+\begin_inset Formula $M$
+\end_inset
+
+ assets with a window length of 
+\begin_inset Formula $T$
+\end_inset
+
+s
+\end_layout
+
+\begin_layout Itemize
+Possibility 1: Use the previous approach, but adapt to a larger data set
+\end_layout
+
+\begin_layout Enumerate
+Draw a random test portfolio from 
+\begin_inset Formula $D\left(\alpha_{P}\right)$
+\end_inset
+
+ (or some other drawing scheme), yielding 
+\begin_inset Formula $w_{p}$
+\end_inset
+
+ (no updating)
+\end_layout
+
+\begin_layout Enumerate
+Given 
+\begin_inset Formula $w_{G}^{i-1}$
+\end_inset
+
+, compute 
+\begin_inset Formula $S_{G}^{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{GP}^{i}$
+\end_inset
+
+, the sample variance and sample covariance over the window
+\end_layout
+
+\begin_layout Enumerate
+Given 
+\begin_inset Formula $w_{G}^{i-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $Z_{G}^{i-1}$
+\end_inset
+
+, draw 
+\begin_inset Formula $\sigma_{G}^{2i}$
+\end_inset
+
+, the variance of the minimum variance portfolio (see initial proofs file
+ and mathematica for an initial discussion of the algebra- but needs to
+ be used in an updating format as opposed to a constant prior ie the distributio
+n
+\end_layout
+
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $Z_{G}^{i}$
+\end_inset
+
+ given 
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possibility 2: Use each stock's time series as a data point.
+\end_layout
+
+\begin_layout Enumerate
+Given 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+, compute a vector of sample covariances 
+\begin_inset Formula $S_{GP}$
+\end_inset
+
+ (this will be an 
+\begin_inset Formula $Mx1$
+\end_inset
+
+ vector)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Note I think we could do this using betas too, using the property that the
+ beta with the MV portfolio will be 1
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $\sigma_{G}^{2}$
+\end_inset
+
+ from the posterior of a normal distribution.
+ This will be defined from the asymtotic properties of the vector of 
+\begin_inset Formula $S_{GP}$
+\end_inset
+
+ (will need to do some algebra here, but I think its doable/tractable)
+\end_layout
+
+\begin_layout Enumerate
+Consecutively draw each concentration parameter (independently) of a dirichlet
+ distribution to get 
+\begin_inset Formula $\alpha_{G}$
+\end_inset
+
+ (details to be worked out- might be uncharted territory, though I suspect
+ we can find some precedents if not necessarily in the finance literature)
+\end_layout
+
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $w_{G}$
+\end_inset
+
+ given the concentration parameters from the dirichlet distribution
+\end_layout
+
+\begin_layout Subsection*
+Applications
+\end_layout
+
+\begin_layout Itemize
+Thought: Test whether all of the alphas are 0
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Estimate the GMV weights
+\end_layout
+
+\begin_layout Enumerate
+Regess the test asset returns on the GMV returns 
+\begin_inset Formula $r_{it}^{p}=\alpha_{i}+\beta r_{t}^{g}+\epsilon_{it}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Test whether the intercepts are jointly 0- if they are, then no other risk
+ is priced and all assets have the same expected return
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

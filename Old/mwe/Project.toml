@@ -1,0 +1,4 @@
+name = "mwe"
+uuid = "0832f5a2-ae68-11e9-228a-2d2066e12d03"
+authors = ["Clinton Tepper <clinton.tepper.1@anderson.ucla.edu>"]
+version = "0.1.0"

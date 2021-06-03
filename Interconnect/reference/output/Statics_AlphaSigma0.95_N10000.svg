@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="190.5mm" height="228.6mm" viewBox="0 0 190.5 228.6"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<g class="plotroot xscalable yscalable" id="img-57853650-1">
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-2">
+    <text x="102.66" y="218.48" text-anchor="middle" dy="0.6em">σ</text>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-57853650-3">
+    <text x="21.82" y="212.37" text-anchor="middle" dy="0.6em">0.0</text>
+    <text x="102.66" y="212.37" text-anchor="middle" dy="0.6em">0.5</text>
+    <text x="183.5" y="212.37" text-anchor="middle" dy="0.6em">1.0</text>
+  </g>
+<g clip-path="url(#img-57853650-4)">
+  <g id="img-57853650-5">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-57853650-6">
+      <rect x="19.82" y="125.18" width="165.68" height="86.19"/>
+    </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-57853650-7">
+      <path fill="none" d="M19.82,209.37 L 185.5 209.37"/>
+      <path fill="none" d="M19.82,188.82 L 185.5 188.82"/>
+      <path fill="none" d="M19.82,168.27 L 185.5 168.27"/>
+      <path fill="none" d="M19.82,147.73 L 185.5 147.73"/>
+      <path fill="none" d="M19.82,127.18 L 185.5 127.18"/>
+    </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-57853650-8">
+      <path fill="none" d="M21.82,125.18 L 21.82 211.37"/>
+      <path fill="none" d="M102.66,125.18 L 102.66 211.37"/>
+      <path fill="none" d="M183.5,125.18 L 183.5 211.37"/>
+    </g>
+    <g class="plotpanel" id="img-57853650-9">
+      <g class="geometry" id="img-57853650-10">
+        <g stroke-width="0.3" id="img-57853650-11">
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-12">
+            <use xlink:href="#img-57853650-13" x="183.5" y="140.9"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-14">
+            <use xlink:href="#img-57853650-15" x="180.27" y="195.65"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-16">
+            <use xlink:href="#img-57853650-17" x="177.03" y="196.27"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-18">
+            <use xlink:href="#img-57853650-19" x="173.8" y="191.39"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-20">
+            <use xlink:href="#img-57853650-21" x="170.57" y="196.77"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-22">
+            <use xlink:href="#img-57853650-23" x="167.33" y="178.8"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-24">
+            <use xlink:href="#img-57853650-25" x="164.1" y="170.73"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-26">
+            <use xlink:href="#img-57853650-27" x="160.86" y="177.84"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-28">
+            <use xlink:href="#img-57853650-29" x="157.63" y="169.64"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-30">
+            <use xlink:href="#img-57853650-31" x="154.4" y="165.96"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-32">
+            <use xlink:href="#img-57853650-33" x="151.16" y="170.92"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-34">
+            <use xlink:href="#img-57853650-35" x="147.93" y="183.17"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-36">
+            <use xlink:href="#img-57853650-37" x="144.7" y="181.21"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-38">
+            <use xlink:href="#img-57853650-39" x="141.46" y="184.63"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-40">
+            <use xlink:href="#img-57853650-41" x="138.23" y="164.49"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-42">
+            <use xlink:href="#img-57853650-43" x="135" y="142.15"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-44">
+            <use xlink:href="#img-57853650-45" x="131.76" y="149.82"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-46">
+            <use xlink:href="#img-57853650-47" x="128.53" y="171.33"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-48">
+            <use xlink:href="#img-57853650-49" x="125.3" y="175.86"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-50">
+            <use xlink:href="#img-57853650-51" x="122.06" y="164.24"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-52">
+            <use xlink:href="#img-57853650-53" x="118.83" y="157.76"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-54">
+            <use xlink:href="#img-57853650-55" x="115.59" y="162.57"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-56">
+            <use xlink:href="#img-57853650-57" x="112.36" y="159.39"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-58">
+            <use xlink:href="#img-57853650-59" x="109.13" y="167.19"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-60">
+            <use xlink:href="#img-57853650-61" x="105.89" y="171.65"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-62">
+            <use xlink:href="#img-57853650-63" x="102.66" y="159.29"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-64">
+            <use xlink:href="#img-57853650-65" x="99.43" y="175.83"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-66">
+            <use xlink:href="#img-57853650-67" x="96.19" y="164.61"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-68">
+            <use xlink:href="#img-57853650-69" x="92.96" y="163.21"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-70">
+            <use xlink:href="#img-57853650-71" x="89.73" y="148.42"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-72">
+            <use xlink:href="#img-57853650-73" x="86.49" y="175.75"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-74">
+            <use xlink:href="#img-57853650-75" x="83.26" y="166.18"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-76">
+            <use xlink:href="#img-57853650-77" x="80.02" y="185.74"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-78">
+            <use xlink:href="#img-57853650-79" x="76.79" y="163.72"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-80">
+            <use xlink:href="#img-57853650-81" x="73.56" y="165.05"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-82">
+            <use xlink:href="#img-57853650-83" x="70.32" y="172.06"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-84">
+            <use xlink:href="#img-57853650-85" x="67.09" y="170.74"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-86">
+            <use xlink:href="#img-57853650-87" x="63.86" y="154.79"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-88">
+            <use xlink:href="#img-57853650-89" x="60.62" y="174.2"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-90">
+            <use xlink:href="#img-57853650-91" x="57.39" y="169.56"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-92">
+            <use xlink:href="#img-57853650-93" x="54.16" y="161.3"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-94">
+            <use xlink:href="#img-57853650-95" x="50.92" y="170.42"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-96">
+            <use xlink:href="#img-57853650-97" x="47.69" y="167.1"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-98">
+            <use xlink:href="#img-57853650-99" x="44.45" y="169.8"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-100">
+            <use xlink:href="#img-57853650-101" x="41.22" y="170.62"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-102">
+            <use xlink:href="#img-57853650-103" x="37.99" y="167.6"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-104">
+            <use xlink:href="#img-57853650-105" x="34.75" y="167.37"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-106">
+            <use xlink:href="#img-57853650-107" x="31.52" y="166.13"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-108">
+            <use xlink:href="#img-57853650-109" x="28.29" y="170.57"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-110">
+            <use xlink:href="#img-57853650-111" x="25.05" y="168.76"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-57853650-112">
+    <text x="18.82" y="209.37" text-anchor="end" dy="0.35em">-0.02</text>
+    <text x="18.82" y="188.82" text-anchor="end" dy="0.35em">-0.01</text>
+    <text x="18.82" y="168.27" text-anchor="end" dy="0.35em">0.00</text>
+    <text x="18.82" y="147.73" text-anchor="end" dy="0.35em">0.01</text>
+    <text x="18.82" y="127.18" text-anchor="end" dy="0.35em">0.02</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-113">
+    <text x="8.06" y="166.27" text-anchor="middle" dy="0.35em" transform="rotate(-90, 8.06, 168.27)">α</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-114">
+    <text x="102.66" y="119.3" text-anchor="middle" dy="0.6em">Estimates of α vs. σ (True α=0.0, N=1000)</text>
+  </g>
+</g>
+<g class="plotroot xscalable yscalable" id="img-57853650-115">
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-116">
+    <text x="102.84" y="104.18" text-anchor="middle" dy="0.6em">α</text>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-57853650-117">
+    <text x="22.17" y="98.07" text-anchor="middle" dy="0.6em">-0.5</text>
+    <text x="102.84" y="98.07" text-anchor="middle" dy="0.6em">0.0</text>
+    <text x="183.5" y="98.07" text-anchor="middle" dy="0.6em">0.5</text>
+  </g>
+<g clip-path="url(#img-57853650-118)">
+  <g id="img-57853650-119">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-57853650-120">
+      <rect x="20.17" y="10.88" width="165.33" height="86.19"/>
+    </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-57853650-121">
+      <path fill="none" d="M20.17,95.07 L 185.5 95.07"/>
+      <path fill="none" d="M20.17,78.63 L 185.5 78.63"/>
+      <path fill="none" d="M20.17,62.19 L 185.5 62.19"/>
+      <path fill="none" d="M20.17,45.75 L 185.5 45.75"/>
+      <path fill="none" d="M20.17,29.32 L 185.5 29.32"/>
+      <path fill="none" d="M20.17,12.88 L 185.5 12.88"/>
+    </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-57853650-122">
+      <path fill="none" d="M22.17,10.88 L 22.17 97.07"/>
+      <path fill="none" d="M102.84,10.88 L 102.84 97.07"/>
+      <path fill="none" d="M183.5,10.88 L 183.5 97.07"/>
+    </g>
+    <g class="plotpanel" id="img-57853650-123">
+      <g class="geometry" id="img-57853650-124">
+        <g stroke-width="0.3" id="img-57853650-125">
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-126">
+            <use xlink:href="#img-57853650-127" x="183.5" y="39.85"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-128">
+            <use xlink:href="#img-57853650-129" x="180.27" y="56"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-130">
+            <use xlink:href="#img-57853650-131" x="177.05" y="69.51"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-132">
+            <use xlink:href="#img-57853650-133" x="173.82" y="49.61"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-134">
+            <use xlink:href="#img-57853650-135" x="170.59" y="47.62"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-136">
+            <use xlink:href="#img-57853650-137" x="167.37" y="54.2"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-138">
+            <use xlink:href="#img-57853650-139" x="164.14" y="54.66"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-140">
+            <use xlink:href="#img-57853650-141" x="160.91" y="55.94"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-142">
+            <use xlink:href="#img-57853650-143" x="157.69" y="46.67"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-144">
+            <use xlink:href="#img-57853650-145" x="154.46" y="43.41"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-146">
+            <use xlink:href="#img-57853650-147" x="151.23" y="60.04"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-148">
+            <use xlink:href="#img-57853650-149" x="148.01" y="41.44"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-150">
+            <use xlink:href="#img-57853650-151" x="144.78" y="37.67"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-152">
+            <use xlink:href="#img-57853650-153" x="141.55" y="46.93"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-154">
+            <use xlink:href="#img-57853650-155" x="138.33" y="54.7"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-156">
+            <use xlink:href="#img-57853650-157" x="135.1" y="53.81"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-158">
+            <use xlink:href="#img-57853650-159" x="131.88" y="49.27"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-160">
+            <use xlink:href="#img-57853650-161" x="128.65" y="47.8"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-162">
+            <use xlink:href="#img-57853650-163" x="125.42" y="58.82"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-164">
+            <use xlink:href="#img-57853650-165" x="122.2" y="80.46"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-166">
+            <use xlink:href="#img-57853650-167" x="118.97" y="45.79"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-168">
+            <use xlink:href="#img-57853650-169" x="115.74" y="84.3"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-170">
+            <use xlink:href="#img-57853650-171" x="112.52" y="83.15"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-172">
+            <use xlink:href="#img-57853650-173" x="109.29" y="62.74"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-174">
+            <use xlink:href="#img-57853650-175" x="106.06" y="82.73"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-176">
+            <use xlink:href="#img-57853650-177" x="102.84" y="94.26"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-178">
+            <use xlink:href="#img-57853650-179" x="99.61" y="68.81"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-180">
+            <use xlink:href="#img-57853650-181" x="96.38" y="68.88"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-182">
+            <use xlink:href="#img-57853650-183" x="93.16" y="70.09"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-184">
+            <use xlink:href="#img-57853650-185" x="89.93" y="75.49"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-186">
+            <use xlink:href="#img-57853650-187" x="86.7" y="61.78"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-188">
+            <use xlink:href="#img-57853650-189" x="83.48" y="61.09"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-190">
+            <use xlink:href="#img-57853650-191" x="80.25" y="66.71"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-192">
+            <use xlink:href="#img-57853650-193" x="77.02" y="43.52"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-194">
+            <use xlink:href="#img-57853650-195" x="73.8" y="70.09"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-196">
+            <use xlink:href="#img-57853650-197" x="70.57" y="47.42"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-198">
+            <use xlink:href="#img-57853650-199" x="67.34" y="52.48"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-200">
+            <use xlink:href="#img-57853650-201" x="64.12" y="56.94"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-202">
+            <use xlink:href="#img-57853650-203" x="60.89" y="44.62"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-204">
+            <use xlink:href="#img-57853650-205" x="57.66" y="25.25"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-206">
+            <use xlink:href="#img-57853650-207" x="54.44" y="52.07"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-208">
+            <use xlink:href="#img-57853650-209" x="51.21" y="37.32"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-210">
+            <use xlink:href="#img-57853650-211" x="47.98" y="39.17"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-212">
+            <use xlink:href="#img-57853650-213" x="44.76" y="54.26"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-214">
+            <use xlink:href="#img-57853650-215" x="41.53" y="49.35"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-216">
+            <use xlink:href="#img-57853650-217" x="38.3" y="41.93"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-218">
+            <use xlink:href="#img-57853650-219" x="35.08" y="39.48"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-220">
+            <use xlink:href="#img-57853650-221" x="31.85" y="22.09"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-222">
+            <use xlink:href="#img-57853650-223" x="28.63" y="49.91"/>
+          </g>
+          <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" fill="#00BFFF" id="img-57853650-224">
+            <use xlink:href="#img-57853650-225" x="25.4" y="39.08"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-57853650-226">
+    <text x="19.17" y="95.07" text-anchor="end" dy="0.35em">0.194</text>
+    <text x="19.17" y="78.63" text-anchor="end" dy="0.35em">0.195</text>
+    <text x="19.17" y="62.19" text-anchor="end" dy="0.35em">0.196</text>
+    <text x="19.17" y="45.75" text-anchor="end" dy="0.35em">0.197</text>
+    <text x="19.17" y="29.32" text-anchor="end" dy="0.35em">0.198</text>
+    <text x="19.17" y="12.88" text-anchor="end" dy="0.35em">0.199</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-227">
+    <text x="8.06" y="51.97" text-anchor="middle" dy="0.35em" transform="rotate(-90, 8.06, 53.97)">σ</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-57853650-228">
+    <text x="102.84" y="5" text-anchor="middle" dy="0.6em">Estimates of σ vs. α (True σ=0.2, N=1000)</text>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-57853650-4">
+  <path d="M19.82,125.18 L 185.5 125.18 185.5 211.37 19.82 211.37" />
+</clipPath>
+  <clipPath id="img-57853650-118">
+  <path d="M20.17,10.88 L 185.5 10.88 185.5 97.07 20.17 97.07" />
+</clipPath>
+  <g id="img-57853650-13">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-15">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-17">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-19">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-21">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-23">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-25">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-27">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-29">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-31">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-33">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-35">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-37">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-39">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-41">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-43">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-45">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-47">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-49">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-51">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-53">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-55">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-57">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-59">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-61">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-63">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-65">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-67">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-69">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-71">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-73">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-75">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-77">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-79">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-81">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-83">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-85">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-87">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-89">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-91">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-93">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-95">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-97">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-99">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-101">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-103">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-105">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-107">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-109">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-111">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-127">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-129">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-131">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-133">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-135">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-137">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-139">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-141">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-143">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-145">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-147">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-149">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-151">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-153">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-155">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-157">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-159">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-161">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-163">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-165">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-167">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-169">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-171">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-173">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-175">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-177">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-179">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-181">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-183">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-185">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-187">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-189">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-191">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-193">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-195">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-197">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-199">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-201">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-203">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-205">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-207">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-209">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-211">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-213">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-215">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-217">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-219">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-221">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-223">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+  <g id="img-57853650-225">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+</defs>
+</svg>

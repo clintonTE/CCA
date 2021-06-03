@@ -1,0 +1,245 @@
+#this structure holds the partitioned portfolio
+struct TrisectedPortfolio
+  P::Portfolio
+  partitions::Vector{Portfolio}
+  assignments::Vector{Int}
+
+  wₛ::Vector{Float64} #sums of the weights of the partitions
+  S::Matrix{Float64} #covariance matrix of the portfolio
+end
+
+#constructor
+function TrisectedPortfolio(P::Portfolio, start1=1)::TrisectedPortfolio
+  targetPartitionSize::Int = P.U.M ÷ 3
+  assignments::Vector{Int} = fill(3, P.U.M)
+
+  #do the initial assignments
+  assignments[1:targetPartitionSize] .= 1
+  assignments[(targetPartitionSize+1):(2*targetPartitionSize)] .= 2
+
+  #create 3 new portfolios, one for each partition
+  #the portfolios are a placeholder until the refresh command is called as part of rotatetrisected
+  partitions::Vector{Portfolio} = (i::Int->Portfolio(P, P.wₜ)).(1:3)
+
+  #make the trisected portfolio
+  TP::TrisectedPortfolio = TrisectedPortfolio(
+    P,
+    partitions,
+    assignments,
+    Vector{Float64}(undef,3),
+    Matrix{Float64}(undef,3,3)
+  )
+
+  #rotate the portfolio, which will also compute wₛ and S
+  rotatetrisected!(TP, start1 - 1)
+
+  return TP
+end
+
+#computes the covariance of the partitions and the test portfolio
+function Statistics.cov(TG::TrisectedPortfolio, P::Portfolio)::Vector{Float64}
+  local SGP::Vector{Float64} = Vector{Float64}(undef, 3)
+
+  for i::Int ∈ 1:3
+    SGP[i] = cov(TG.partitions[i], P)
+  end
+
+  return SGP
+end
+
+#rotate the assignments by a set number
+function rotatetrisected!(TP::TrisectedPortfolio, by::Int = 1)::TrisectedPortfolio
+
+  #rotate the assignments
+  for i::Int ∈ 1:TP.P.U.M
+    TP.assignments[i] = TP.assignments[1 + ((i + by - 1) % (TP.P.U.M))]
+  end
+
+  #refresh the remaining contents given the changes
+  refreshtrisected!(TP)
+  return TP
+end
+
+function refreshtrisected!(TP::TrisectedPortfolio)::TrisectedPortfolio
+  #get the sum of the weights for each parittion
+  TP.wₛ .= (i::Int->sum(TP.P.wₜ .* (i .== TP.assignments))).(1:3)
+
+  #update the portfolio partitions
+  (i::Int->Portfolio!(TP.partitions[i], TP.P.wₜ .* (i .== TP.assignments), normalizeto=TP.wₛ[i])).(1:3)
+
+  #update the covariance matrix
+  cov!(TP.partitions, TP.S)
+
+  return TP
+end
+
+#refreshes the trisected portfolio given a new set of target weights
+function refreshtrisected!(TP, wₜ)::TrisectedPortfolio
+  Portfolio!(TP.P, wₜ)
+
+  return refreshtrisected!(TP)
+end
+
+
+function getω₁R(Θ::Parameters, TG::TrisectedPortfolio, SGP::Vector{Float64})
+  @inbounds ω₁::Float64 = (
+    (TG.S[2,2] * (SGP[3] * TG.wₛ[1] + (-1) * SGP[1] * TG.wₛ[3])^2 + SGP[2]^2 * (TG.S[3,3]
+    * TG.wₛ[1]^2 + TG.wₛ[3] * ((-2) * TG.S[1,3] * TG.wₛ[1] + TG.S[1,1] * TG.wₛ[3])) +
+    (-2) * SGP[2] * (SGP[1] * TG.S[3,3] * TG.wₛ[1] * TG.wₛ[2] + (-1) * TG.S[1,3] * SGP[3]
+    * TG.wₛ[1] * TG.wₛ[2] + (-1) * TG.S[1,2] * SGP[3] * TG.wₛ[1] * TG.wₛ[3] + (-1) *
+    TG.S[1,3] * SGP[1] * TG.wₛ[2] * TG.wₛ[3] + TG.S[1,1] * SGP[3] * TG.wₛ[2] * TG.wₛ[3]
+    + TG.S[1,2] * SGP[1] * TG.wₛ[3]^2 + TG.S[2,3] * TG.wₛ[1] * (SGP[3] * TG.wₛ[1] + (-1)
+    * SGP[1] * TG.wₛ[3]) ) + TG.wₛ[2] * (SGP[3]^2 * ((-2) * TG.S[1,2] * TG.wₛ[1] + TG.S[1,1]
+    * TG.wₛ[2]) + 2 * SGP[1] * SGP[3] * (TG.S[2,3] * TG.wₛ[1] + ( -1) * TG.S[1,3] * TG.wₛ[2]
+    + TG.S[1,2] * TG.wₛ[3]) + SGP[1]^2 * (TG.S[3,3] * TG.wₛ[2] + (-2) * TG.S[2,3] * TG.wₛ[3])))^(-1)
+    * (SGP[2]^2 * TG.S[3,3] * TG.wₛ[1] + (-2) * TG.S[2,3] * SGP[2] * SGP[3] * TG.wₛ[1]
+    + TG.S[2,2] * SGP[3]^2 * TG.wₛ[1] + (-1) * SGP[1] * SGP[2] * TG.S[3,3] * TG.wₛ[2]
+    + SGP[1] * TG.S[2,3] * SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.S[3,3] * Θ.SGP * TG.wₛ[1]
+    * TG.wₛ[2] + TG.S[2,3] * SGP[3] * Θ.SGP * TG.wₛ[1] * TG.wₛ[2] + SGP[1] * TG.S[3,3]
+    * Θ.SGP * TG.wₛ[2]^2 + SGP[1] * TG.S[2,3] * SGP[2] * TG.wₛ[3] + ( -1) * SGP[1] *
+    TG.S[2,2] * SGP[3] * TG.wₛ[3] + TG.S[2,3] * SGP[2] * Θ.SGP * TG.wₛ[1] * TG.wₛ[3]
+    + (-1) * TG.S[2,2] * SGP[3] * Θ.SGP * TG.wₛ[1] * TG.wₛ[3] + (-2) * SGP[1] * TG.S[2,3]
+    * Θ.SGP * TG.wₛ[2] * TG.wₛ[3] + SGP[1] * TG.S[2,2] * Θ.SGP * TG.wₛ[3]^2 + TG.S[1,3]
+    * SGP[2] * (SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.wₛ[3]) + (-1) * TG.S[1,2] * SGP[3]
+    * (SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.wₛ[3]) + (-1) * TG.S[1,3] * Θ.SGP * TG.wₛ[2]
+    * (SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.wₛ[3]) + TG.S[1,2] * Θ.SGP * TG.wₛ[3] *
+    (SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.wₛ[3]) + (-1) * (SGP[3] * TG.wₛ[2] + (-1)
+    * SGP[2] * TG.wₛ[3])^2 * ((SGP[3] * TG.wₛ[2] + (-1) * SGP[2] * TG.wₛ[3])^(-2) * ((-1)
+    * TG.S[1,1] * SGP[2]^2 * TG.S[3,3] + 2 * TG.S[1,1] * TG.S[2,3] * SGP[2] * SGP[3]
+    + TG.S[1,2]^2 * SGP[3]^2 + (-1) * TG.S[1,1] * TG.S[2,2] * SGP[3]^2 + (-2) * TG.S[1,2]
+    * SGP[2] * TG.S[3,3] * Θ.SGP * TG.wₛ[1] + 2 * TG.S[1,2] * TG.S[2,3] * SGP[3] * Θ.SGP
+    * TG.wₛ[1] + SGP[2]^2 * TG.S[3,3] * Θ.SG * TG.wₛ[1]^2 + (-2) * TG.S[2,3] * SGP[2]
+    * SGP[3] * Θ.SG * TG.wₛ[1]^2 + TG.S[2,2] * SGP[3]^2 * Θ.SG * TG.wₛ[1]^2 + TG.S[2,3]^2
+    * Θ.SGP^2 * TG.wₛ[1]^2 + (-1) * TG.S[2,2] * TG.S[3,3] * Θ.SGP^2 * TG.wₛ[1]^2 + 2
+    * TG.S[1,1] * SGP[2] * TG.S[3,3] * Θ.SGP * TG.wₛ[2] + (-2) * TG.S[1,1] * TG.S[2,3]
+    * SGP[3] * Θ.SGP * TG.wₛ[2] + (-2) * TG.S[1,2] * SGP[3]^2 * Θ.SG * TG.wₛ[1] * TG.wₛ[2]
+    + 2 * TG.S[1,2] * TG.S[3,3] * Θ.SGP^2 * TG.wₛ[1] * TG.wₛ[2] + TG.S[1,1] * SGP[3]^2
+    * Θ.SG * TG.wₛ[2]^2 + (-1) * TG.S[1,1] * TG.S[3,3] * Θ.SGP^2 * TG.wₛ[2]^2 + TG.S[1,3]^2
+    * (SGP[2] + (-1) * Θ.SGP * TG.wₛ[2])^2 + (-2) * TG.S[1,1] * TG.S[2,3] * SGP[2] *
+    Θ.SGP * TG.wₛ[3] + (-2) * TG.S[1,2]^2 * SGP[3] * Θ.SGP * TG.wₛ[3] + 2 * TG.S[1,1]
+    * TG.S[2,2] * SGP[3] * Θ.SGP * TG.wₛ[3] + 2 * TG.S[1,2] * SGP[2] * SGP[3] * Θ.SG
+    * TG.wₛ[1] * TG.wₛ[3] + (-2) * TG.S[1,2] * TG.S[2,3] * Θ.SGP^2 * TG.wₛ[1] * TG.wₛ[3]
+    + (-2) * TG.S[1,1] * SGP[2] * SGP[3] * Θ.SG * TG.wₛ[2] * TG.wₛ[3] + 2 * TG.S[1,1]
+    * TG.S[2,3] * Θ.SGP^2 * TG.wₛ[2] * TG.wₛ[3] + TG.S[1,1] * SGP[2]^2 * Θ.SG * TG.wₛ[3]^2
+    + TG.S[1,2]^2 * Θ.SGP^2 * TG.wₛ[3]^2 + ( -1) * TG.S[1,1] * TG.S[2,2] * Θ.SGP^2 *
+    TG.wₛ[3]^2 + SGP[1]^2 * (TG.S[2,3]^2 + (-1) * TG.S[2,2] * TG.S[3,3] + TG.S[3,3] *
+    Θ.SG * TG.wₛ[2]^2 + (-2) * TG.S[2,3] * Θ.SG * TG.wₛ[2] * TG.wₛ[3] + TG.S[2,2] * Θ.SG
+    * TG.wₛ[3]^2) + (-2) * SGP[1] * (TG.S[1,3] * (( -1) * TG.S[2,2] * SGP[3] + SGP[3]
+    * Θ.SG * TG.wₛ[2]^2 + TG.S[2,3] * (SGP[2] + (-1) * Θ.SGP * TG.wₛ[2]) + TG.S[2,2]
+    * Θ.SGP * TG.wₛ[3] + (-1) * SGP[2] * Θ.SG * TG.wₛ[2] * TG.wₛ[3]) + TG.S[1,2] * ((-1)
+    * SGP[2] * TG.S[3,3] + TG.S[2,3] * SGP[3] + TG.S[3,3] * Θ.SGP * TG.wₛ[2] + (-1) *
+    TG.S[2,3] * Θ.SGP * TG.wₛ[3] + (-1) * SGP[3] * Θ.SG * TG.wₛ[2] * TG.wₛ[3] + SGP[2]
+    * Θ.SG * TG.wₛ[3]^2) + TG.wₛ[1] * (TG.S[2,3]^2 * Θ.SGP + (-1) * TG.S[2,2] * TG.S[3,3]
+    * Θ.SGP + SGP[2] * TG.S[3,3] * Θ.SG * TG.wₛ[2] + TG.S[2,2] * SGP[3] * Θ.SG * TG.wₛ[3]
+    + (-1) * TG.S[2,3] * Θ.SG * (SGP[3] * TG.wₛ[2] + SGP[2] * TG.wₛ[3]))) + (-2) * TG.S[1,3]
+    * ( TG.S[1,2] * (SGP[2] + (-1) * Θ.SGP * TG.wₛ[2]) * (SGP[3] + (-1) * Θ.SGP * TG.wₛ[3])
+    + TG.wₛ[1] * (TG.S[2,3] * Θ.SGP * (( -1) * SGP[2] + Θ.SGP * TG.wₛ[2]) + SGP[2] *
+    Θ.SG * ((-1) * SGP[3] * TG.wₛ[2] + SGP[2] * TG.wₛ[3]) + TG.S[2,2] * Θ.SGP * ( SGP[3]
+    + (-1) * Θ.SGP * TG.wₛ[3])))))^(1/2))
+  )
+
+  return ω₁
+end
+
+function getω₁(Θ::Parameters, TG::TrisectedPortfolio, SGP::Vector{Float64})
+  CSGP::Vector{ComplexF64} = (ComplexF64).(SGP) #this is necessary due to potential roundoff error
+  CS::Matrix{ComplexF64} = (ComplexF64).(TG.S)
+  Cwₛ::Vector{ComplexF64} = (ComplexF64).(TG.wₛ)
+
+  @inbounds ω₁::Float64 = real(
+    (CS[2,2] * (CSGP[3] * Cwₛ[1] + (-1) * CSGP[1] * Cwₛ[3])^2 + CSGP[2]^2 * (CS[3,3]
+    * Cwₛ[1]^2 + Cwₛ[3] * ((-2) * CS[1,3] * Cwₛ[1] + CS[1,1] * Cwₛ[3])) + (-2) * CSGP[2]
+    * (CSGP[1] * CS[3,3] * Cwₛ[1] * Cwₛ[2] + (-1) * CS[1,3] * CSGP[3] * Cwₛ[1] * Cwₛ[2]
+    + (-1) * CS[1,2] * CSGP[3] * Cwₛ[1] * Cwₛ[3] + (-1) * CS[1,3] * CSGP[1] * Cwₛ[2]
+    * Cwₛ[3] + CS[1,1] * CSGP[3] * Cwₛ[2] * Cwₛ[3] + CS[1,2] * CSGP[1] * Cwₛ[3]^2 + CS[2,3]
+    * Cwₛ[1] * (CSGP[3] * Cwₛ[1] + (-1) * CSGP[1] * Cwₛ[3]) ) + Cwₛ[2] * (CSGP[3]^2 *
+    ((-2) * CS[1,2] * Cwₛ[1] + CS[1,1] * Cwₛ[2]) + 2 * CSGP[1] * CSGP[3] * (CS[2,3] *
+    Cwₛ[1] + ( -1) * CS[1,3] * Cwₛ[2] + CS[1,2] * Cwₛ[3]) + CSGP[1]^2 * (CS[3,3] * Cwₛ[2]
+    + (-2) * CS[2,3] * Cwₛ[3])))^(-1) * (CSGP[2]^2 * CS[3,3] * Cwₛ[1] + (-2) * CS[2,3]
+    * CSGP[2] * CSGP[3] * Cwₛ[1] + CS[2,2] * CSGP[3]^2 * Cwₛ[1] + (-1) * CSGP[1] * CSGP[2]
+    * CS[3,3] * Cwₛ[2] + CSGP[1] * CS[2,3] * CSGP[3] * Cwₛ[2] + (-1) * CSGP[2] * CS[3,3]
+    * Θ.SGP * Cwₛ[1] * Cwₛ[2] + CS[2,3] * CSGP[3] * Θ.SGP * Cwₛ[1] * Cwₛ[2] + CSGP[1]
+    * CS[3,3] * Θ.SGP * Cwₛ[2]^2 + CSGP[1] * CS[2,3] * CSGP[2] * Cwₛ[3] + ( -1) * CSGP[1]
+    * CS[2,2] * CSGP[3] * Cwₛ[3] + CS[2,3] * CSGP[2] * Θ.SGP * Cwₛ[1] * Cwₛ[3] + (-1)
+    * CS[2,2] * CSGP[3] * Θ.SGP * Cwₛ[1] * Cwₛ[3] + (-2) * CSGP[1] * CS[2,3] * Θ.SGP
+    * Cwₛ[2] * Cwₛ[3] + CSGP[1] * CS[2,2] * Θ.SGP * Cwₛ[3]^2 + CS[1,3] * CSGP[2] * (CSGP[3]
+    * Cwₛ[2] + (-1) * CSGP[2] * Cwₛ[3]) + (-1) * CS[1,2] * CSGP[3] * (CSGP[3] * Cwₛ[2]
+    + (-1) * CSGP[2] * Cwₛ[3]) + (-1) * CS[1,3] * Θ.SGP * Cwₛ[2] * (CSGP[3] * Cwₛ[2]
+    + (-1) * CSGP[2] * Cwₛ[3]) + CS[1,2] * Θ.SGP * Cwₛ[3] * (CSGP[3] * Cwₛ[2] + (-1)
+    * CSGP[2] * Cwₛ[3]) + (-1) * (CSGP[3] * Cwₛ[2] + (-1) * CSGP[2] * Cwₛ[3])^2 * ((CSGP[3]
+    * Cwₛ[2] + (-1) * CSGP[2] * Cwₛ[3])^(-2) * ((-1) * CS[1,1] * CSGP[2]^2 * CS[3,3]
+    + 2 * CS[1,1] * CS[2,3] * CSGP[2] * CSGP[3] + CS[1,2]^2 * CSGP[3]^2 + (-1) * CS[1,1]
+    * CS[2,2] * CSGP[3]^2 + (-2) * CS[1,2] * CSGP[2] * CS[3,3] * Θ.SGP * Cwₛ[1] + 2 *
+    CS[1,2] * CS[2,3] * CSGP[3] * Θ.SGP * Cwₛ[1] + CSGP[2]^2 * CS[3,3] * Θ.SG * Cwₛ[1]^2
+    + (-2) * CS[2,3] * CSGP[2] * CSGP[3] * Θ.SG * Cwₛ[1]^2 + CS[2,2] * CSGP[3]^2 * Θ.SG
+    * Cwₛ[1]^2 + CS[2,3]^2 * Θ.SGP^2 * Cwₛ[1]^2 + (-1) * CS[2,2] * CS[3,3] * Θ.SGP^2
+    * Cwₛ[1]^2 + 2 * CS[1,1] * CSGP[2] * CS[3,3] * Θ.SGP * Cwₛ[2] + (-2) * CS[1,1] *
+    CS[2,3] * CSGP[3] * Θ.SGP * Cwₛ[2] + (-2) * CS[1,2] * CSGP[3]^2 * Θ.SG * Cwₛ[1] *
+    Cwₛ[2] + 2 * CS[1,2] * CS[3,3] * Θ.SGP^2 * Cwₛ[1] * Cwₛ[2] + CS[1,1] * CSGP[3]^2
+    * Θ.SG * Cwₛ[2]^2 + (-1) * CS[1,1] * CS[3,3] * Θ.SGP^2 * Cwₛ[2]^2 + CS[1,3]^2 * (CSGP[2]
+    + (-1) * Θ.SGP * Cwₛ[2])^2 + (-2) * CS[1,1] * CS[2,3] * CSGP[2] * Θ.SGP * Cwₛ[3]
+    + (-2) * CS[1,2]^2 * CSGP[3] * Θ.SGP * Cwₛ[3] + 2 * CS[1,1] * CS[2,2] * CSGP[3] *
+    Θ.SGP * Cwₛ[3] + 2 * CS[1,2] * CSGP[2] * CSGP[3] * Θ.SG * Cwₛ[1] * Cwₛ[3] + (-2)
+    * CS[1,2] * CS[2,3] * Θ.SGP^2 * Cwₛ[1] * Cwₛ[3] + (-2) * CS[1,1] * CSGP[2] * CSGP[3]
+    * Θ.SG * Cwₛ[2] * Cwₛ[3] + 2 * CS[1,1] * CS[2,3] * Θ.SGP^2 * Cwₛ[2] * Cwₛ[3] + CS[1,1]
+    * CSGP[2]^2 * Θ.SG * Cwₛ[3]^2 + CS[1,2]^2 * Θ.SGP^2 * Cwₛ[3]^2 + ( -1) * CS[1,1]
+    * CS[2,2] * Θ.SGP^2 * Cwₛ[3]^2 + CSGP[1]^2 * (CS[2,3]^2 + (-1) * CS[2,2] * CS[3,3]
+    + CS[3,3] * Θ.SG * Cwₛ[2]^2 + (-2) * CS[2,3] * Θ.SG * Cwₛ[2] * Cwₛ[3] + CS[2,2] *
+    Θ.SG * Cwₛ[3]^2) + (-2) * CSGP[1] * (CS[1,3] * (( -1) * CS[2,2] * CSGP[3] + CSGP[3]
+    * Θ.SG * Cwₛ[2]^2 + CS[2,3] * (CSGP[2] + (-1) * Θ.SGP * Cwₛ[2]) + CS[2,2] * Θ.SGP
+    * Cwₛ[3] + (-1) * CSGP[2] * Θ.SG * Cwₛ[2] * Cwₛ[3]) + CS[1,2] * ((-1) * CSGP[2] *
+    CS[3,3] + CS[2,3] * CSGP[3] + CS[3,3] * Θ.SGP * Cwₛ[2] + (-1) * CS[2,3] * Θ.SGP *
+    Cwₛ[3] + (-1) * CSGP[3] * Θ.SG * Cwₛ[2] * Cwₛ[3] + CSGP[2] * Θ.SG * Cwₛ[3]^2) + Cwₛ[1]
+    * (CS[2,3]^2 * Θ.SGP + (-1) * CS[2,2] * CS[3,3] * Θ.SGP + CSGP[2] * CS[3,3] * Θ.SG
+    * Cwₛ[2] + CS[2,2] * CSGP[3] * Θ.SG * Cwₛ[3] + (-1) * CS[2,3] * Θ.SG * (CSGP[3] *
+    Cwₛ[2] + CSGP[2] * Cwₛ[3]))) + (-2) * CS[1,3] * ( CS[1,2] * (CSGP[2] + (-1) * Θ.SGP
+    * Cwₛ[2]) * (CSGP[3] + (-1) * Θ.SGP * Cwₛ[3]) + Cwₛ[1] * (CS[2,3] * Θ.SGP * (( -1)
+    * CSGP[2] + Θ.SGP * Cwₛ[2]) + CSGP[2] * Θ.SG * ((-1) * CSGP[3] * Cwₛ[2] + CSGP[2]
+    * Cwₛ[3]) + CS[2,2] * Θ.SGP * ( CSGP[3] + (-1) * Θ.SGP * Cwₛ[3])))))^(1/2))
+  )
+
+  return ω₁
+end
+
+function getω₂(Θ::Parameters, TG::TrisectedPortfolio, SGP::Vector{Float64}, ω₁::Float64)::Float64
+  ω₂::Float64 = (
+    -((-SGP[3] + SGP[3] * ω₁ * TG.wₛ[1] + Θ.SGP * TG.wₛ[3] - SGP[1] * ω₁ * TG.wₛ[3]) /
+    (SGP[3] * TG.wₛ[2] - SGP[2] * TG.wₛ[3]))
+  )
+
+  return ω₂
+end
+
+function getω₃(Θ::Parameters, TG::TrisectedPortfolio, SGP::Vector{Float64}, ω₁::Float64)::Float64
+  ω₃::Float64 = (
+    -((-SGP[2] + SGP[2] * ω₁ * TG.wₛ[1] + Θ.SGP * TG.wₛ[2] - SGP[1] * ω₁ * TG.wₛ[2]) /
+    (-SGP[3] * TG.wₛ[2] + SGP[2] * TG.wₛ[3]))
+  )
+
+  return ω₃
+end
+
+
+#builds the scaling vector ω
+function getω(Θ::Parameters, TG::TrisectedPortfolio, SGP::Vector{Float64})::Vector{Float64}
+
+  ω::Vector{Float64} = Vector{Float64}(undef, 3)
+  ω[1] = getω₁(Θ, TG, SGP)
+  ω[2] = getω₂(Θ, TG, SGP, ω[1])
+  ω[3] = getω₃(Θ, TG, SGP, ω[1])
+
+  return ω
+end
+
+getω(Θ::Parameters, TG::TrisectedPortfolio, P::Portfolio)::Vector{Float64} =
+  getω(Θ, TG, cov(TG, P))
+
+function rescaletrisected!(TP::TrisectedPortfolio, ω::Vector{Float64})::TrisectedPortfolio
+  wₜ::Vector{Float64} = TP.P.wₜ
+
+  for i ∈ 1:length(wₜ)
+    wₜ[i] *= ω[TP.assignments[i]]
+  end
+
+  return refreshtrisected!(TP, wₜ)
+end

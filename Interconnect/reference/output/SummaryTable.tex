@@ -1,0 +1,86 @@
+
+\documentclass[9pt,english]{extarticle}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[authoryear]{natbib}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{ctable}
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D..{#1}}
+\doublespacing
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\newcommand{\lyxaddress}[1]{
+\par {\raggedright #1
+\vspace{1.4em}
+\noindent\par}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{dcolumn}
+\thispagestyle{empty}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Taxes and Corporate Distributions \thanks{Footnote here }}
+
+\author{Clinton Tepper, Ivo Welch}
+
+\date{10/1/17}
+\maketitle
+
+\lyxaddress{\begin{center}
+e-mail here
+\par\end{center}}
+
+\lyxaddress{\begin{center}
+2017 Project
+\par\end{center}}
+
+\thispagestyle{empty}
+
+\pagebreak{}
+
+\setcounter{page}{1}
+
+
+
+\begin{table} \caption{Summary of Results} \label{} \centering
+\textit{See Tex File\\}
+\begin{tabular}{@{\extracolsep{-5pt}}r
+D{.}{.}{-3}D{.}{.}{-3}D{.}{.}{-3}}
+\\ \toprule
+        \\	&	\multicolumn{1}{r}{($\beta=1.0, T=50$)}	&	\multicolumn{1}{r}{($\beta=1.0, T=600$)}	&	\multicolumn{1}{r}{($\beta=0.95, T=50$)}
+\\ \midrule
+ \\ $\beta_{true}$	&	\multicolumn{1}{c}{1.0}	&	\multicolumn{1}{c}{1.0}	&	\multicolumn{1}{c}{0.95}
+\\		\\ $Mean(\beta_{est})$	&	\multicolumn{1}{c}{0.8998}	&	\multicolumn{1}{c}{0.9912}	&	\multicolumn{1}{c}{0.8549}
+\\		\\ $\beta$ Standard Deviation	&	\multicolumn{1}{c}{0.0822}	&	\multicolumn{1}{c}{0.0073}	&	\multicolumn{1}{c}{0.0893}
+\\		\\ $\alpha_{true}$	&	\multicolumn{1}{c}{0.0}	&	\multicolumn{1}{c}{0.0}	&	\multicolumn{1}{c}{0.0}
+\\		\\ $Mean(\alpha_{est})$	&	\multicolumn{1}{c}{-0.0011}	&	\multicolumn{1}{c}{-0.0001}	&	\multicolumn{1}{c}{-0.0001}
+\\		\\ $\alpha$ Standard Deviation	&	\multicolumn{1}{c}{0.1005}	&	\multicolumn{1}{c}{0.03}	&	\multicolumn{1}{c}{0.0683}
+\\		\\ $\sigma_{true}$	&	\multicolumn{1}{c}{0.2}	&	\multicolumn{1}{c}{0.2}	&	\multicolumn{1}{c}{0.2}
+\\		\\ $Mean(\sigma_{est})$	&	\multicolumn{1}{c}{0.1931}	&	\multicolumn{1}{c}{0.1994}	&	\multicolumn{1}{c}{0.1952}
+\\		\\ $\sigma$ Standard Deviation	&	\multicolumn{1}{c}{0.0199}	&	\multicolumn{1}{c}{0.0057}	&	\multicolumn{1}{c}{0.0204}
+\\		\\ T-Stat ($\beta_{est}-\beta_{true}$)	&	\multicolumn{1}{c}{-1.2189}	&	\multicolumn{1}{c}{-1.2002}	&	\multicolumn{1}{c}{-1.0639}
+\\		\\ $\beta_{true}$ - 5\% T-Tail	&	\multicolumn{1}{c}{0.8648}	&	\multicolumn{1}{c}{0.9879}	&	\multicolumn{1}{c}{0.803}
+\\		\\ $\beta_{true}$ - 1\% T-Tail	&	\multicolumn{1}{c}{0.8087}	&	\multicolumn{1}{c}{0.9829}	&	\multicolumn{1}{c}{0.7421}
+\\		\\ N	&	\multicolumn{1}{c}{10000}	&	\multicolumn{1}{c}{10000}	&	\multicolumn{1}{c}{10000}
+\\		\\ \bottomrule	 \end{tabular}
+ \\ \end{table}
+
+
+
+\end{document}
